@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Social Money</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="../css/bootstrap-theme.min.css" type="text/css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../css/moneystyle.css" type="text/css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- <script type="text/javascript" src="../js/jquery.min.js"></script>
+		// <script type="text/javascript" src="../js/jquery-ui.js"></script> -->
+        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/postfb.js"></script>
+        <script type="text/javascript" src="https://webqr.com/llqrcode.js"></script>
+        <script type="text/javascript" src="../js/webqr.js"></script>
+
+    </head>
+
+    <body>
+        <div class="fb-login-button" data-max-rows="2" data-size="large" data-show-faces="false" data-auto-logout-link="false" id="fbButton"></div>
+        <div style="text-align: center; margin-bottom: 2%"><img id="userpic" src="" class="img-thumbnail"/>
+        <br>
+        <strong id="name"></strong>
+        </div>
+
+        <div id="status"></div>
+        <div class="col-md-12 col-xs-12" id="tabBar" style="margin-top:3%">
+                <ul class="nav nav-tabs" >
+                    <li class="active" style="width:33%; text-align:center; font-size:16px;">
+                        <a data-toggle="tab" href="#tabRecord">Record</a>
+                    </li>
+                    <li style="width:33%; text-align:center; font-size:16px;">
+                        <a data-toggle="tab" href="#tabEwallet">E-wallet</a>
+                    </li>
+                    <li style="width:34%; text-align:center; font-size:16px;">
+                        <a data-toggle="tab" href="#tabBroadcast">Broadcast</a>
+                    </li>
+                </ul>
+            <div class="tab-content">
+                
+                <div id="tabRecord" class="tab-pane fade in active">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-top:10%">
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                          <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              還款
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                                
+                          </div>
+                          <div class="panelContent">
+                            <div class="input-group margin-bottom-sm">
+                              <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
+                              <input class="form-control" type="number" placeholder="How much?" id="price">
+                            </div>
+                            <div class="input-group margin-bottom-sm">
+                              <!-- <label for="selectlist">select currency:</label> -->
+                              <span class="input-group-addon"><i class="fa fa-check-square-o fa-fw"></i></span>
+                              <select class="form-control" id="selectlist">
+                                <option selected="selected">Select your currency</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                              </select>
+                            </div>
+                            <a class="btn btn-primary" href="#" onclick="create()"><i class="fa fa-paper-plane fa-fw"></i> QRCode</a>
+                          </div>
+                          <script type="text/javascript">
+
+                            function create()
+                            {
+
+                                var price = document.getElementById("price").value;
+                                var currency = document.getElementById("selectlist").value;
+                                if (price != null && currency != "Select your currency"){
+                                    var data = currency + ',' + price;
+                                    document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(data)+"'/>";
+                                    $('#myModal').modal('show'); 
+
+                                } else {
+                                    alert("Please input the price and currency correctly!")
+                                    //$('#myModal').modal('hide');
+                                }
+                            
+                            }
+
+                          </script>
+
+                          <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="removeImg()"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Your QRcode</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    Please scan the QRcode with scanner in 收款 tab.
+                                    <div id="qrimage">
+                                    </div>
+ 
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeImg()">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                          <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              收款
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
+                            
+                          </div>
+                          <div id="mainbody">
+                            <table class="tsel" border="0" width="100%">
+                                <tr>
+                                <td valign="top" align="center" width="50%">
+                                    <table class="tsel" border="0">
+                                    <tr>
+                                    <tr><td colspan="2" align="center">
+                                    <div id="outdiv">
+                                    </div>
+                                    </td></tr>
+                                    </table>
+                                    <br>
+                                </td>
+                                </tr>
+                                <tr><td colspan="3" align="center">
+                                <div id="result"></div>
+                            </td></tr>
+                            </table>
+                          </div>&nbsp;
+
+
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                          <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              社群分帳
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                          <div class="panel-body">
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div id="tabEwallet" class="tab-pane fade">
+                    <input id="wallet" type="image" src="http://goo.gl/1U3dKX" alt="Submit" width="30%" height="30%" data-toggle="tooltip" data-placement="right" title="Press to see your money!" aria-expanded="false" data-target="#demo" aria-controls="demo">
+                    <div id="demo" class="collapse">
+                        <ul class="list-group">
+                            <li class="list-group-item"><i class="fa fa-check-square-o" aria-hidden="true"></i>  Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Morbi leo risus</li>
+                            <li class="list-group-item">Porta ac consectetur ac</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                    <script>
+                        $(function () {
+                          $('[data-toggle="tooltip"]').tooltip()
+                        })
+                        //this.$("#wallet").toggleClass("test");
+                        $( "#wallet" ).click(function() {
+                          $( this ).attr("data-toggle", "collapse");
+                        });
+
+                    </script>
+                    
+                </div>
+                <div id="tabBroadcast" class="tab-pane fade">
+                    <div id = "css_table">
+                        <button id="addDiv">addDiv</button>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <canvas id="qr-canvas" width="800" height="600"></canvas>
+        <script type="text/javascript">
+            function removeImg() {
+                document.getElementById("qrimage").innerHTML = "";
+            }
+        </script>
+        <script type="text/javascript">load();</script>
+        <script>
+            var txtId = 1;
+            $('#addDiv').click(function(){
+                $("#css_table").append('<br/><div class="css_tr tr' + txtId + '"><div class="css_td col-xs-3 col-md-3 col-md-offset-1"><img class="img-circle" src="https://goo.gl/xgDlZR" /></div><div class="css_td col-xs-8 col-md-7 col-xs-offset-1" style="text-align: left; margin-top: 1%"><blockquote><p>Chin pay Lee</p><footer>$ 500</footer></blockquote></div></div>');
+                // $("#css_table").append('<div class="media css_tr tr' + txtId + '"><div class="media-left css_td col-xs-3 col-md-3"><img class="img-circle img-responsive" alt="Responsive image" src="https://goo.gl/xgDlZR" /></div><div class="media-body css_td col-xs-9 col-md-9" style="text-align:left"><h4>Chin pay Lee</h4><p>$ 500</p></div></div>');
+                txtId++;
+            });
+        </script>
+
+
+    </body>
+</html>
