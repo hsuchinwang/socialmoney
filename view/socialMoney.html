@@ -36,7 +36,7 @@
                         <a data-toggle="tab" href="#tabEwallet">E-wallet</a>
                     </li>
                     <li style="width:34%; text-align:center; font-size:16px;">
-                        <a data-toggle="tab" href="#tabBroadcast">Broadcast</a>
+                        <a data-toggle="tab" href="#tabBroadcast">Credit</a>
                     </li>
                 </ul>
             <div class="tab-content">
@@ -47,7 +47,7 @@
                         <div class="panel-heading" role="tab" id="headingOne">
                           <h4 class="panel-title">
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              還款
+                              借據
                             </a>
                           </h4>
                         </div>
@@ -83,6 +83,7 @@
                                 if (price != null && currency != "Select your currency"){
                                     var data = currency + ',' + price;
                                     document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(data)+"'/>";
+                                    document.getElementById("comfirmList").innerHTML = "我用"+currency + price + "元 做抵押. 請查收！"
                                     $('#myModal').modal('show'); 
 
                                 } else {
@@ -104,6 +105,7 @@
                                   </div>
                                   <div class="modal-body">
                                     Please scan the QRcode with scanner in 收款 tab.
+                                    <p id="comfirmList"></p>
                                     <div id="qrimage">
                                     </div>
  

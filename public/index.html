@@ -5,17 +5,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Social Money</title>
-        <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
-        <link rel="stylesheet" href="../css/bootstrap-theme.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="../css/moneystyle.css" type="text/css" />
+        <link rel="stylesheet" href="css/moneystyle.css" type="text/css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<!-- <script type="text/javascript" src="../js/jquery.min.js"></script>
-		// <script type="text/javascript" src="../js/jquery-ui.js"></script> -->
-        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../js/postfb.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/postfb.js"></script>
         <script type="text/javascript" src="https://webqr.com/llqrcode.js"></script>
-        <script type="text/javascript" src="../js/webqr.js"></script>
+        <script type="text/javascript" src="js/webqr.js"></script>
 
     </head>
 
@@ -47,7 +45,7 @@
                         <div class="panel-heading" role="tab" id="headingOne">
                           <h4 class="panel-title">
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              還款
+                              借據
                             </a>
                           </h4>
                         </div>
@@ -83,11 +81,11 @@
                                 if (price != null && currency != "Select your currency"){
                                     var data = currency + ',' + price;
                                     document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+encodeURIComponent(data)+"'/>";
+                                    document.getElementById("comfirmList").innerHTML = "我用"+currency + "  " + price + "元 做抵押. 請查收！"
                                     $('#myModal').modal('show'); 
 
                                 } else {
                                     alert("Please input the price and currency correctly!")
-                                    //$('#myModal').modal('hide');
                                 }
                             
                             }
@@ -104,6 +102,7 @@
                                   </div>
                                   <div class="modal-body">
                                     Please scan the QRcode with scanner in 收款 tab.
+                                    <h3 id="comfirmList"></h3>
                                     <div id="qrimage">
                                     </div>
  
@@ -203,6 +202,9 @@
         <script type="text/javascript">
             function removeImg() {
                 document.getElementById("qrimage").innerHTML = "";
+                document.getElementById("price").value = "";
+                document.getElementById("selectlist").value = "Select your currency";
+
             }
         </script>
         <script type="text/javascript">load();</script>
@@ -210,7 +212,6 @@
             var txtId = 1;
             $('#addDiv').click(function(){
                 $("#css_table").append('<br/><div class="css_tr tr' + txtId + '"><div class="css_td col-xs-3 col-md-3 col-md-offset-1"><img class="img-circle" src="https://goo.gl/xgDlZR" /></div><div class="css_td col-xs-8 col-md-7 col-xs-offset-1" style="text-align: left; margin-top: 1%"><blockquote><p>Chin pay Lee</p><footer>$ 500</footer></blockquote></div></div>');
-                // $("#css_table").append('<div class="media css_tr tr' + txtId + '"><div class="media-left css_td col-xs-3 col-md-3"><img class="img-circle img-responsive" alt="Responsive image" src="https://goo.gl/xgDlZR" /></div><div class="media-body css_td col-xs-9 col-md-9" style="text-align:left"><h4>Chin pay Lee</h4><p>$ 500</p></div></div>');
                 txtId++;
             });
         </script>
