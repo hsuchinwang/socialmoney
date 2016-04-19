@@ -125,6 +125,17 @@
         margin-right: auto;
         margin-left: auto;
         margin-top: 10%;
+        width: 80%;
+        height: 80%;
+    }
+
+    #record {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 10%;
+        width: 80%;
+        height: 80%;
     }
 
     .list-group {
@@ -175,6 +186,10 @@
             margin-top: 10px;
         }
 
+        #demo {
+            margin-top: 20px;
+        }
+
     }
 
     @media (min-width: 992px) {
@@ -188,8 +203,13 @@
         }
 
         #wallet {
-            width: 20%;
-            height: 20%;
+            width: 80%;
+            height: 80%;
+        }
+
+        #record {
+            width: 80%;
+            height: 80%;
         }
 
         .css_tr {
@@ -200,5 +220,9 @@
             width: 120px;
             height: 120px;
             margin-top: 20px;
+        }
+
+        #demo {
+            margin-top: 30px;
         }
     }
