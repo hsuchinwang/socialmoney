@@ -32,14 +32,25 @@ function statusChangeCallback(response) {
       {"fields":"name,picture"},
       function(res) {
           // Insert your code here
-          console.log(res);
-          if(!res || res.error) {
+        console.log(res);
+        if(!res || res.error) {
           alert(!res ? 'error occurred' : res.error);
           console.log(res);
           return;
         }
-      document.getElementById("userpic").src = res.picture.data.url;
-      document.getElementById("name").innerHTML = res.name;
+        document.getElementById("userpic").src = res.picture.data.url;
+        document.getElementById("name").innerHTML = res.name;
+        $.post('http://localhost:4567/save_name', {name: res.name}, function(result) {
+          console.log(result);
+        });
+        // new Ajax.Request('http://localhost:4567/save_name', {
+        //   method: 'post',
+        //   parameters: {
+        //     name: res.name,
+        //   }
+        // });
+        loadCurrency();
+
       }
     );
   }

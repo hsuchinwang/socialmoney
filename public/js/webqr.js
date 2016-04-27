@@ -75,6 +75,9 @@ function captureToCanvas() {
             gCtx.drawImage(v,0,0);
             try{
                 qrcode.decode();
+                updateDB();
+                alert("Success to keep the record!");
+                loadCurrency();
             }
             catch(e){       
                 console.log(e);
@@ -94,12 +97,22 @@ function htmlEntities(str) {
 
 function read(a)
 {
+    a = decode_utf8(a);
     var html="<br>";
+    console.log(a);
     if(a.indexOf("http://") === 0 || a.indexOf("https://") === 0)
         html+="<a target='_blank' href='"+a+"'>"+a+"</a><br>";
     html+="<b>"+htmlEntities(a)+"</b><br><br>";
+    console.log(htmlEntities(a));
     document.getElementById("result").innerHTML=html;
-}	
+    console.log(html);
+
+}
+
+function decode_utf8(s) {
+  return decodeURIComponent(escape(s));
+}
+	
 
 function isCanvasSupported(){
   var elem = document.createElement('canvas');
