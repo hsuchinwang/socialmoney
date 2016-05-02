@@ -93,17 +93,18 @@ class SocialMoneyClass < Sinatra::Base
             end
         end
 
-        def keeprecord(namec,named,price)
+        def keeprecord(namec,named,price,currency)
             begin
                 con = Mysql.new 'localhost', 'root', '12345678', 'SamWang'
 
                 @namec = namec
                 @named = named
                 @price = price
+                @currency = currency
                 puts @namec.class, @named, @price
                 # con.query("ALTER TABLE Record CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin")
                 con.query("SET NAMES UTF8")
-                con.query("INSERT INTO Record(Credit, Debt, Booking) VALUES('王敍親','#{@named}','#{@named} borrowed #{@price} from #{@namec}.')")
+                con.query("INSERT INTO Record(Credit, Debt, Booking, Currency) VALUES('王敍親','#{@named}','#{@named} borrowed #{@price} from #{@namec}.','#{@currency}')")
 
             rescue Mysql::Error => e
                 puts e.errno
@@ -221,7 +222,7 @@ class SocialMoneyClass < Sinatra::Base
     end
 
     post '/keeprecord' do 
-        keeprecord params[:namec], params[:named], params[:price]
+        keeprecord params[:namec], params[:named], params[:price], params[:currency]
     end
 
     post '/getrecord' do 

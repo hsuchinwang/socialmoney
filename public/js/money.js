@@ -75,7 +75,7 @@ function loadCurrency() {
                 if (options.length === 0) {
                     return 'Select your currency  ';
                 } else if (options.length >= 1) {
-                    return 'Total:   '+total;
+                    return "$ " + total + " will pay";
                 }
 
             }
@@ -180,7 +180,7 @@ function updateDB() {
       console.log(result);
 
     });
-    $.post('http://localhost:4567/keeprecord', {namec: creditname, named: resultName, price: resultPri}, function(result) {
+    $.post('http://localhost:4567/keeprecord', {namec: creditname, named: resultName, price: resultPri, currency: tmp[1].toString()}, function(result) {
 
       console.log(result);
 

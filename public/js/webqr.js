@@ -78,6 +78,7 @@ function captureToCanvas() {
                 updateDB();
                 alert("Success to keep the record!");
                 loadCurrency();
+                history.go(0);
             }
             catch(e){       
                 console.log(e);
