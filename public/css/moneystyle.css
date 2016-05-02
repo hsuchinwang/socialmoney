@@ -192,13 +192,17 @@
         }
 
         #userpic {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             margin-top: 10px;
         }
 
         #demo {
             margin-top: 20px;
+        }
+
+        h4 a {
+            font-size: 14px;
         }
 
     }

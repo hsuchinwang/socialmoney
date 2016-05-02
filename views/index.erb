@@ -163,8 +163,8 @@
                 </div>
                 <div id="tabBroadcast" class="tab-pane fade">
                     <div id = "css_table">
-                        <button id="addDiv">addDiv</button>
-                        </table>
+                        <p style="display:center;">尚未開發完成</p>
+                        <!-- <button id="addDiv">addDiv</button> -->
                     </div>
                 </div>
 
@@ -179,7 +179,7 @@
             //this.$("#wallet").toggleClass("test");
             $( "#walletinput" ).click(function() {
                 var name = $("#name").html().toString();
-                $.post('http://localhost:4567/find_my_money', {name: name}, function(result) {
+                $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
                     var mycur = [];
                     var mypri = []; 
                     mycur = result.split(/\d+/);
@@ -199,7 +199,7 @@
 
             $( "#recordinput" ).click(function() {
                 var name = $("#name").html().toString();
-                $.post('http://localhost:4567/getrecord', {name: name}, function(result) {
+                $.post('https://socialmoney.herokuapp.com/getrecord', {name: name}, function(result) {
 
                   console.log(result);
                   var resultRecord = result.split('.');
@@ -214,10 +214,10 @@
                 $( this ).attr("data-toggle", "collapse");
             });
 
-            var txtId = 1;
-            $('#addDiv').click(function(){
-                $("#css_table").append('<br/><div class="css_tr tr' + txtId + '"><div class="css_td col-xs-3 col-md-3 col-md-offset-1"><img class="img-circle" src="https://goo.gl/xgDlZR" /></div><div class="css_td col-xs-8 col-md-7 col-xs-offset-1" style="text-align: left; margin-top: 1%"><blockquote><p>Chin pay Lee</p><footer>$ 500</footer></blockquote></div></div>');
-                txtId++;
+            // var txtId = 1;
+            // $('#addDiv').click(function(){
+            //     $("#css_table").append('<br/><div class="css_tr tr' + txtId + '"><div class="css_td col-xs-3 col-md-3 col-md-offset-1"><img class="img-circle" src="https://goo.gl/xgDlZR" /></div><div class="css_td col-xs-8 col-md-7 col-xs-offset-1" style="text-align: left; margin-top: 1%"><blockquote><p>Chin pay Lee</p><footer>$ 500</footer></blockquote></div></div>');
+            //     txtId++;
             });
         </script>
 
