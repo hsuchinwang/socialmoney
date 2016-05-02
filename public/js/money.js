@@ -10,7 +10,7 @@ $('#tabRecord a').click(function (e) {
 function loadCurrency() {
 
   var name = $("#name").html().toString();
-  $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
+  $.post('http://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
       console.log(result);
       var mycur = [];
       var mypri = []; 
@@ -170,17 +170,17 @@ function updateDB() {
     resultNum.shift();
     resultCur.pop();
     console.log(tmp,resultPri,resultName,resultCur,resultNum, creditname);
-    $.post('https://socialmoney.herokuapp.com/minus', {name: resultName, currency: resultCur, price: resultNum }, function(result) {
+    $.post('http://socialmoney.herokuapp.com/minus', {name: resultName, currency: resultCur, price: resultNum }, function(result) {
 
       console.log(result);
 
     });
-    $.post('https://socialmoney.herokuapp.com/add', {name: creditname, currency: resultCur, price: resultNum}, function(result) {
+    $.post('http://socialmoney.herokuapp.com/add', {name: creditname, currency: resultCur, price: resultNum}, function(result) {
 
       console.log(result);
 
     });
-    $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: creditname, named: resultName, price: resultPri, currency: tmp[1].toString()}, function(result) {
+    $.post('http://socialmoney.herokuapp.com/keeprecord', {namec: creditname, named: resultName, price: resultPri, currency: tmp[1].toString()}, function(result) {
 
       console.log(result);
 
