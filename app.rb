@@ -6,7 +6,7 @@ class SocialMoneyClass < Sinatra::Base
         def save_name(name)
             begin
                 @name = name
-                con = Mysql.new 'localhost', 'root', '12345678', 'SamWang'
+                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'SamWang'
                 con.query("SET NAMES UTF8")
                 # con.query("ALTER DATABASE SamWang CHARACTER SET utf8 COLLATE utf8_general_ci")
                 # con.query("ALTER TABLE User CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci")
@@ -40,7 +40,7 @@ class SocialMoneyClass < Sinatra::Base
                 @pri = Array.new
                 @name = name
                 @price = price
-                con = Mysql.new 'localhost', 'root', '12345678', 'SamWang'
+                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'SamWang'
                 con.query("ALTER DATABASE SamWang CHARACTER SET utf8 COLLATE utf8_general_ci")
                 con.query("ALTER TABLE User CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci")
                 # con.query("SET NAMES UTF8")
@@ -71,7 +71,7 @@ class SocialMoneyClass < Sinatra::Base
 
                 @mycur = Array.new
                 @name = name
-                con = Mysql.new 'localhost', 'root', '12345678', 'SamWang'
+                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'SamWang'
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT * FROM User WHERE Name = '#{@name}'")
                 rs.each_hash do |row|
@@ -95,7 +95,7 @@ class SocialMoneyClass < Sinatra::Base
 
         def keeprecord(namec,named,price,currency)
             begin
-                con = Mysql.new 'localhost', 'root', '12345678', 'SamWang'
+                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'SamWang'
 
                 @namec = namec
                 @named = named
@@ -117,7 +117,7 @@ class SocialMoneyClass < Sinatra::Base
 
         def getrecord(name)
             begin
-                con = Mysql.new 'localhost', 'root', '12345678', 'SamWang'
+                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'SamWang'
                 @name = name
                 @mycur = Array.new
                 con.query("SET NAMES UTF8")
@@ -137,7 +137,7 @@ class SocialMoneyClass < Sinatra::Base
 
         def minus(name,currency,price)
             begin
-                con = Mysql.new 'localhost', 'root', '12345678', 'SamWang'
+                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'SamWang'
                 @name = name
                 @currency = currency
                 @price = price
@@ -164,7 +164,7 @@ class SocialMoneyClass < Sinatra::Base
 
         def add(name,currency,price)
             begin
-                con = Mysql.new 'localhost', 'root', '12345678', 'SamWang'
+                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'SamWang'
                 @name = name
                 @currency = currency
                 @price = price
