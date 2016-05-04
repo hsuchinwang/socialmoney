@@ -145,6 +145,7 @@ class SocialMoneyClass < Sinatra::Base
                     @result = 'fail'
                 else
                     @result = rs.fetch_row[0].to_s
+                    rs = con.query("DELETE FROM pincode WHERE Pin = #{@pin}")
                 end
                 
 
