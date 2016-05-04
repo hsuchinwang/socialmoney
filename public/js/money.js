@@ -73,7 +73,7 @@ function loadCurrency() {
                 console.log(options)
                 console.log(select);
                 if (options.length === 0) {
-                    return 'Select your currency  ';
+                    return 'Select currency  ';
                 } else if (options.length >= 1) {
                     return "$ " + total + " will pay";
                 }
