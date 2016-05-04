@@ -177,15 +177,15 @@ function removeImg() {
 function checkPin(){
   var pin = $('#pin').val;
   var resultText = '';
-  $.post('https://socialmoney.herokuapp.com/getpin', { pin: pin }, function(result) {
-      // if (result.toString() != 'fail'){
-      //   resultText = result.toString();
-      //   alert('The record is saved!');
-      // } else {
-      //   alert('The Pin Code is wrong! Please input the correct one!');
-      // }
+  // $.post('https://socialmoney.herokuapp.com/getpin', { pin: pin }, function(result) {
+  //     if (result.toString() != 'fail'){
+  //       resultText = result.toString();
+  //       alert('The record is saved!');
+  //     } else {
+  //       alert('The Pin Code is wrong! Please input the correct one!');
+  //     }
       
-  });
+  // });
 
   if (resultText != '') {
     updateDB(resultText);
