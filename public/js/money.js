@@ -38,7 +38,7 @@ function loadCurrency() {
                     //   total = parseInt($("#price").val());
                     // } else {
 
-                    if ($("#price").val() == null) {
+                    if ($("#price").val() == '') {
                       alert("請輸入價錢!!");
                     }
 
