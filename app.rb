@@ -265,7 +265,8 @@ class SocialMoneyClass < Sinatra::Base
     end
 
     post '/getpin' do 
-        getpin params[:pin]
+        # getpin params[:pin]
+        @result = 'success'
         return @result
     end
 
