@@ -141,7 +141,7 @@ function create()
         d = Math.floor((Math.random() * 10) + 1); 
         e = Math.floor((Math.random() * 10) + 1);
         f = (a+b)*c*d*e;
-        $("#pincode").html() = f;
+        $("#pincode").html(f);
         document.getElementById("comfirmList").innerHTML = "我用 "+currency + "  共" + price + "元 做抵押. 請查收！";
         $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f }, function(result) {
 
