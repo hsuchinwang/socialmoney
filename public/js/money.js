@@ -38,6 +38,10 @@ function loadCurrency() {
                     //   total = parseInt($("#price").val());
                     // } else {
 
+                    if ($("#price").val() == null) {
+                      alert("請輸入價錢!!");
+                    }
+
                     total += parseInt(element.val()/Math.pow((element.index()+1),5));
                     if (total > parseInt($("#price").val())) {
                       indexOfElement = element.index();
@@ -128,9 +132,23 @@ function create()
         var data = $("#name").html().toString() + ',' + currency.join('.') + ',' + price;
         console.log(data);
         //data = utf16to8(data);
-        document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+data+"'/>";
+        //document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+data+"'/>";
         //encodeURIComponent(data)
-        document.getElementById("comfirmList").innerHTML = "我用 "+currency + "  共" + price + "元 做抵押. 請查收！"
+        var a, b, c, d, e, f;
+        a = Math.floor((Math.random() * 10) + 1);
+        b = Math.floor((Math.random() * 10) + 1);
+        c = Math.floor((Math.random() * 10) + 1);
+        d = Math.floor((Math.random() * 10) + 1); 
+        e = Math.floor((Math.random() * 10) + 1);
+        f = (a+b)*c*d*e;
+        $("#pincode").html() = f;
+        document.getElementById("comfirmList").innerHTML = "我用 "+currency + "  共" + price + "元 做抵押. 請查收！";
+        $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f }, function(result) {
+
+          console.log(result);
+
+        });
+
         $('#myModal').modal('show'); 
 
     } else {
@@ -143,21 +161,43 @@ function create()
 
 
 function removeImg() {
-    document.getElementById("qrimage").innerHTML = "";
+    //document.getElementById("qrimage").innerHTML = "";
     document.getElementById("price").value = "";
     $('option', $('#selectlist')).each(function(element) {
         $(this).removeAttr('selected').prop('selected', false);
         console.log(element);
     });
     $('#selectlist').multiselect('refresh');
+    $("#pincode").html() = '';
     total = 0;
     topay = 0;
 
 }
 
-function updateDB() {
+function checkPin(){
+  var pin = $('#pin').val;
+  var resultText = '';
+  $.post('https://socialmoney.herokuapp.com/getpin', { pin: pin }, function(result) {
 
-    var resultText = $("#result").text();
+      if (result.toString() != 'fail'){
+        resultText = result.toString();
+        alert('The record is saved!');
+      } else {
+        alert('The Pin Code is wrong! Please input the correct one!');
+      }
+      
+  });
+
+  if (resultText != '') {
+    updateDB(resultText);
+  }
+  $('#pin').val = '';
+
+}
+
+function updateDB(resultText) {
+
+    // var resultText = $("#result").text();
     resultText = resultText.replace(/幣/g,"");
     resultText = resultText.replace(/元/g,"");
     resultText = resultText.replace(/\./g,"");

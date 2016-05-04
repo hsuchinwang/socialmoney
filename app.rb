@@ -117,6 +117,46 @@ class SocialMoneyClass < Sinatra::Base
             end
         end
 
+        def pincode(currency,pin)
+            begin
+                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+
+                @currency = currency
+                @pin = pin
+                con.query("SET NAMES UTF8")
+                con.query("INSERT INTO pincode(Currency, pin) VALUES('#{@currency}',#{@pin})")
+
+            rescue Mysql::Error => e
+                puts e.errno
+                puts e.error
+                
+            ensure
+                con.close if con
+            end
+        end
+
+        def getpin(pin)
+            begin
+                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                @pin = pin
+                con.query("SET NAMES UTF8")
+                rs = con.query("SELECT Currency FROM pincode WHERE Pin = #{@pin}")
+                if rs.fetch_row.nil? == true
+                    @result = 'fail'
+                else
+                    @result = rs.fetch_row[0].to_s
+                end
+                
+
+            rescue Mysql::Error => e
+                puts e.errno
+                puts e.error
+                
+            ensure
+                con.close if con
+            end
+        end
+
         def getrecord(name)
             begin
                 con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
@@ -223,6 +263,11 @@ class SocialMoneyClass < Sinatra::Base
         add params[:name], params[:currency], params[:price]
     end
 
+    post '/getpin' do 
+        getpin params[:pin]
+        return @result
+    end
+
     post '/keeprecord' do 
         keeprecord params[:namec], params[:named], params[:price], params[:currency]
     end
@@ -230,6 +275,10 @@ class SocialMoneyClass < Sinatra::Base
     post '/getrecord' do 
         getrecord params[:name]
         return @mycur
+    end
+
+    post '/pincode' do 
+        pincode params[:currency], params[:pin]
     end
 
 end

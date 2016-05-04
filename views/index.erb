@@ -16,8 +16,8 @@
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
         <script type="text/javascript" src="js/postfb.js"></script>
-        <script type="text/javascript" language="javascript" src="https://webqr.com/llqrcode.js" charset="big5"></script>
-        <script type="text/javascript" language="javascript" src="js/webqr.js" charset="big5"></script>
+        <!-- <script type="text/javascript" language="javascript" src="https://webqr.com/llqrcode.js" charset="big5"></script>
+        // <script type="text/javascript" language="javascript" src="js/webqr.js" charset="big5"></script> -->
         <script type="text/javascript" src="js/money.js"></script>
 
 
@@ -72,7 +72,7 @@
                               <br>
 
                             </div>
-                            <a class="btn btn-primary" href="#" onclick="create()"><i class="fa fa-paper-plane fa-fw"></i> QRCode</a>
+                            <a class="btn btn-primary" href="#" onclick="create()"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
                           </div>
 
                           <!-- Modal -->
@@ -86,8 +86,9 @@
                                   <div class="modal-body">
                                     Please scan the QRcode with scanner in 收款 tab.
                                     <h3 id="comfirmList"></h3>
-                                    <div id="qrimage">
-                                    </div>
+                                    <h1 class="col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2" id="pincode" style="bgcolor:black;color:white;margin-top:5px"></h1>
+                                    <!-- <div id="qrimage">
+                                    </div> -->
  
                                   </div>
                                   <div class="modal-footer">
@@ -111,7 +112,13 @@
                             
                           </div>
                           <div id="mainbody">
-                            <table class="tsel" border="0" width="100%">
+                            <div class="input-group margin-bottom-sm">
+                              <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
+                              <input class="form-control" type="number" placeholder="Please input the Pin Code" id="pin">
+                            </div>
+                            <a class="btn btn-primary" href="#" onclick="checkPin()"><i class="fa fa-paper-plane fa-fw"></i> Keep Record </a>
+
+                            <!-- <table class="tsel" border="0" width="100%">
                                 <tr>
                                 <td valign="top" align="center" width="50%">
                                     <table class="tsel" border="0">
@@ -126,7 +133,7 @@
                                 <tr><td colspan="3" align="center">
                                 <div id="result"></div>
                             </td></tr>
-                            </table>
+                            </table> -->
                           </div>&nbsp;
 
 
