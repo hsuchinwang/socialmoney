@@ -168,7 +168,7 @@ function removeImg() {
         console.log(element);
     });
     $('#selectlist').multiselect('refresh');
-    $("#pincode").html() = '';
+    $("#pincode").html('');
     total = 0;
     topay = 0;
 
