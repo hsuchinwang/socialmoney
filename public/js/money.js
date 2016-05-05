@@ -197,7 +197,7 @@ function checkPin(){
 }
 
 function updateDB(resultText) {
-
+    resultText = '王敍親,盧奕安幣35元,35';
     // var resultText = $("#result").text();
     resultText = resultText.replace(/幣/g,"");
     resultText = resultText.replace(/元/g,"");
