@@ -221,7 +221,5 @@ function updateDB() {
       }
       $('#pin').val = '';
 
-    }
-    
 
 }
