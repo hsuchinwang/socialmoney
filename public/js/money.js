@@ -188,6 +188,7 @@ function checkPin(){
   });
 
   if (resultText != '') {
+    console.log(resultText);
     updateDB(resultText);
   }
   $('#pin').val = '';
