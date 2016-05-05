@@ -118,7 +118,7 @@
                               <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
                               <input class="form-control" type="number" placeholder="Please input the Pin Code" id="pin">
                             </div>
-                            <a class="btn btn-primary" href="#" onclick="checkPin()"><i class="fa fa-paper-plane fa-fw"></i> Keep Record </a>
+                            <a class="btn btn-primary" href="#" onclick="updateDB()"><i class="fa fa-paper-plane fa-fw"></i> Keep Record </a>
 
                             <!-- <table class="tsel" border="0" width="100%">
                                 <tr>
@@ -182,25 +182,25 @@
         <canvas id="qr-canvas" width="800" height="600"></canvas>
         <!-- <script type="text/javascript">load();</script> -->
         <script>
-            function checkPin(){
-              var pin = $('#pin').val;
-              var resultText = '';
-              $.post('https://socialmoney.herokuapp.com/getpin', { pin: pin }, function(result) {
-                  if (result.toString() != 'fail'){
-                    resultText = result.toString();
-                    alert('The record is saved!');
-                  } else {
-                    alert('The Pin Code is wrong! Please input the correct one!');
-                  }
+            // function checkPin(){
+            //   var pin = $('#pin').val;
+            //   var resultText = '';
+            //   $.post('https://socialmoney.herokuapp.com/getpin', { pin: pin }, function(result) {
+            //       if (result.toString() != 'fail'){
+            //         resultText = result.toString();
+            //         alert('The record is saved!');
+            //       } else {
+            //         alert('The Pin Code is wrong! Please input the correct one!');
+            //       }
                   
-              });
+            //   });
 
-              if (resultText != '') {
-                updateDB(resultText);
-              }
-              $('#pin').val = '';
+            //   if (resultText != '') {
+            //     updateDB(resultText);
+            //   }
+            //   $('#pin').val = '';
 
-            }
+            // }
 
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
