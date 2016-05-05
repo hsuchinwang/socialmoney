@@ -174,52 +174,55 @@ function removeImg() {
 
 }
 
-
-
-function updateDB() {
-    var pin = $('#pin').val;
-    var resultText = '';
-    // var resultText = $("#result").text();
-    $.post('https://socialmoney.herokuapp.com/getpin', { pin: pin }, function(result) {
-        if (result.toString() != 'fail'){
-          resultText = result.toString();
-          alert('The record is saved!');
-        } else {
-          alert('The Pin Code is wrong! Please input the correct one!');
-        }
-        
-    });
-    if (resultText != '') {
-        //updateDB(resultText);
-        resultText = resultText.replace(/幣/g,"");
-        resultText = resultText.replace(/元/g,"");
-        resultText = resultText.replace(/\./g,"");
-        var tmp = resultText.split(',');
-        var resultPri = tmp[2];
-        var resultName = tmp[0];
-        var resultNum = tmp[1].split(/\D+/);
-        var resultCur = tmp[1].split(/\d+/);
-        var creditname = $("#name").html().toString();
-        resultNum.shift();
-        resultCur.pop();
-        console.log(tmp,resultPri,resultName,resultCur,resultNum, creditname);
-        $.post('https://socialmoney.herokuapp.com/minus', {name: resultName, currency: resultCur, price: resultNum }, function(result) {
-
-          console.log(result);
-
-        });
-        $.post('https://socialmoney.herokuapp.com/add', {name: creditname, currency: resultCur, price: resultNum}, function(result) {
-
-          console.log(result);
-
-        });
-        $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: creditname, named: resultName, price: resultPri, currency: tmp[1].toString()}, function(result) {
-
-          console.log(result);
-
-        });
+function checkPin(){
+  var pin = $('#pin').val;
+  var resultText = '';
+  $.post('https://socialmoney.herokuapp.com/getpin', { pin: pin }, function(result) {
+      if (result.toString() != 'fail'){
+        resultText = result.toString();
+        alert('The record is saved!');
+      } else {
+        alert('The Pin Code is wrong! Please input the correct one!');
       }
-      $('#pin').val = '';
+      
+  });
 
+  if (resultText != '') {
+    updateDB(resultText);
+  }
+  $('#pin').val = '';
+
+}
+
+function updateDB(resultText) {
+
+    // var resultText = $("#result").text();
+    resultText = resultText.replace(/幣/g,"");
+    resultText = resultText.replace(/元/g,"");
+    resultText = resultText.replace(/\./g,"");
+    var tmp = resultText.split(',');
+    var resultPri = tmp[2];
+    var resultName = tmp[0];
+    var resultNum = tmp[1].split(/\D+/);
+    var resultCur = tmp[1].split(/\d+/);
+    var creditname = $("#name").html().toString();
+    resultNum.shift();
+    resultCur.pop();
+    console.log(tmp,resultPri,resultName,resultCur,resultNum, creditname);
+    $.post('https://socialmoney.herokuapp.com/minus', {name: resultName, currency: resultCur, price: resultNum }, function(result) {
+
+      console.log(result);
+
+    });
+    $.post('https://socialmoney.herokuapp.com/add', {name: creditname, currency: resultCur, price: resultNum}, function(result) {
+
+      console.log(result);
+
+    });
+    $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: creditname, named: resultName, price: resultPri, currency: tmp[1].toString()}, function(result) {
+
+      console.log(result);
+
+    });
 
 }
