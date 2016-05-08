@@ -195,7 +195,7 @@ function checkPin(){
     console.log(resultText);
     updateDB(resultText);
   }
-  $('#pin').val = '';
+  document.getElementById('userpin').value = '';
 
 }
 
