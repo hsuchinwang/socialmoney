@@ -175,12 +175,12 @@ function removeImg() {
 }
 
 function checkPin(){
-  var pin = $('#userpin').val;
+  var userpin = $('#userpin').val;
   var resultText = '';
-  console.log(pin);
+  console.log(userpin);
   //document.domain = 'socialmoney.herokuapp.com';
   //if ($('#fb-root').length === 0) $('body').prepend('<div id="fb-root"></div>');
-  $.post('https://socialmoney.herokuapp.com/checkpin', { pin: pin }, function(result) {
+  $.post('https://socialmoney.herokuapp.com/checkpin', { pin: userpin }, function(result) {
       console.log(result);
       if (result.toString() != 'fail'){
         resultText = result.toString();
