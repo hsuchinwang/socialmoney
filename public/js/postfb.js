@@ -62,7 +62,7 @@ function statusChangeCallback(response) {
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.5', // use version 2.2
-    channelUrl : 'https://socialmoney.herokuapp.com'
+    channelUrl : '//socialmoney.herokuapp.com'
   });
 
 

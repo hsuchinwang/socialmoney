@@ -135,7 +135,7 @@ class SocialMoneyClass < Sinatra::Base
             end
         end
 
-        def getpin(pin)
+        def checkpin(pin)
             begin
                 con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
                 @pin = pin
@@ -264,8 +264,8 @@ class SocialMoneyClass < Sinatra::Base
         add params[:name], params[:currency], params[:price]
     end
 
-    post '/getpin' do 
-        getpin params[:pin]
+    post '/checkpin' do 
+        checkpin params[:pin]
         return @result
     end
 
