@@ -119,7 +119,7 @@
                               <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
                               <input class="form-control" type="number" placeholder="Please input the Pin Code" id="pin">
                             </div>
-                            <a class="btn btn-primary" href="#" onclick="updateDB()"><i class="fa fa-paper-plane fa-fw"></i> Keep Record </a>
+                            <a class="btn btn-primary" href="#" onclick="checkPin()"><i class="fa fa-paper-plane fa-fw"></i> Keep Record </a>
 
                             <!-- <table class="tsel" border="0" width="100%">
                                 <tr>
@@ -180,10 +180,10 @@
 
             </div>
         </div>
-        <canvas id="qr-canvas" width="800" height="600"></canvas>
+        <!-- <canvas id="qr-canvas" width="800" height="600"></canvas> -->
         <!-- <script type="text/javascript">load();</script> -->
         <script>
-            if ($('#fb-root').length === 0) $('body').prepend('<div id="fb-root"></div>');
+            //if ($('#fb-root').length === 0) $('body').prepend('<div id="fb-root"></div>');
 
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
