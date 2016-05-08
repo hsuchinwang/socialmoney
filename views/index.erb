@@ -27,7 +27,7 @@
     </head>
 
     <body>
-        <div class="fb-login-button" data-max-rows="2" data-size="large" data-show-faces="false" data-auto-logout-link="false" id="fbButton"></div>
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
         <div style="text-align: center; margin-bottom: 2%"><img id="userpic" src="" class="img-thumbnail"/>
         <br>
         <strong id="name"></strong>
