@@ -184,6 +184,8 @@ function checkPin(){
       console.log(result);
       if (result.toString() != 'fail'){
         resultText = result.toString();
+        console.log(resultText);
+        updateDB(resultText);
         alert('The record is saved!');
       } else {
         alert('The Pin Code is wrong! Please input the correct one!');
