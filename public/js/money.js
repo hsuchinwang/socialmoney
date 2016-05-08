@@ -175,7 +175,7 @@ function removeImg() {
 }
 
 function checkPin(){
-  var pin = $('#pin').val;
+  var pin = $('#userpin').val;
   var resultText = '';
   console.log(pin);
   //document.domain = 'socialmoney.herokuapp.com';
