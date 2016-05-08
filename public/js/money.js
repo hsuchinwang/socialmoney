@@ -178,7 +178,7 @@ function checkPin(){
   var pin = $('#pin').val;
   var resultText = '';
   //document.domain = 'socialmoney.herokuapp.com';
-  if ($('#fb-root').length === 0) $('body').prepend('<div id="fb-root"></div>');
+  //if ($('#fb-root').length === 0) $('body').prepend('<div id="fb-root"></div>');
   $.post('https://socialmoney.herokuapp.com/checkpin', { pin: pin }, function(result) {
       console.log(result);
       if (result.toString() != 'fail'){
