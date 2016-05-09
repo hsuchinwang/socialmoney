@@ -26,6 +26,10 @@
          margin: 40px auto;
     }
 
+    .panelContent label{
+        text-align: left;
+    }
+
     #mainbody{
         background: white;
         width:100%;
@@ -203,6 +207,8 @@
 
         #demo {
             margin-top: 20px;
+            margin-left: -20px;
+            margin-right: -20px;
         }
 
         li a {

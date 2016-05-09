@@ -240,7 +240,7 @@ class SocialMoneyClass < Sinatra::Base
     end
 
     get '/' do
-        erb :indexmobile
+        erb :index
     end
 
     post '/save_name' do
