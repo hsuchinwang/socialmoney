@@ -81,7 +81,7 @@
                               <br>
 
                             </div>
-                            <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" onclick="create()"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
+                            <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" data-transition="slidedown" onclick="create()"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
                           </div>
 
                           <!-- Modal -->
@@ -106,14 +106,6 @@
                                 </div>
                               </div>
                             </div> -->
-                            <div data-role="page" id="dialogPage">
-                              <div data-role="header">
-                                <h2>Your PinCode</h2>
-                              </div>
-                              <div role="main" class="ui-content">
-                                <p>I am a dialog</p>
-                              </div>
-                            </div>
                         </div>
                       </div>
                       <div class="panel panel-default">
@@ -194,6 +186,14 @@
                 </div>
 
             </div>
+        </div>
+        <div data-role="page" id="dialogPage">
+          <div data-role="header">
+            <h2>Your PinCode</h2>
+          </div>
+          <div role="main" class="ui-content">
+            <p>I am a dialog</p>
+          </div>
         </div>
         <!-- <canvas id="qr-canvas" width="800" height="600"></canvas> -->
         <!-- <script type="text/javascript">load();</script> -->
