@@ -127,6 +127,7 @@ function create()
 
     var price = document.getElementById("price").value;
     var currency = getSelection(price);
+    var modalText = "<h4>我用</h4>";
     console.log(currency);
     if (price != null && currency.length > 0 ){
         var data = $("#name").html().toString() + ',' + currency.join('.') + ',' + price;
@@ -142,7 +143,13 @@ function create()
         e = Math.floor((Math.random() * 10) + 1);
         f = (a+b)*c*d*e;
         $("#pincode").html(f);
-        document.getElementById("comfirmList").innerHTML = "我用 "+currency + "  共" + price + "元 做抵押. 請查收！";
+        for (var i=0;i<currency.length;i++) {
+          modalText += "<h5>"+currency[i]+"</h5>";
+        }
+        modalText += "<h5>共"+ price + "元</h5>";
+        modalText += "<h4>做抵押. 請查收！</h4>";
+        //document.getElementById("comfirmList").innerHTML = "我用 "+currency + "  共" + price + "元 做抵押. 請查收！";
+        document.getElementById("comfirmList").innerHTML = modalText;
         $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f }, function(result) {
 
           console.log(result);
