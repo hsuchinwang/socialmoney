@@ -11,11 +11,11 @@
 		    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="css/moneystyle.css" type="text/css" />
         <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
-        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+        <!-- <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
 
         <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <!-- // <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
 
         
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -34,9 +34,10 @@
         <div id="logindiv">
           <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
         </div>
-        <div style="text-align: center; margin-bottom: 2%"><img id="userpic" src="" class="img-thumbnail"/>
-        <br>
-        <strong id="name"></strong>
+        <div style="text-align: center; margin-bottom: 2%">
+          <img id="userpic" src="" class="img-thumbnail"/>
+          <br>
+          <strong id="name"></strong>
         </div>
 
         <div id="status"></div>
@@ -81,9 +82,7 @@
                               <br>
 
                             </div>
-                            <!-- <div data-role="page"> -->
-                              <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" data-transition="slidedown" onclick="create()" id="generatePin"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
-                            <!-- </div> -->
+                            <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" onclick="create()"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
                           </div>
 
                           <!-- Modal -->
@@ -122,7 +121,7 @@
                           <div class="panel-body">
                             
                           </div>
-                          <!-- <div id="mainbody">
+                          <!-- <div id="mainbody"> -->
                           <div class="panelContent">
                             <div class="input-group margin-bottom-sm">
                               <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
@@ -187,30 +186,11 @@
                 </div> -->
 
             </div>
-        <!-- </div> -->
-        <!-- <div data-role="dialog" data-dialog="true" id="dialogPage">
-          <div data-role="header">
-            <h2>Your PinCode</h2>
-          </div>
-          <div role="main" class="ui-content">
-            <p>I am a dialog</p>
-          </div>
-        </div> -->
+        </div>
         <!-- <canvas id="qr-canvas" width="800" height="600"></canvas> -->
         <!-- <script type="text/javascript">load();</script> -->
         <script>
             //if ($('#fb-root').length === 0) $('body').prepend('<div id="fb-root"></div>');
-
-            // $( "#dialogPage" ).dialog({   
-            //     autoOpen: false,   
-            //     height: 300,   
-            //     width: 350,   
-            //     modal: true   
-            // }); 
-
-            // $( "#generatePin" ).click(function() {
-            //     $( "#dialogPage" ).dialog( "open" );
-            // });
 
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
