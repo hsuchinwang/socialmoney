@@ -31,161 +31,163 @@
     </head>
 
     <body>
-        <div id="logindiv">
-          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-        </div>
-        <div style="text-align: center; margin-bottom: 2%"><img id="userpic" src="" class="img-thumbnail"/>
-        <br>
-        <strong id="name"></strong>
-        </div>
+        <div data-role="page">
+          <div id="logindiv">
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+          </div>
+          <div style="text-align: center; margin-bottom: 2%"><img id="userpic" src="" class="img-thumbnail"/>
+          <br>
+          <strong id="name"></strong>
+          </div>
 
-        <div id="status"></div>
-        <div class="col-md-12 col-xs-12" id="tabBar" style="margin-top:3%">
-                <ul class="nav nav-tabs" >
-                    <li class="active" style="width:33%; text-align:center; font-size:16px;">
-                        <a data-toggle="tab" href="#tabRecord">借款還款</a>
-                    </li>
-                    <li style="width:33%; text-align:center; font-size:16px;">
-                        <a data-toggle="tab" href="#tabEwallet">電子錢包</a>
-                    </li>
-                    <li style="width:34%; text-align:center; font-size:16px;">
-                        <a data-toggle="tab" href="#tabBroadcast">信用評比</a>
-                    </li>
-                </ul>
-            <div class="tab-content">
-                
-                <div id="tabRecord" class="tab-pane fade in active">
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-top:10%">
-                      <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingOne">
-                          <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              虛擬幣還款
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                          <div class="panel-body">
-                                
+          <div id="status"></div>
+          <div class="col-md-12 col-xs-12" id="tabBar" style="margin-top:3%">
+                  <ul class="nav nav-tabs" >
+                      <li class="active" style="width:33%; text-align:center; font-size:16px;">
+                          <a data-toggle="tab" href="#tabRecord">借款還款</a>
+                      </li>
+                      <li style="width:33%; text-align:center; font-size:16px;">
+                          <a data-toggle="tab" href="#tabEwallet">電子錢包</a>
+                      </li>
+                      <li style="width:34%; text-align:center; font-size:16px;">
+                          <a data-toggle="tab" href="#tabBroadcast">信用評比</a>
+                      </li>
+                  </ul>
+              <div class="tab-content">
+                  
+                  <div id="tabRecord" class="tab-pane fade in active">
+                      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-top:10%">
+                        <div class="panel panel-default">
+                          <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                虛擬幣還款
+                              </a>
+                            </h4>
                           </div>
-                          <div class="panelContent">
-                            <div class="input-group margin-bottom-sm">
-                              <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
-                              <input class="form-control" type="number" placeholder="How much?" id="price">
+                          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                  
                             </div>
-                            <div class="input-group margin-bottom-sm">
-                              <!-- <label for="selectlist">select currency:</label> -->
-                              <span class="input-group-addon"><i class="fa fa-check-square-o fa-fw" style="margin-bottom:0px;"></i></span>
-                              <select class="form-control" id="selectlist" multiple="multiple">
-                              </select>
-                              <br>
+                            <div class="panelContent">
+                              <div class="input-group margin-bottom-sm">
+                                <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
+                                <input class="form-control" type="number" placeholder="How much?" id="price">
+                              </div>
+                              <div class="input-group margin-bottom-sm">
+                                <!-- <label for="selectlist">select currency:</label> -->
+                                <span class="input-group-addon"><i class="fa fa-check-square-o fa-fw" style="margin-bottom:0px;"></i></span>
+                                <select class="form-control" id="selectlist" multiple="multiple">
+                                </select>
+                                <br>
 
+                              </div>
+                              <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" data-transition="slidedown" onclick="create()" id="generatePin"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
                             </div>
-                            <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" data-transition="slidedown" onclick="create()" id="generatePin"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
-                          </div>
 
-                          <!-- Modal -->
-  <!--                           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="removeImg()"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Your PinCode</h4>
-                                  </div>
-                                  <div class="modal-body">
-                                    Please input the PinCode in 收款 tab.
-                                    <h3 id="comfirmList"></h3>
-                                    <h1 class="col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2" id="pincode" style="background-color:black;color:white"></h1>
-                                    <!-- <div id="qrimage">
+                            <!-- Modal -->
+    <!--                           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="removeImg()"><span aria-hidden="true">&times;</span></button>
+                                      <h4 class="modal-title" id="myModalLabel">Your PinCode</h4>
                                     </div>
- 
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeImg()">Close</button>
+                                    <div class="modal-body">
+                                      Please input the PinCode in 收款 tab.
+                                      <h3 id="comfirmList"></h3>
+                                      <h1 class="col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2" id="pincode" style="background-color:black;color:white"></h1>
+                                      <!-- <div id="qrimage">
+                                      </div>
+   
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeImg()">Close</button>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </div> -->
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingTwo">
-                          <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                              收款
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                          <div class="panel-body">
-                            
+                              </div> -->
                           </div>
-                          <!-- <div id="mainbody"> -->
-                          <div class="panelContent">
-                            <div class="input-group margin-bottom-sm">
-                              <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
-                              <input class="form-control" type="number" placeholder="Please input the Pin Code" id="userpin">
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                收款
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                              
                             </div>
-                            <a class="btn btn-primary" href="#" onclick="checkPin()"><i class="fa fa-paper-plane fa-fw"></i> Keep Record </a>
+                            <!-- <div id="mainbody"> -->
+                            <div class="panelContent">
+                              <div class="input-group margin-bottom-sm">
+                                <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
+                                <input class="form-control" type="number" placeholder="Please input the Pin Code" id="userpin">
+                              </div>
+                              <a class="btn btn-primary" href="#" onclick="checkPin()"><i class="fa fa-paper-plane fa-fw"></i> Keep Record </a>
 
-                            <!-- <table class="tsel" border="0" width="100%">
-                                <tr>
-                                <td valign="top" align="center" width="50%">
-                                    <table class="tsel" border="0">
-                                      <tr><td colspan="2" align="center">
-                                        <div id="outdiv">
-                                        </div>
-                                      </td></tr>
-                                    </table>
-                                    <br>
-                                </td>
-                                </tr>
-                                <tr><td colspan="3" align="center">
-                                <div id="result"></div>
-                            </td></tr>
-                            </table> -->
-                          </div>
+                              <!-- <table class="tsel" border="0" width="100%">
+                                  <tr>
+                                  <td valign="top" align="center" width="50%">
+                                      <table class="tsel" border="0">
+                                        <tr><td colspan="2" align="center">
+                                          <div id="outdiv">
+                                          </div>
+                                        </td></tr>
+                                      </table>
+                                      <br>
+                                  </td>
+                                  </tr>
+                                  <tr><td colspan="3" align="center">
+                                  <div id="result"></div>
+                              </td></tr>
+                              </table> -->
+                            </div>
 
 
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree">
-                          <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                              社群分帳
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body">
-                            
                           </div>
                         </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                社群分帳
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                              
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                </div>
-                <div id="tabEwallet" class="tab-pane fade">
-                    <div id="wallet">
-                      <input id="walletinput" class="col-md-3 col-xs-5 col-md-offset-2 col-xs-offset-1" type="image" src="image/Wallet.png" alt="Submit" width="100%" height="100%" data-toggle="tooltip" data-placement="auto" title="Press to see your money!" aria-expanded="false" data-target="#demo" aria-controls="demo"> 
-                      <input id="recordinput" class="col-md-3 col-xs-5 col-md-offset-2" type="image" src="image/booklet.png" alt="Submit" width="100%" height="100%" data-toggle="tooltip" data-placement="auto" title="Press to see your debt record!" aria-expanded="false" data-target="#demo" aria-controls="demo">
-                    </div>
+                  </div>
+                  <div id="tabEwallet" class="tab-pane fade">
+                      <div id="wallet">
+                        <input id="walletinput" class="col-md-3 col-xs-5 col-md-offset-2 col-xs-offset-1" type="image" src="image/Wallet.png" alt="Submit" width="100%" height="100%" data-toggle="tooltip" data-placement="auto" title="Press to see your money!" aria-expanded="false" data-target="#demo" aria-controls="demo"> 
+                        <input id="recordinput" class="col-md-3 col-xs-5 col-md-offset-2" type="image" src="image/booklet.png" alt="Submit" width="100%" height="100%" data-toggle="tooltip" data-placement="auto" title="Press to see your debt record!" aria-expanded="false" data-target="#demo" aria-controls="demo">
+                      </div>
 
-                    <div id="demo" class="collapse col-md-8 col-xs-12 col-md-offset-2">
-                        <ul class="list-group" id="moneylist">
-                            <!-- <li class="list-group-item"><i class="fa fa-check-square-o" aria-hidden="true"></i>  Cras justo odio</li> -->
-                        </ul>
-                    </div>
-                    
-                </div>
-                <div id="tabBroadcast" class="tab-pane fade">
-                    <div id = "css_table">
-                        <p style="display:center;">尚未開發完成</p>
-                        <!-- <button id="addDiv">addDiv</button> -->
-                    </div>
-                </div>
+                      <div id="demo" class="collapse col-md-8 col-xs-12 col-md-offset-2">
+                          <ul class="list-group" id="moneylist">
+                              <!-- <li class="list-group-item"><i class="fa fa-check-square-o" aria-hidden="true"></i>  Cras justo odio</li> -->
+                          </ul>
+                      </div>
+                      
+                  </div>
+                  <div id="tabBroadcast" class="tab-pane fade">
+                      <div id = "css_table">
+                          <p style="display:center;">尚未開發完成</p>
+                          <!-- <button id="addDiv">addDiv</button> -->
+                      </div>
+                  </div>
 
-            </div>
+              </div>
+          </div>
         </div>
         <div data-role="dialog" data-dialog="true" id="dialogPage">
           <div data-role="header">
