@@ -81,7 +81,7 @@
                               <br>
 
                             </div>
-                            <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" data-transition="slidedown" onclick="create()"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
+                            <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" data-transition="slidedown" onclick="create()" id="generatePin"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
                           </div>
 
                           <!-- Modal -->
@@ -199,6 +199,17 @@
         <!-- <script type="text/javascript">load();</script> -->
         <script>
             //if ($('#fb-root').length === 0) $('body').prepend('<div id="fb-root"></div>');
+
+            $( "#dialog" ).dialog({   
+                autoOpen: false,   
+                height: 300,   
+                width: 350,   
+                modal: true   
+            }); 
+
+            $( "#generatePin" ).click(function() {
+                $( "#dialogPage" ).dialog( "open" );
+            });
 
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
