@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html">
         <meta charset="UTF-8">
@@ -11,8 +11,12 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="css/moneystyle.css" type="text/css" />
         <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
+        <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
         <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
         
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
@@ -21,7 +25,7 @@
         <!-- <script type="text/javascript" language="javascript" src="https://webqr.com/llqrcode.js" charset="big5"></script>
         // <script type="text/javascript" language="javascript" src="js/webqr.js" charset="big5"></script> -->
         <script type="text/javascript" src="js/money.js"></script>
-        <script src="https://connect.facebook.net/zh_TW/all.js#xfbml=1"></script>
+        <!-- <script src="https://connect.facebook.net/zh_TW/all.js#xfbml=1"></script> -->
 
 
     </head>
@@ -77,11 +81,11 @@
                               <br>
 
                             </div>
-                            <a class="btn btn-primary" href="#" onclick="create()"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
+                            <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" onclick="create()"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
                           </div>
 
                           <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <!--                           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -93,13 +97,21 @@
                                     <h3 id="comfirmList"></h3>
                                     <h1 class="col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2" id="pincode" style="background-color:black;color:white"></h1>
                                     <!-- <div id="qrimage">
-                                    </div> -->
+                                    </div>
  
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeImg()">Close</button>
                                   </div>
                                 </div>
+                              </div>
+                            </div> -->
+                            <div data-role="page" id="dialogPage">
+                              <div data-role="header">
+                                <h2>Your PinCode</h2>
+                              </div>
+                              <div role="main" class="ui-content">
+                                <p>I am a dialog</p>
                               </div>
                             </div>
                         </div>
