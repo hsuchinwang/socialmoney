@@ -36,6 +36,15 @@ function loadCurrency() {
                       $('#selectlist').multiselect('deselectAll', true);
                       $('#selectlist').multiselect('updateButtonText');
                       total = 0;
+                      var nonSelectedOptions = $('#selectlist option').filter(function() {
+                        return !$(this).is(':selected');
+                      });
+                      var dropdown = $('#selectlist').siblings('.multiselect-container');
+                      $('#selectlist option').each(function() {
+                          var input = $('input[value="' + $(this).val() + '"]');
+                          input.prop('disabled', false);
+                          input.parent('li').addClass('disabled');
+                      });
 
                     } 
                     else {
