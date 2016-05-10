@@ -1,5 +1,4 @@
 var topay = 0;
-// var topay2 = 0;
 var total = 0;
 var indexOfElement = null;
 
@@ -132,9 +131,6 @@ function create()
     if (price != null && currency.length > 0 ){
         var data = $("#name").html().toString() + ',' + currency.join('.') + ',' + price;
         console.log(data);
-        //data = utf16to8(data);
-        //document.getElementById("qrimage").innerHTML="<img src='https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl="+data+"'/>";
-        //encodeURIComponent(data)
         var a, b, c, d, e, f;
         a = Math.floor((Math.random() * 10) + 1);
         b = Math.floor((Math.random() * 10) + 1);
@@ -147,8 +143,7 @@ function create()
           modalText += "<h5>"+currency[i]+"</h5>";
         }
         modalText += "<h5>共"+ price + "元</h5>";
-        modalText += "<h4>做抵押. 請查收！</h4>";
-        //document.getElementById("comfirmList").innerHTML = "我用 "+currency + "  共" + price + "元 做抵押. 請查收！";
+        modalText += "<h4>做抵押. 請查收</h4>";
         document.getElementById("comfirmList").innerHTML = modalText;
         $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f }, function(result) {
 
@@ -168,7 +163,7 @@ function create()
 
 
 function removeImg() {
-    //document.getElementById("qrimage").innerHTML = "";
+
     document.getElementById("price").value = "";
     $('option', $('#selectlist')).each(function(element) {
         $(this).removeAttr('selected').prop('selected', false);
@@ -185,8 +180,7 @@ function checkPin(){
   var userpin = document.getElementById('userpin').value;
   var resultText = '';
   console.log(userpin);
-  //document.domain = 'socialmoney.herokuapp.com';
-  //if ($('#fb-root').length === 0) $('body').prepend('<div id="fb-root"></div>');
+
   $.post('https://socialmoney.herokuapp.com/checkpin', { pin: userpin }, function(result) {
       console.log(result);
       if (result.toString() != 'fail'){
@@ -209,8 +203,7 @@ function checkPin(){
 }
 
 function updateDB(resultText) {
-    //resultText = '王敍親,盧奕安幣35元,35';
-    // var resultText = $("#result").text();
+
     resultText = resultText.replace(/幣/g,"");
     resultText = resultText.replace(/元/g,"");
     resultText = resultText.replace(/\./g,"");
