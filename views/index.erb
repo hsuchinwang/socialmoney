@@ -158,6 +158,9 @@
         <script type="text/javascript" src="js/money.js"></script>
         <script>
 
+            if (navigator.userAgent.match('CriOS'))
+              window.open('https://www.facebook.com/dialog/oauth?client_id=1493213687646728&redirect_uri='+document.location.href+'&scope=email,public_profile','',null);
+
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })

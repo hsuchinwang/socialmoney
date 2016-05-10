@@ -30,24 +30,24 @@ function loadCurrency() {
             buttonWidth: '100%',
             onChange: function(element, checked) {
                 if (checked === true) {
-                    //action taken here if true
-                    // if (element.val() == "0") {
-                    //   console.log(element.val()/Math.pow((element.index()+1),5));
-                    //   topay = parseInt($("#price").val()) - total;
-                    //   total = parseInt($("#price").val());
-                    // } else {
+ 
                     if (element.val() == 'clean') {
 
                       $('#selectlist').multiselect('deselectAll', true);
                       $('#selectlist').multiselect('updateButtonText');
                       total = 0;
 
-                    } else {
+                    } 
+                    else {
+
                       if ($("#price").val() == '') {
+                        
                         alert("請輸入價錢!!");
                         $("#selectlist").multiselect('deselect', element.val());
 
-                      } else {
+                      } 
+                      else {
+
                         total += parseInt(element.val()/Math.pow((element.index()+1),5));
                         if (total > parseInt($("#price").val())) {
                           indexOfElement = element.index();
@@ -65,26 +65,12 @@ function loadCurrency() {
                               input.parent('li').addClass('disabled');
                           });
                         } 
-                        // else {
-                        //   var dropdown = $('#selectlist').siblings('.multiselect-container');
-                        //   $('#selectlist option').each(function() {
-                        //       var input = $('input[value="' + $(this).val() + '"]');
-                        //       input.prop('disabled', false);
-                        //       input.parent('li').addClass('disabled');
-                        //   });
-                        // }
                       }
                     }
                     
-
-                    // }
                 }
                 else if (checked === false) {
-                    // if (element.val() == "0") {
-                    //   total -= topay;
-                    //   topay = 0;
-                    // } else {
-                      //total -= parseInt(element.val());
+
                     total = 0;
                     topay = 0;
                     var brands = $('#selectlist option:selected');
@@ -106,7 +92,6 @@ function loadCurrency() {
                         input.parent('li').addClass('disabled');
                     });
 
-                    // }
                 }
             },
             buttonText: function(options, select) {
@@ -138,11 +123,7 @@ function getSelection(price) {
         selectPri.push(topay);
       } else {
         selected.push($(this).html().substring(0, $(this).html().indexOf(' ')));
-        // if ($(this).val() == "0") {
-        //   selectPri.push(topay);
-        // } else {
-          selectPri.push($(this).val()/Math.pow(($(this).index()+1),5));
-        //}                                    
+        selectPri.push($(this).val()/Math.pow(($(this).index()+1),5));                                    
       }
       
   });
@@ -160,7 +141,6 @@ function getSelection(price) {
 
 function create()
 {
-
     var price = document.getElementById("price").value;
     var currency = getSelection(price);
     var modalText = "<h4>我用</h4>";
@@ -197,8 +177,6 @@ function create()
 }
 
 
-
-
 function removeImg() {
 
     document.getElementById("price").value = "";
@@ -212,6 +190,7 @@ function removeImg() {
     topay = 0;
 
 }
+
 
 function checkPin(){
   var userpin = document.getElementById('userpin').value;
@@ -238,6 +217,7 @@ function checkPin(){
   document.getElementById('userpin').value = '';
 
 }
+
 
 function updateDB(resultText) {
 
