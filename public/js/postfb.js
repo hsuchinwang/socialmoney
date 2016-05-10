@@ -12,11 +12,30 @@ function statusChangeCallback(response) {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
+        loginWithFacebook();
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
+        loginWithFacebook();
+    }
+  }
+
+  function loginWithFacebook(){
+     if( navigator.userAgent.match('CriOS') ){
+      var redirect_uri = document.location.href;
+        if(redirect_uri.indexOf('?') !== -1){
+                redirect_uri += '&back_from_fb=1';
+        } else {
+                redirect_uri += '?back_from_fb=1';
+        }
+      var url = 'https://www.facebook.com/dialog/oauth?client_id=1493213687646728&redirect_uri='+redirect_uri+'&scope=email,public_profile';
+      var win = window.open(url, '_self');
+    }else{
+      FB.login(function(response) {
+        checkLoginState();
+      }, {scope:'public_profile,email'});
     }
   }
 
@@ -68,20 +87,20 @@ function statusChangeCallback(response) {
 
 
   FB.getLoginStatus(function(response) {
-    if (navigator.userAgent.match('CriOS')) {
-      var redirect_uri = document.location.href;
-      if(redirect_uri.indexOf('?') !== -1){
-          redirect_uri += '&back_from_fb=1';
-      } else {
-          redirect_uri += '?back_from_fb=1';
-      }
-      var url = 'https://www.facebook.com/dialog/oauth?client_id=1493213687646728&redirect_uri='+redirect_uri+'&scope=email,public_profile';
-      // var win = window.open(url, '_self');
-      window.open(url);
+    // if (navigator.userAgent.match('CriOS')) {
+    //   var redirect_uri = document.location.href;
+    //   if(redirect_uri.indexOf('?') !== -1){
+    //       redirect_uri += '&back_from_fb=1';
+    //   } else {
+    //       redirect_uri += '?back_from_fb=1';
+    //   }
+    //   var url = 'https://www.facebook.com/dialog/oauth?client_id=1493213687646728&redirect_uri='+redirect_uri+'&scope=email,public_profile';
+    //   // var win = window.open(url, '_self');
+    //   window.open(url);
 
-    } else {
+    // } else {
       statusChangeCallback(response);
-    }
+    //}
   });
 
   };
