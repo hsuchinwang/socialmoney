@@ -64,7 +64,8 @@ function loadCurrency() {
                               input.prop('disabled', true);
                               input.parent('li').addClass('disabled');
                           });
-                        // } else {
+                        } 
+                        // else {
                         //   var dropdown = $('#selectlist').siblings('.multiselect-container');
                         //   $('#selectlist option').each(function() {
                         //       var input = $('input[value="' + $(this).val() + '"]');
