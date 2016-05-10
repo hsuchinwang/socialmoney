@@ -27,7 +27,6 @@ function statusChangeCallback(response) {
   }
 
   function loginWithFacebook(){
-     //if( navigator.userAgent.match('CriOS') ){
       var redirect_uri = document.location.href;
         if(redirect_uri.indexOf('?') !== -1){
                 redirect_uri += '&back_from_fb=1';
@@ -36,30 +35,12 @@ function statusChangeCallback(response) {
         }
       var url = 'https://www.facebook.com/dialog/oauth?client_id=1493213687646728&redirect_uri='+redirect_uri+'&scope=email,public_profile';
       var win = window.open(url, '_self');
-    //}
-    // else{
-    //   FB.login(function(response) {
-    //     checkLoginState();
-    //   }, {scope:'public_profile,email'});
-    // }
   }
 
   function checkLoginState() {
-    // if( navigator.userAgent.match('CriOS') ){
-    //   var redirect_uri = document.location.href;
-    //     if(redirect_uri.indexOf('?') !== -1){
-    //             redirect_uri += '&back_from_fb=1';
-    //     } else {
-    //             redirect_uri += '?back_from_fb=1';
-    //     }
-    //   var url = 'https://www.facebook.com/dialog/oauth?client_id=1493213687646728&redirect_uri='+redirect_uri+'&scope=email,public_profile';
-    //   var win = window.open(url, '_self');
-    // }else{
-
       FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
       });
-    //}
   }
 
   function getUserPic() {
@@ -80,12 +61,7 @@ function statusChangeCallback(response) {
         $.post('https://socialmoney.herokuapp.com/save_name', {name: res.name}, function(result) {
           console.log(result);
         });
-        // new Ajax.Request('http://localhost:4567/save_name', {
-        //   method: 'post',
-        //   parameters: {
-        //     name: res.name,
-        //   }
-        // });
+
         loadCurrency();
 
       }
@@ -104,20 +80,7 @@ function statusChangeCallback(response) {
 
 
   FB.getLoginStatus(function(response) {
-    // if (navigator.userAgent.match('CriOS')) {
-    //   var redirect_uri = document.location.href;
-    //   if(redirect_uri.indexOf('?') !== -1){
-    //       redirect_uri += '&back_from_fb=1';
-    //   } else {
-    //       redirect_uri += '?back_from_fb=1';
-    //   }
-    //   var url = 'https://www.facebook.com/dialog/oauth?client_id=1493213687646728&redirect_uri='+redirect_uri+'&scope=email,public_profile';
-    //   // var win = window.open(url, '_self');
-    //   window.open(url);
-
-    // } else {
       statusChangeCallback(response);
-    //}
   });
 
   };

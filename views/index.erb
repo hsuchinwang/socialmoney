@@ -157,7 +157,11 @@
         <script type="text/javascript" src="js/postfb.js"></script>
         <script type="text/javascript" src="js/money.js"></script>
         <script>
-             
+            
+            if (navigator.location.href == "http://socialmoney.herokuapp.com/#") {
+              location.assign("https://socialmoney.herokuapp.com/#");
+            }
+
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })
