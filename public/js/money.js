@@ -45,7 +45,7 @@ function loadCurrency() {
                     } else {
                       if ($("#price").val() == '') {
                         alert("請輸入價錢!!");
-                        element.selected = false;
+                        $("#selectlist").multiselect('deselect', element.val());
 
                       } else {
                         total += parseInt(element.val()/Math.pow((element.index()+1),5));
