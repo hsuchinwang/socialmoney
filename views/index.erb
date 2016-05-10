@@ -157,8 +157,8 @@
         <script type="text/javascript" src="js/postfb.js"></script>
         <script type="text/javascript" src="js/money.js"></script>
         <script>
-            
-            if (document.location.href == "http://socialmoney.herokuapp.com/#") {
+            var x = location.href;
+            if ( x === "http://socialmoney.herokuapp.com") {
               location.href = "https://socialmoney.herokuapp.com/#";
             }
 
