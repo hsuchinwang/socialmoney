@@ -76,7 +76,8 @@ function statusChangeCallback(response) {
           redirect_uri += '?back_from_fb=1';
       }
       var url = 'https://www.facebook.com/dialog/oauth?client_id=1493213687646728&redirect_uri='+redirect_uri+'&scope=email,public_profile';
-      var win = window.open(url, '_self');
+      // var win = window.open(url, '_self');
+      window.open(url);
 
     } else {
       statusChangeCallback(response);
