@@ -64,6 +64,9 @@ function loadCurrency() {
                               input.prop('disabled', true);
                               input.parent('li').addClass('disabled');
                           });
+                          var input = $('input[value="clean"]');
+                          input.prop('disabled', false);
+                          input.parent('li').addClass('disabled');
                         } 
                       }
                     }
