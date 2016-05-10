@@ -22,7 +22,7 @@ function loadCurrency() {
       for (var i=0;i<mycur.length;i++){
         htmlText += '<option value="'+ mypri[i]*Math.pow((i+1),5)+'">'+ mycur[i]+' 幣, 餘 '+ mypri[i] +' 元</option>';
       }
-
+      htmlText += '<option value="clean">全部清除</option>'
       $("#selectlist").html(htmlText);
       $(document).ready(function() {
           
@@ -36,19 +36,44 @@ function loadCurrency() {
                     //   topay = parseInt($("#price").val()) - total;
                     //   total = parseInt($("#price").val());
                     // } else {
+                    if (element.val() == 'clean') {
 
-                    if ($("#price").val() == '') {
-                      alert("請輸入價錢!!");
-                    }
+                      $('#selectlist').multiselect('deselectAll', true);
+                      $('#selectlist').multiselect('updateButtonText');
 
-                    total += parseInt(element.val()/Math.pow((element.index()+1),5));
-                    if (total > parseInt($("#price").val())) {
-                      indexOfElement = element.index();
-                      console.log(indexOfElement);
-                      topay = parseInt(element.val()/Math.pow((element.index()+1),5))- (total - parseInt($("#price").val()));
-                      total = parseInt($("#price").val());;
-                      
+                    } else {
+                      if ($("#price").val() == '') {
+                        alert("請輸入價錢!!");
+                        element.selected = false;
+
+                      } else {
+                        total += parseInt(element.val()/Math.pow((element.index()+1),5));
+                        if (total > parseInt($("#price").val())) {
+                          indexOfElement = element.index();
+                          console.log(indexOfElement);
+                          topay = parseInt(element.val()/Math.pow((element.index()+1),5))- (total - parseInt($("#price").val()));
+                          total = parseInt($("#price").val());
+                          var nonSelectedOptions = $('#selectlist option').filter(function() {
+                              return !$(this).is(':selected');
+                          });
+ 
+                          var dropdown = $('#selectlist').siblings('.multiselect-container');
+                          nonSelectedOptions.each(function() {
+                              var input = $('input[value="' + $(this).val() + '"]');
+                              input.prop('disabled', true);
+                              input.parent('li').addClass('disabled');
+                          });
+                        } else {
+                          var dropdown = $('#selectlist').siblings('.multiselect-container');
+                          $('#selectlist option').each(function() {
+                              var input = $('input[value="' + $(this).val() + '"]');
+                              input.prop('disabled', false);
+                              input.parent('li').addClass('disabled');
+                          });
+                        }
+                      }
                     }
+                    
 
                     // }
                 }
