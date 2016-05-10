@@ -40,6 +40,7 @@ function loadCurrency() {
 
                       $('#selectlist').multiselect('deselectAll', true);
                       $('#selectlist').multiselect('updateButtonText');
+                      total = 0;
 
                     } else {
                       if ($("#price").val() == '') {
