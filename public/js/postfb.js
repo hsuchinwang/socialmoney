@@ -68,7 +68,19 @@ function statusChangeCallback(response) {
 
 
   FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
+    if (navigator.userAgent.match('CriOS')) {
+      var redirect_uri = document.location.href;
+      if(redirect_uri.indexOf('?') !== -1){
+          redirect_uri += '&back_from_fb=1';
+      } else {
+          redirect_uri += '?back_from_fb=1';
+      }
+      var url = 'https://www.facebook.com/dialog/oauth?client_id=1493213687646728&redirect_uri='+redirect_uri+'&scope=email,public_profile';
+      var win = window.open(url, '_self');
+
+    } else {
+      statusChangeCallback(response);
+    }
   });
 
   };
