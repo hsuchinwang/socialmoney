@@ -7,6 +7,8 @@ function statusChangeCallback(response) {
       //window.location.replace("/success");
       getUserPic();
       document.getElementById("logindiv").style.display = "none";
+      document.getElementById("picdiv").style.display = "block";
+      document.getElementById("tabBar").style.display = "block";
       document.getElementById('status').innerHTML = "";
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.

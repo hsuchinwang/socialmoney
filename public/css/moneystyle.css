@@ -63,6 +63,14 @@
         height: 80%;
     }
 
+    #tabBar {
+        display: none;
+    }
+
+    #picdiv {
+        display: none;
+    }
+
     .list-group {
         margin-top: 3%;
     }
