@@ -24,7 +24,10 @@ function loadCurrency() {
       }
       htmlText += '<option value="clean">全部清除</option>'
       $("#selectlist").html(htmlText);
-      $(document).ready(function() {
+  });
+}
+
+$(document).ready(function() {
           
           $('#selectlist').multiselect({
             buttonWidth: '100%',
@@ -119,10 +122,7 @@ function loadCurrency() {
             
           });
 
-      });
-
-  });
-}
+});
 
 function getSelection(price) {
   var brands = $('#selectlist option:selected');
@@ -260,5 +260,6 @@ function updateDB(resultText) {
       console.log(result);
 
     });
+    loadCurrency();
 
 }
