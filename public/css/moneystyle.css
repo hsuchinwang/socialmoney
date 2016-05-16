@@ -26,7 +26,7 @@
         width: 80%; 
         text-align: center; 
         vertical-align: middle;
-        margin: 10% auto;
+        margin: 20% auto;
     }
 
     img{
@@ -43,15 +43,12 @@
     }
 
     #logindiv {
-        display: block;
-        margin-right: auto;
-        margin-left:auto;
+        text-align: center;
+        margin-top: 5%;
     }
 
     #status {
-        display: block;
-        margin-right: auto;
-        margin-left:auto;
+        text-align: center;
     }
 
     #wallet {
