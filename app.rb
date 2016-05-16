@@ -74,7 +74,7 @@ class SocialMoneyClass < Sinatra::Base
                 puts @namec.class, @named, @price
                 # con.query("ALTER TABLE Record CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin")
                 con.query("SET NAMES UTF8")
-                con.query("INSERT INTO Record(Credit, Debt, Booking, Currency) VALUES('王敍親','#{@named}','#{@named} borrowed #{@price} from #{@namec}.','#{@currency}')")
+                con.query("INSERT INTO Record(Credit, Debt, Booking, Currency) VALUES('#{@namec}','#{@named}','#{@named} borrowed #{@price} from #{@namec}.','#{@currency}')")
 
             rescue Mysql::Error => e
                 puts e.errno
