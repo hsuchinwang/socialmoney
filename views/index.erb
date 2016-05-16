@@ -12,7 +12,7 @@
 
     <body>
         <div id="logindiv">
-          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+          <fb:login-button scope="public_profile,email" data-size="xlarge" onlogin="checkLoginState();"></fb:login-button>
         </div>
         <div style="text-align: center; margin-bottom: 2%" id="picdiv">
           <img id="userpic" src="" class="img-thumbnail"/>
@@ -20,7 +20,7 @@
           <strong id="name"></strong>
         </div>
 
-        <div><h5 id="status"></h5></div>
+        <div><h3 id="status"></h3></div>
         <div class="col-md-12 col-xs-12" id="tabBar" style="margin-top:3%">
                 <ul class="nav nav-tabs" >
                     <li class="active" style="width:33%; text-align:center; font-size:16px;">
@@ -89,43 +89,6 @@
                             </div>
                         </div>
                       </div>
-<!--                       <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingTwo">
-                          <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                              收款
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                          <div class="panel-body">
-                            
-                          </div>
-                          <div class="panelContent">
-                            <div class="input-group margin-bottom-sm">
-                              <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
-                              <input class="form-control" type="number" placeholder="Please input the Pin Code" id="userpin">
-                            </div>
-                            <a class="btn btn-primary" href="#" onclick="checkPin()"><i class="fa fa-paper-plane fa-fw"></i> Keep Record </a>
-                          </div>
-
-
-                        </div>
-                      </div> -->
-                      <!-- <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree">
-                          <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                              社群分帳
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body">
-                            
-                          </div>
-                        </div>
-                      </div> -->
                     </div>
                 </div>
                 <div id="tabGetMoney" class="tab-pane fade">

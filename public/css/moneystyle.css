@@ -26,11 +26,7 @@
         width: 80%; 
         text-align: center; 
         vertical-align: middle;
-        margin: 5% auto;
-    }
-
-    .tsel{
-        padding:0;
+        margin: 10% auto;
     }
 
     img{
@@ -46,7 +42,13 @@
          text-align: center;
     }
 
-    .fb-login-button {
+    #logindiv {
+        display: block;
+        margin-right: auto;
+        margin-left:auto;
+    }
+
+    #status {
         display: block;
         margin-right: auto;
         margin-left:auto;
