@@ -85,14 +85,15 @@ class SocialMoneyClass < Sinatra::Base
             end
         end
 
-        def pincode(currency,pin)
+        def pincode(currency,pin,create)
             begin
                 con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
 
                 @currency = currency
                 @pin = pin
+                @create = create
                 con.query("SET NAMES UTF8")
-                con.query("INSERT INTO pincode(Currency, pin) VALUES('#{@currency}',#{@pin})")
+                con.query("INSERT INTO pincode(Currency, Pin, Create) VALUES('#{@currency}',#{@pin},'#{@create}')")
 
             rescue Mysql::Error => e
                 puts e.errno
@@ -243,7 +244,7 @@ class SocialMoneyClass < Sinatra::Base
     end
 
     post '/pincode' do 
-        pincode params[:currency], params[:pin]
+        pincode params[:currency], params[:pin], params[:create]
     end
 
 end

@@ -126,6 +126,7 @@ function loadCurrency() {
 
 function getSelection(price) {
   var brands = $('#selectlist option:selected');
+  console.log(brands);
   var selected = [];
   var selectPri = [];
   var selectcur = [];
@@ -155,10 +156,11 @@ function create()
 {
     var price = document.getElementById("price").value;
     var currency = getSelection(price);
+    var name = $("#name").html().toString();
     var modalText = "<h4>我用</h4>";
     console.log(currency);
     if (price != null && currency.length > 0 ){
-        var data = $("#name").html().toString() + ',' + currency.join('.') + ',' + price;
+        var data = name + ',' + currency.join('.') + ',' + price;
         console.log(data);
         var a, b, c, d, e, f;
         a = Math.floor((Math.random() * 10) + 1);
@@ -174,7 +176,7 @@ function create()
         modalText += "<h5>共"+ price + "元</h5>";
         modalText += "<h4>做抵押. 請查收</h4>";
         document.getElementById("comfirmList").innerHTML = modalText;
-        $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f }, function(result) {
+        $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f, create: name }, function(result) {
 
           console.log(result);
 
