@@ -1,7 +1,6 @@
 var topay = 0;
 var total = 0;
 var indexOfElement = null;
-var name = $("#name").html().toString();
 
 $('#tabRecord a').click(function (e) {
   loadCurrency();
