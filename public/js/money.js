@@ -1,6 +1,7 @@
 var topay = 0;
 var total = 0;
 var indexOfElement = null;
+var name = $("#name").html().toString();
 
 $('#tabRecord a').click(function (e) {
   loadCurrency();
@@ -8,7 +9,6 @@ $('#tabRecord a').click(function (e) {
 
 function loadCurrency() {
 
-  var name = $("#name").html().toString();
   $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
       console.log(result);
       var mycur = [];
@@ -142,7 +142,7 @@ function getSelection(price) {
   });
   console.log(selectPri);
   if ( total < price ) {
-    selected.push($("#name").html().toString());
+    selected.push(name);
     selectPri.push(price - total);
   }
   for (var i=0;i<selected.length;i++) {
@@ -156,7 +156,6 @@ function create()
 {
     var price = document.getElementById("price").value;
     var currency = getSelection(price);
-    var name = $("#name").html().toString();
     var modalText = "<h4>我用</h4>";
     console.log(currency);
     if (price != null && currency.length > 0 ){
@@ -210,7 +209,6 @@ function removeImg() {
 function checkPin(){
   var userpin = document.getElementById('userpin').value;
   var resultText = '';
-  var name = $("#name").html().toString();
   console.log(userpin);
 
   $.post('https://socialmoney.herokuapp.com/checkpin', { pin: userpin, name: name }, function(result) {
@@ -245,21 +243,19 @@ function updateDB(resultText) {
     var resultName = tmp[0];
     var resultNum = tmp[1].split(/\D+/);
     var resultCur = tmp[1].split(/\d+/);
-    var creditname = $("#name").html().toString();
     resultNum.shift();
     resultCur.pop();
-    console.log(tmp,resultPri,resultName,resultCur,resultNum, creditname);
     $.post('https://socialmoney.herokuapp.com/minus', {name: resultName, currency: resultCur, price: resultNum }, function(result) {
 
       console.log(result);
 
     });
-    $.post('https://socialmoney.herokuapp.com/add', {name: creditname, currency: resultCur, price: resultNum}, function(result) {
+    $.post('https://socialmoney.herokuapp.com/add', {name: name, currency: resultCur, price: resultNum}, function(result) {
 
       console.log(result);
 
     });
-    $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: creditname, named: resultName, price: resultPri, currency: tmp[1].toString()}, function(result) {
+    $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: name, named: resultName, price: resultPri, currency: tmp[1].toString()}, function(result) {
 
       console.log(result);
 
