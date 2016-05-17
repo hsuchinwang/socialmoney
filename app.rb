@@ -71,7 +71,6 @@ class SocialMoneyClass < Sinatra::Base
                 @named = named
                 @price = price
                 @currency = currency
-                puts @namec.class, @named, @price
                 # con.query("ALTER TABLE Record CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin")
                 con.query("SET NAMES UTF8")
                 con.query("INSERT INTO Record(Credit, Debt, Booking, Currency) VALUES('#{@namec}','#{@named}','#{@named} borrowed #{@price} from #{@namec}.','#{@currency}')")
@@ -92,8 +91,9 @@ class SocialMoneyClass < Sinatra::Base
                 @currency = currency
                 @pin = pin
                 @create = create
+                puts @create
                 con.query("SET NAMES UTF8")
-                con.query("INSERT INTO pincode(Currency,Pin) VALUES('#{@currency}',#{@pin})")
+                con.query("INSERT INTO pincode(Currency,Pin,Create) VALUES('#{@currency}',#{@pin},'#{@create}')")
 
             rescue Mysql::Error => e
                 puts e.errno
