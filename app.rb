@@ -92,20 +92,21 @@ class SocialMoneyClass < Sinatra::Base
             end
         end
 
-        def checkpin(pin)
+        def checkpin(pin,name)
             begin
                 con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
                 @pin = pin
+                @name = name
                 con.query("SET NAMES UTF8")
-                rs = con.query("SELECT Currency FROM pincode WHERE Pin = #{@pin}")
+                rs = con.query("SELECT Currency FROM pincode WHERE Pin = #{@pin} AND CreateName NOT IN ('#{@name}')")
                 if rs.fetch_row.nil? == true
                     @result = 'fail'
                 else
-                    rs = con.query("SELECT * FROM pincode WHERE Pin = #{@pin}")
-                    # @result = rs.fetch_row[0].to_s
-                    rs.each_hash do |row|
-                        @result = row['Currency'].to_s + '/' + row['CreateName'].to_s
-                    end
+                    rs = con.query("SELECT Currency FROM pincode WHERE Pin = #{@pin}")
+                    @result = rs.fetch_row[0].to_s
+                    # rs.each_hash do |row|
+                    #     @result = row['Currency'].to_s + '/' + row['CreateName'].to_s
+                    # end
                     rs = con.query("DELETE FROM pincode WHERE Pin = #{@pin}")
                 end
                 
@@ -221,7 +222,7 @@ class SocialMoneyClass < Sinatra::Base
     end
 
     post '/checkpin' do 
-        checkpin params[:pin]
+        checkpin params[:pin], params[:name]
         return @result
     end
 

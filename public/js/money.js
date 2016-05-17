@@ -210,14 +210,16 @@ function removeImg() {
 function checkPin(){
   var userpin = document.getElementById('userpin').value;
   var resultText = '';
+  var name = $("#name").html().toString();
   console.log(userpin);
 
-  $.post('https://socialmoney.herokuapp.com/checkpin', { pin: userpin }, function(result) {
+  $.post('https://socialmoney.herokuapp.com/checkpin', { pin: userpin, name: name }, function(result) {
       console.log(result);
-      var tmp = [];
-      tmp = result.split('/');
-      if (result.toString() != 'fail' && tmp[1] != $("#name").html().toString()){
-        resultText = tmp[0].toString();
+      //var tmp = [];
+      //tmp = result.split('/');
+      if (result.toString() != 'fail'){
+        //resultText = tmp[0].toString();
+        resultText = result.toString();
         console.log(resultText);
         updateDB(resultText);
         alert('The record is saved!');
