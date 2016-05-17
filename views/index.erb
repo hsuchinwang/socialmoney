@@ -126,12 +126,12 @@
         <script type="text/javascript" src="js/money.min.js"></script>
         <script>
 
-            var name = $("#name").html().toString();
+            //var name = $("#name").html().toString();
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })
             $( "#walletinput" ).click(function() {
-                //var name = $("#name").html().toString();
+                var name = $("#name").html().toString();
                 $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
                     var mycur = [];
                     var mypri = []; 
@@ -151,7 +151,7 @@
             });
 
             $( "#recordinput" ).click(function() {
-                //var name = $("#name").html().toString();
+                var name = $("#name").html().toString();
                 $.post('https://socialmoney.herokuapp.com/getrecord', {name: name}, function(result) {
 
                   console.log(result);
