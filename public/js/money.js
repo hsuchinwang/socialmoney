@@ -215,10 +215,7 @@ function checkPin(){
 
   $.post('https://socialmoney.herokuapp.com/checkpin', { pin: userpin, name: name }, function(result) {
       console.log(result);
-      //var tmp = [];
-      //tmp = result.split('/');
       if (result.toString() != 'fail'){
-        //resultText = tmp[0].toString();
         resultText = result.toString();
         console.log(resultText);
         updateDB(resultText);

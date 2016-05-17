@@ -59,7 +59,6 @@ class SocialMoneyClass < Sinatra::Base
                 @named = named
                 @price = price
                 @currency = currency
-                # con.query("ALTER TABLE Record CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin")
                 con.query("SET NAMES UTF8")
                 con.query("INSERT INTO Record(Credit, Debt, Booking, Currency) VALUES('#{@namec}','#{@named}','#{@named} borrowed #{@price} from #{@namec}.','#{@currency}')")
 
@@ -104,9 +103,6 @@ class SocialMoneyClass < Sinatra::Base
                 else
                     rs = con.query("SELECT Currency FROM pincode WHERE Pin = #{@pin}")
                     @result = rs.fetch_row[0].to_s
-                    # rs.each_hash do |row|
-                    #     @result = row['Currency'].to_s + '/' + row['CreateName'].to_s
-                    # end
                     rs = con.query("DELETE FROM pincode WHERE Pin = #{@pin}")
                 end
                 
