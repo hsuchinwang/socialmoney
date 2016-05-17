@@ -104,7 +104,7 @@ class SocialMoneyClass < Sinatra::Base
                     rs = con.query("SELECT * FROM pincode WHERE Pin = #{@pin}")
                     # @result = rs.fetch_row[0].to_s
                     rs.each_hash do |row|
-                        @result << row[Currency].to_s + '/' + row[CreateName].to_s
+                        @result << row['Currency'].to_s + '/' + row['CreateName'].to_s
                     end
                     rs = con.query("DELETE FROM pincode WHERE Pin = #{@pin}")
                 end
