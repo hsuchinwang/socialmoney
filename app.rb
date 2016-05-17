@@ -92,7 +92,7 @@ class SocialMoneyClass < Sinatra::Base
                 @pin = pin
                 @create = create
                 puts @create
-                # con.query("SET NAMES UTF8")
+                con.query("SET NAMES UTF8")
                 con.query("INSERT INTO pincode(Currency,Pin,CreateName) VALUES('#{@currency}',#{@pin},'#{@create}')")
 
             rescue Mysql::Error => e
