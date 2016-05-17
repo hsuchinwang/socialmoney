@@ -132,10 +132,10 @@ function getSelection(price) {
   var selectcur = [];
   $(brands).each(function(index, brand){
       if ( indexOfElement != null && $(this).index() == indexOfElement) {
-        selected.push($(this).html().substring(0, $(this).html().indexOf(' ')));
+        selected.push($(this).html().substring(0, $(this).html().indexOf('幣')-1));
         selectPri.push(topay);
       } else {
-        selected.push($(this).html().substring(0, $(this).html().indexOf(' ')));
+        selected.push($(this).html().substring(0, $(this).html().indexOf('幣')-1));
         selectPri.push($(this).val()/Math.pow(($(this).index()+1),5));                                    
       }
       
