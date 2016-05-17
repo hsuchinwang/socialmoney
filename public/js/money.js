@@ -1,14 +1,13 @@
 var topay = 0;
 var total = 0;
 var indexOfElement = null;
-var name = $("#name").html().toString();
 
 $('#tabRecord a').click(function (e) {
   loadCurrency();
 })
 
 function loadCurrency() {
-
+  var name = $("#name").html().toString();
   $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
       console.log(result);
       var mycur = [];
@@ -142,7 +141,7 @@ function getSelection(price) {
   });
   console.log(selectPri);
   if ( total < price ) {
-    selected.push(name);
+    selected.push($("#name").html().toString());
     selectPri.push(price - total);
   }
   for (var i=0;i<selected.length;i++) {
@@ -157,6 +156,7 @@ function create()
     var price = document.getElementById("price").value;
     var currency = getSelection(price);
     var modalText = "<h4>我用</h4>";
+    var name = $("#name").html().toString();
     console.log(currency);
     if (price != null && currency.length > 0 ){
         var data = name + ',' + currency.join('.') + ',' + price;
@@ -209,6 +209,7 @@ function removeImg() {
 function checkPin(){
   var userpin = document.getElementById('userpin').value;
   var resultText = '';
+  var name = $("#name").html().toString();
   console.log(userpin);
 
   $.post('https://socialmoney.herokuapp.com/checkpin', { pin: userpin, name: name }, function(result) {
@@ -234,7 +235,7 @@ function checkPin(){
 
 
 function updateDB(resultText) {
-
+    var name = $("#name").html().toString();
     resultText = resultText.replace(/幣/g,"");
     resultText = resultText.replace(/元/g,"");
     resultText = resultText.replace(/\./g,"");
