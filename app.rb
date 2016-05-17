@@ -10,22 +10,10 @@ class SocialMoneyClass < Sinatra::Base
                 # con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'SamWang'
 
                 con.query("SET NAMES UTF8")
-                # con.query("ALTER DATABASE SamWang CHARACTER SET utf8 COLLATE utf8_general_ci")
-                # con.query("ALTER TABLE User CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci")
                 rs = con.query("SELECT * FROM User WHERE Name = '#{@name}'")
                 if rs.num_rows == 0
                     con.query("INSERT INTO User(Name, Currency, Price) VALUES('#{@name}','#{@name}',10000)")
-                end
-                # rs.each_hash do |row|
-                #     # puts row['Name']
-                #     if row['Name'] == @name
-                #         break
-                #     end
-                #     if rs.row_tell.to_s.to_i == rs.num_rows - 1
-                #         con.query("SET NAMES UTF8")
-                #         con.query("INSERT INTO User(Name) VALUES('#{@name}')")
-                #     end
-                # end  
+                end  
                 
             rescue Mysql::Error => e
                 puts e.errno
@@ -113,8 +101,11 @@ class SocialMoneyClass < Sinatra::Base
                 if rs.fetch_row.nil? == true
                     @result = 'fail'
                 else
-                    rs = con.query("SELECT Currency FROM pincode WHERE Pin = #{@pin}")
-                    @result = rs.fetch_row[0].to_s
+                    rs = con.query("SELECT * FROM pincode WHERE Pin = #{@pin}")
+                    # @result = rs.fetch_row[0].to_s
+                    rs.each_hash do |row|
+                        @result << row[Currency].to_s + '/' + row[CreateName].to_s
+                    end
                     rs = con.query("DELETE FROM pincode WHERE Pin = #{@pin}")
                 end
                 

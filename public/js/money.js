@@ -214,13 +214,15 @@ function checkPin(){
 
   $.post('https://socialmoney.herokuapp.com/checkpin', { pin: userpin }, function(result) {
       console.log(result);
-      if (result.toString() != 'fail'){
-        resultText = result.toString();
+      var tmp = [];
+      tmp = result.split('/');
+      if (result.toString() != 'fail' && tmp[1] != $("#name").html().toString()){
+        resultText = tmp[0].toString();
         console.log(resultText);
         updateDB(resultText);
         alert('The record is saved!');
       } else {
-        alert('The Pin Code is wrong! Please input the correct one!');
+        alert('The Pin Code is wrong or it is not for you! Please input the correct one!');
       }
       
   });
