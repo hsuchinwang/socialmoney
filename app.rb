@@ -3,9 +3,10 @@ require 'mysql'
 
 class SocialMoneyClass < Sinatra::Base
     helpers do
-        def save_name(name)
+        def save_name(name, pic)
             begin
                 @name = name
+                @pic = pic
                 con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
                 # con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'SamWang'
 
@@ -13,7 +14,11 @@ class SocialMoneyClass < Sinatra::Base
                 rs = con.query("SELECT * FROM User WHERE Name = '#{@name}'")
                 if rs.num_rows == 0
                     con.query("INSERT INTO User(Name, Currency, Price) VALUES('#{@name}','#{@name}',10000)")
-                end  
+                end
+                rs = con.query("SELECT * FROM Persons WHERE Name = '#{@name}'")
+                if rs.num_rows == 0
+                    con.query("INSERT INTO Persons(Name, Pic) VALUES('#{@name}','#{@pic}')")
+                end
                 
             rescue Mysql::Error => e
                 puts e.errno
@@ -35,10 +40,8 @@ class SocialMoneyClass < Sinatra::Base
                 rs.each_hash do |row|
                     @mycurrency = row['Currency'].to_s
                     @mycurrency.force_encoding('UTF-8')
-                    # @cur.push(@currency)
                     @mycur << @mycurrency + row['Price'].to_s
-                    # @pri << row['Price'].to_i
-                    # @cur[@currency] = row['Price'].to_i
+
                 end
                 return @mycur
 
@@ -203,7 +206,7 @@ class SocialMoneyClass < Sinatra::Base
     end
 
     post '/save_name' do
-        save_name params[:name]
+        save_name params[:name], params[:pic]
     end
 
     post '/find_my_money' do 

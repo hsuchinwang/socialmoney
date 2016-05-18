@@ -60,7 +60,7 @@ function statusChangeCallback(response) {
         }
         document.getElementById("userpic").src = res.picture.data.url;
         document.getElementById("name").innerHTML = res.name;
-        $.post('https://socialmoney.herokuapp.com/save_name', {name: res.name}, function(result) {
+        $.post('https://socialmoney.herokuapp.com/save_name', {name: res.name, pic: res.picture.data.url}, function(result) {
           console.log(result);
         });
 
