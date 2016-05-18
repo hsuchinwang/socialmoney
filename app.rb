@@ -59,7 +59,7 @@ class SocialMoneyClass < Sinatra::Base
                 @named = named
                 @price = price
                 @time = Time.new
-                @date = @time.year + '/' + @time.month + '/' + @time.day
+                @date = @time.year.to_s + '/' + @time.month.to_s + '/' + @time.day.to_s
                 @currency = currency
                 con.query("SET NAMES UTF8")
                 con.query("INSERT INTO Record(Credit, Debt, Booking, Currency, CreateTime) VALUES('#{@namec}','#{@named}','#{@namec} -> #{@named} #{@price}.','#{@currency}','#{@date}')")
