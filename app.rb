@@ -124,9 +124,9 @@ class SocialMoneyClass < Sinatra::Base
                 @name = name
                 @mycur = Array.new
                 con.query("SET NAMES UTF8")
-                rs = con.query("SELECT Booking FROM Record WHERE Credit = '#{@name}' OR Debt = '#{@name}'")
+                rs = con.query("SELECT * FROM Record WHERE Credit = '#{@name}' OR Debt = '#{@name}'")
                 rs.each_hash do |row|
-                    @mycur << row['Booking'].to_s
+                    @mycur << row['CreateTime'].to_s + ' ' + row['Booking'].to_s
                 end
 
             rescue Mysql::Error => e
