@@ -58,9 +58,11 @@ class SocialMoneyClass < Sinatra::Base
                 @namec = namec
                 @named = named
                 @price = price
+                @time = Time.new
+                @date = @time.year + '/' + @time.month + '/' + @time.day
                 @currency = currency
                 con.query("SET NAMES UTF8")
-                con.query("INSERT INTO Record(Credit, Debt, Booking, Currency) VALUES('#{@namec}','#{@named}','#{@named} borrowed #{@price} from #{@namec}.','#{@currency}')")
+                con.query("INSERT INTO Record(Credit, Debt, Booking, Currency, CreateTime) VALUES('#{@namec}','#{@named}','#{@namec} -> #{@named} #{@price}.','#{@currency}','#{@date}')")
 
             rescue Mysql::Error => e
                 puts e.errno
