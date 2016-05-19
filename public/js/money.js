@@ -157,7 +157,7 @@ function create()
     var currency = getSelection(price);
     var modalText = "<h4>我用</h4>";
     var name = $('#selectuser option:selected');
-    console.log(name);
+    console.log(name.html());
     if (price != null && currency.length > 0 && name.length > 0){
         var data = name + ',' + currency.join('.') + ',' + price;
         console.log(data);
