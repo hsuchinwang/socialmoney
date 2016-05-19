@@ -147,18 +147,18 @@
                       buttonText: function(options, select) {
                           if (options.length === 0) {
                               return 'Select user ';
-                          } 
+                          } else{
+                              return select.val();
+                          }
                       },
                       onChange: function(element, checked) {
                         if (checked === true){
                           $("#selectuser").multiselect('deselect', lastSelected);
                           lastSelected = $('#selectuser option:selected').val();
-                          //$("#selectuser").multiselect('select', element.val());
                         } else if (checked === false) {
                           lastSelected = '';
                         }
 
-                          
                       }
 
                   });
