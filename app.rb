@@ -62,7 +62,7 @@ class SocialMoneyClass < Sinatra::Base
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT * FROM Persons")
                 rs.each_hash do |row|
-                    @mycur << row['Name'].to_s + ' ' + row['Pic'].to_s
+                    @mycur << row['Name'].to_s + ' ' + row['Pic'].to_s + '|'
 
                 end
 

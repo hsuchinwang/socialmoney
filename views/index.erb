@@ -130,6 +130,16 @@
             $(document).ready(function() {
                 $.get('https://socialmoney.herokuapp.com/find_user', function(data){
                   console.log(data);
+                  var tmp = data.split('|');
+                  for (var i=0; i<tmp.length;i++) {
+                    var htmlText = "";
+                    htmlText += '<option value="'+ tmp[i].substring(0, tmp[i].indexOf(' ')) +'" style="background-image:url('+tmp[i].substring(tmp[i].indexOf(' '), tmp[i].length-1)+');">'+ tmp[i].substring(0, tmp[i].indexOf(' '))+'</option>';
+                    // var tmpName = [];
+                    // var tmpPic = [];
+                    // tmpName.push(tmp[i].substring(0, tmp[i].indexOf(' ')));
+                    // tmpPic.push(tmp[i].substring(tmp[i].indexOf(' '), tmp[i].length-1));
+                  }
+                  $("#selectuser").html(htmlText);
                 });
             });
             $(function () {
