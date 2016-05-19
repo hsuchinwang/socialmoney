@@ -136,8 +136,10 @@
                   console.log(tmp[0].substring(tmp[0].indexOf(' ')+1, tmp[0].length-1));
                   for (var i=0; i<tmp.length;i++) {
                     var htmlText = "";
-                    var tmpName = tmp[i].substring(0, tmp[i].indexOf(' '));
-                    var tmpPic = tmp[i].substring(tmp[i].indexOf(' ')+1, tmp[i].length);
+                    var tmpName = '';
+                    var tmpPic = '';
+                    tmpName = tmp[i].substring(0, tmp[i].indexOf(' '));
+                    tmpPic = tmp[i].substring(tmp[i].indexOf(' ')+1, tmp[i].length);
                     htmlText += '<option value="'+ tmpName +'" style="background-image:url('+ tmpPic +');">'+ tmpName +'</option>';
                     // var tmpName = [];
                     // var tmpPic = [];
