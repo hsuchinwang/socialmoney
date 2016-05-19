@@ -54,15 +54,19 @@
                           </div>
                           <div class="panelContent">
                             <div class="input-group margin-bottom-sm">
+                              <span class="input-group-addon"><span class="glyphicon glyphicon-user" style="margin-bottom:0px;" aria-hidden="true"></span></span>
+                              <select class="form-control" id="selectuser">
+                              </select>
+                            </div>
+                            <div class="input-group margin-bottom-sm">
                               <span class="input-group-addon"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></span>
                               <input class="form-control" type="number" placeholder="How much?" id="price">
                             </div>
                             <div class="input-group margin-bottom-sm">
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-check" style="margin-bottom:0px;" aria-hidden="true"></span></span>
+                              <span class="input-group-addon"><span class="glyphicon glyphicon-ok" style="margin-bottom:0px;" aria-hidden="true"></span></span>
                               <select class="form-control" id="selectlist" multiple="multiple">
                               </select>
                               <br>
-
                             </div>
                             <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" onclick="create()"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> PinCode</a>
                           </div>
@@ -123,6 +127,11 @@
         <script>
 
             //var name = $("#name").html().toString();
+            $(document).ready(function() {
+                $.get('https://socialmoney.herokuapp.com/find_user', function(data){
+                  console.log(data);
+                });
+            });
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })
@@ -170,7 +179,6 @@
 </html>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css" />
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" /> -->
 <link rel="stylesheet" href="css/moneystyle.min.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
 <script type="text/javascript" src="js/bootstrap.min.js"></script>

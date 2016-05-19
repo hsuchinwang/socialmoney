@@ -54,6 +54,27 @@ class SocialMoneyClass < Sinatra::Base
             end
         end
 
+        def find_user()
+            begin
+
+                @mycur = Array.new
+                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                con.query("SET NAMES UTF8")
+                rs = con.query("SELECT * FROM Persons")
+                rs.each_hash do |row|
+                    @mycur << row['Name'].to_s + ' ' + row['Pic'].to_s
+
+                end
+
+            rescue Mysql::Error => e
+                puts e.errno
+                puts e.error
+                
+            ensure
+                con.close if con
+            end
+        end
+
         def keeprecord(namec,named,price,currency)
             begin
                 con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
@@ -204,6 +225,11 @@ class SocialMoneyClass < Sinatra::Base
     get '/' do
         erb :index
     end
+
+    get '/find_user' do
+        find_user
+        return @mycur
+    end 
 
     post '/save_name' do
         save_name params[:name], params[:pic]
