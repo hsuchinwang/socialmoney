@@ -131,6 +131,7 @@
                 $.get('https://socialmoney.herokuapp.com/find_user', function(data){
                   console.log(data);
                   var tmp = data.split('|');
+                  tmp.pop();
                   console.log(tmp);
                   console.log(tmp[0].substring(0, tmp[0].indexOf(' ')));
                   console.log(tmp[0].substring(tmp[0].indexOf(' ')+1, tmp[0].length-1));
