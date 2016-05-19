@@ -159,7 +159,7 @@ function create()
     var name = $('#selectuser option:selected');
     console.log(name.html());
     if (price != null && currency.length > 0 && name.length > 0){
-        var data = name + ',' + currency.join('.') + ',' + price;
+        var data = $("#name").html().toString() + ',' + currency.join('.') + ',' + price;
         console.log(data);
         var a, b, c, d, e, f;
         a = Math.floor((Math.random() * 10) + 1);
@@ -176,7 +176,7 @@ function create()
         modalText += "<h4>做抵押. 請查收</h4>";
         document.getElementById("comfirmList").innerHTML = modalText;
         console.log(name,f,data);
-        $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f, create: name[0].html() }, function(result) {
+        $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f, create: name.html() }, function(result) {
 
           console.log(result);
 
