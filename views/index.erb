@@ -55,8 +55,7 @@
                           <div class="panelContent">
                             <div class="input-group margin-bottom-sm">
                               <span class="input-group-addon"><span class="glyphicon glyphicon-user" style="margin-bottom:0px;" aria-hidden="true"></span></span>
-                              <select class="form-control" id="selectuser">
-                              </select>
+                              <select class="form-control" id="selectuser" multiple="multiple"></select>
                             </div>
                             <div class="input-group margin-bottom-sm">
                               <span class="input-group-addon"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></span>
@@ -142,16 +141,16 @@
                   }
                   $("#selectuser").html(htmlText);
                   $('#selectuser').multiselect({
-                    buttonWidth: '100%',
-                    buttonText: function(options, select) {
-                        console.log(options);
-                        console.log(select);
-                        if (options.length === 0) {
-                            return 'Select user: ';
-                        } else {
-                            return select;
-                        }
-                    }
+                    buttonWidth: '100%'
+                    // buttonText: function(options, select) {
+                    //     console.log(options);
+                    //     console.log(select);
+                    //     if (options.length === 0) {
+                    //         return 'Select user: ';
+                    //     } else {
+                    //         return select;
+                    //     }
+                    // }
                   });
                 });
             });
