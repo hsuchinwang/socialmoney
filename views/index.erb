@@ -136,7 +136,8 @@
 
                     var tmpName = tmp[i].substring(0, tmp[i].indexOf(' '));
                     var tmpPic = tmp[i].substring(tmp[i].indexOf(' ')+1, tmp[i].length);
-                    htmlText += '<option value="'+ tmpName +'" style="background-image:url("'+ tmpPic +'");">'+ tmpName +'</option>';
+                    //htmlText += '<option value="'+ tmpName +'" style="background-image:url("'+ tmpPic +'");">'+ tmpName +'</option>';
+                    htmlText += "<option value='"+ tmpName +"' style='background-image:url('"+ tmpPic + "');'>"+ tmpName +"</option>";
 
                   }
                   $("#selectuser").html(htmlText);
