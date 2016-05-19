@@ -141,23 +141,24 @@
 
                   }
                   $("#selectuser").html(htmlText);
-                });
-                var lastSelected = $('#selectuser option:selected').val();
-                $('#selectuser').multiselect({
-                    buttonWidth: '100%',
-                    buttonText: function(options, select) {
-                        if (options.length === 0) {
-                            return 'Select user: ';
-                        } 
-                    },
-                    onChange: function(element, checked) {
-                        
-                      $("#selectuser").multiselect('deselect', lastSelected);
-                      $("#selectuser").multiselect('select', element.val());
-                        
-                    }
+                  var lastSelected = $('#selectuser option:selected').val();
+                  $('#selectuser').multiselect({
+                      buttonWidth: '100%',
+                      buttonText: function(options, select) {
+                          if (options.length === 0) {
+                              return 'Select user ';
+                          } 
+                      },
+                      onChange: function(element, checked) {
+                          
+                        $("#selectuser").multiselect('deselect', lastSelected);
+                        $("#selectuser").multiselect('select', element.val());
+                          
+                      }
 
+                  });
                 });
+                
             });
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
