@@ -212,7 +212,7 @@ function checkPin(){
   var name = $("#name").html().toString();
   console.log(userpin);
 
-  if (userpin == null) {
+  if (userpin == '') {
     alert("Please input the correct Pin Code.");
   } else {
     $.post('https://socialmoney.herokuapp.com/checkpin', { pin: userpin, name: name }, function(result) {

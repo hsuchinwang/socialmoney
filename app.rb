@@ -123,7 +123,8 @@ class SocialMoneyClass < Sinatra::Base
                 @pin = pin
                 @name = name
                 con.query("SET NAMES UTF8")
-                rs = con.query("SELECT Currency FROM pincode WHERE Pin = #{@pin} AND CreateName NOT IN ('#{@name}')")
+                # rs = con.query("SELECT Currency FROM pincode WHERE Pin = #{@pin} AND CreateName NOT IN ('#{@name}')")
+                rs = con.query("SELECT Currency FROM pincode WHERE Pin = #{@pin} AND CreateName = '#{@name}')")
                 if rs.fetch_row.nil? == true
                     @result = 'fail'
                 else
