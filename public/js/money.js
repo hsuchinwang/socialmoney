@@ -157,7 +157,7 @@ function create()
     var currency = getSelection(price);
     var modalText = "<h4>我用</h4>";
     var name = $('#selectlist option:selected');
-    console.log(currency);
+    console.log(name[0].html());
     if (price != null && currency.length > 0 && name.length > 0){
         var data = name + ',' + currency.join('.') + ',' + price;
         console.log(data);
@@ -176,7 +176,7 @@ function create()
         modalText += "<h4>做抵押. 請查收</h4>";
         document.getElementById("comfirmList").innerHTML = modalText;
         console.log(name,f,data);
-        $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f, create: name[0] }, function(result) {
+        $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f, create: name[0].html() }, function(result) {
 
           console.log(result);
 
