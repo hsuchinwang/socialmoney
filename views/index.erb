@@ -58,13 +58,13 @@
                               <input class="form-control" type="number" placeholder="How much?" id="price">
                             </div>
                             <div class="input-group margin-bottom-sm">
-                              <span class="input-group-addon"><i class="fa fa-check-square-o fa-fw" style="margin-bottom:0px;"></i></span>
+                              <span class="input-group-addon"><span class="glyphicon glyphicon-check" style="margin-bottom:0px;" aria-hidden="true"></span></span>
                               <select class="form-control" id="selectlist" multiple="multiple">
                               </select>
                               <br>
 
                             </div>
-                            <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" onclick="create()"><i class="fa fa-paper-plane fa-fw"></i> PinCode</a>
+                            <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" onclick="create()"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> PinCode</a>
                           </div>
 
                           <!-- Modal -->
@@ -93,10 +93,10 @@
                 </div>
                 <div id="tabGetMoney" class="tab-pane fade">
                   <div class="input-group margin-bottom-sm">
-                    <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></span>
                     <input class="form-control" type="number" placeholder="Please input the Pin Code" id="userpin">
                   </div>
-                  <a class="btn btn-primary" href="#" onclick="checkPin()"><i class="fa fa-paper-plane fa-fw"></i> 存入 </a>
+                  <a class="btn btn-primary" href="#" onclick="checkPin()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 存入 </a>
 
                 </div>
                 <div id="tabEwallet" class="tab-pane fade">
@@ -138,7 +138,7 @@
                     console.log(mycur,mypri);
                     var htmlText = "";
                     for (var x=0;x<mycur.length;x++){
-                      htmlText += '<li class="list-group-item"><i class="fa fa-check-square-o"></i> '+ mycur[x]+' 幣, 餘 '+mypri[x]+' 元</li>';
+                      htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+ mycur[x]+' 幣, 餘 '+mypri[x]+' 元</li>';
                     }
                     $("#moneylist").html(htmlText);
 
@@ -155,7 +155,7 @@
                   resultRecord.pop();
                   var htmlText = "";
                   for (var x=0;x<resultRecord.length;x++){
-                    htmlText += '<li class="list-group-item"><i class="fa fa-check-square-o"></i> '+resultRecord[x]+'</li>';
+                    htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+resultRecord[x]+'</li>';
                   }
                   $("#moneylist").html(htmlText);
 
@@ -170,7 +170,7 @@
 </html>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" /> -->
 <link rel="stylesheet" href="css/moneystyle.min.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
