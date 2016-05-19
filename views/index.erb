@@ -126,6 +126,7 @@
         <script>
 
             //var name = $("#name").html().toString();
+
             $(document).ready(function() {
                 $.get('https://socialmoney.herokuapp.com/find_user', function(data){
                   var tmp = data.split('|');
@@ -140,18 +141,22 @@
 
                   }
                   $("#selectuser").html(htmlText);
-                  $('#selectuser').multiselect({
-                    buttonWidth: '100%'
-                    // buttonText: function(options, select) {
-                    //     console.log(options);
-                    //     console.log(select);
-                    //     if (options.length === 0) {
-                    //         return 'Select user: ';
-                    //     } else {
-                    //         return select;
-                    //     }
-                    // }
-                  });
+                });
+                var lastSelected = $('#selectuser option:selected').val();
+                $('#selectuser').multiselect({
+                    buttonWidth: '100%',
+                    buttonText: function(options, select) {
+                        if (options.length === 0) {
+                            return 'Select user: ';
+                        } 
+                    },
+                    onChange: function(element, checked) {
+                        
+                      $("#selectuser").multiselect('deselect', lastSelected);
+                      $("#selectuser").multiselect('select', element.val());
+                        
+                    }
+
                 });
             });
             $(function () {
