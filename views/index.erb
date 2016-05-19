@@ -144,6 +144,8 @@
                   $('#selectuser').multiselect({
                     buttonWidth: '100%',
                     buttonText: function(options, select) {
+                        console.log(options);
+                        console.log(select);
                         if (options.length === 0) {
                             return 'Select user: ';
                         } else {
