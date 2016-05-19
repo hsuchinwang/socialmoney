@@ -145,8 +145,10 @@
                     buttonWidth: '100%',
                     buttonText: function(options, select) {
                         if (options.length === 0) {
-                            return 'Select user  ';
-                        } 
+                            return 'Select user: ';
+                        } else {
+                            return select;
+                        }
                     }
                   });
                 });
