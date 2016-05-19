@@ -141,7 +141,7 @@
 
                   }
                   $("#selectuser").html(htmlText);
-                  var lastSelected = $('#selectuser option:selected').val();
+                  var lastSelected = '';
                   $('#selectuser').multiselect({
                       buttonWidth: '100%',
                       buttonText: function(options, select) {
@@ -150,9 +150,14 @@
                           } 
                       },
                       onChange: function(element, checked) {
-                          
-                        $("#selectuser").multiselect('deselect', lastSelected);
-                        $("#selectuser").multiselect('select', element.val());
+                        if (checked === true){
+                          $("#selectuser").multiselect('deselect', lastSelected);
+                          lastSelected = ('#selectuser option:selected').val();
+                          //$("#selectuser").multiselect('select', element.val());
+                        } else if (checked === false) {
+                          lastSelected = '';
+                        }
+
                           
                       }
 
