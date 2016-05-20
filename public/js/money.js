@@ -198,7 +198,12 @@ function removeImg() {
         $(this).removeAttr('selected').prop('selected', false);
         console.log(element);
     });
+    $('option', $('#selectuser')).each(function(element) {
+        $(this).removeAttr('selected').prop('selected', false);
+        console.log(element);
+    });
     $('#selectlist').multiselect('refresh');
+    $('#selectuser').multiselect('refresh');
     $("#pincode").html('');
     total = 0;
     topay = 0;
@@ -240,6 +245,7 @@ function checkPin(){
 
 function updateDB(resultText) {
     var name = $("#name").html().toString();
+    var modalText = '';
     resultText = resultText.replace(/幣/g,"");
     resultText = resultText.replace(/元/g,"");
     resultText = resultText.replace(/\./g,"");
@@ -250,6 +256,12 @@ function updateDB(resultText) {
     var resultCur = tmp[1].split(/\d+/);
     resultNum.shift();
     resultCur.pop();
+    for (var i=0;i<currency.length;i++) {
+        modalText += "<h5>"+resultCur[i]+" 幣, "+resultNum[i]+"元</h5>";
+    }
+    modalText += "<h5>共"+ resultPri + "元</h5>";
+    document.getElementById("checkList").innerHTML = modalText;
+    $('#mycomfirmModal').modal('show');
     $.post('https://socialmoney.herokuapp.com/minus', {name: resultName, currency: resultCur, price: resultNum }, function(result) {
 
       console.log(result);
