@@ -161,6 +161,7 @@
                   $("#selectuser").html(htmlText);
                   var lastSelected = '';
                   $('#selectuser').multiselect({
+                      enableCaseInsensitiveFiltering: true,
                       buttonWidth: '100%',
                       buttonText: function(options, select) {
                           if (options.length === 0) {

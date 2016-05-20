@@ -19,7 +19,7 @@ $('#tabBar').on("click", "li", function (event) {
    if ($(this).find('a').attr('href') == '#tabRecord') {
       //$("#selectlist").html("");
       loadCurrency();
-      $('#selectlist').multiselect('refresh');
+      $('#selectlist').multiselect('rebuild');
 
    }
 });
@@ -217,12 +217,14 @@ function removeImg() {
         $(this).removeAttr('selected').prop('selected', false);
         console.log(element);
     });
-    $('option', $('#selectuser')).each(function(element) {
-        $(this).removeAttr('selected').prop('selected', false);
-        console.log(element);
-    });
+    // $('option', $('#selectuser')).each(function(element) {
+    //     $(this).removeAttr('selected').prop('selected', false);
+    //     console.log(element);
+    // });
+    $('#selectuser').multiselect('deselectAll', false);
+    $('#selectuser').multiselect('updateButtonText');
     $('#selectlist').multiselect('refresh');
-    $('#selectuser').multiselect('refresh');
+    //$('#selectuser').multiselect('refresh');
     $("#pincode").html('');
     total = 0;
     topay = 0;
