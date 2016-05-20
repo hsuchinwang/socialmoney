@@ -6,13 +6,20 @@ $('#tabRecord a').click(function (e) {
   loadCurrency();
 })
 
-$('#tabBar').tabs({
-    select: function(event, ui) {
-        var theSelectedTab = ui.index;
-        if (theSelectedTab == 0) {
-            loadCurrency();
-        }
-    }
+// $('#tabBar').tabs({
+//     select: function(event, ui) {
+//         var theSelectedTab = ui.index;
+//         if (theSelectedTab == 0) {
+//             loadCurrency();
+//         }
+//     }
+// });
+
+$('#tabBar').on("click", "li", function (event) {         
+   if ($(this).find('a').attr('href') == '#tabRecord') {
+      loadCurrency();
+      alert("reload");
+   }
 });
 
 function loadCurrency() {
