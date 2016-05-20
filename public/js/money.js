@@ -6,7 +6,7 @@ $('#tabBar').on("click", "li", function (event) {
    if ($(this).find('a').attr('href') == '#tabRecord') {
       $("#selectlist").html("");
       loadCurrency();
-      $('#selectlist').multiselect('rebuild');
+      //$('#selectlist').multiselect('rebuild');
 
    }
 });
@@ -68,7 +68,8 @@ function loadCurrency() {
       }
       htmlText += '<option value="clean">全部清除</option>'
       console.log(htmlText);
-      $("#selectlist").html(htmlText);
+      $("#selectlist").append(htmlText);
+      $('#selectlist').multiselect('rebuild');
       $(document).ready(function() {
           
           $('#selectlist').multiselect({
