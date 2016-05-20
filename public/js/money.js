@@ -4,9 +4,9 @@ var indexOfElement = null;
 
 $('#tabBar').on("click", "li", function (event) {         
    if ($(this).find('a').attr('href') == '#tabRecord') {
-      //$("#selectlist").html("");
+      $("#selectlist").html("");
       loadCurrency();
-      $('#selectlist').multiselect('rebuild');
+      //$('#selectlist').multiselect('rebuild');
 
    }
 });
@@ -69,106 +69,107 @@ function loadCurrency() {
       htmlText += '<option value="clean">全部清除</option>'
       console.log(htmlText);
       $("#selectlist").append(htmlText);
-      //$('#selectlist').multiselect('rebuild');
-      //$(document).ready(function() {
-          
-          $('#selectlist').multiselect({
-            buttonWidth: '100%',
-            onChange: function(element, checked) {
-                if (checked === true) {
- 
-                    if (element.val() == 'clean') {
-
-                      $('#selectlist').multiselect('deselectAll', true);
-                      $('#selectlist').multiselect('updateButtonText');
-                      total = 0;
-                      var nonSelectedOptions = $('#selectlist option').filter(function() {
-                        return !$(this).is(':selected');
-                      });
-                      var dropdown = $('#selectlist').siblings('.multiselect-container');
-                      $('#selectlist option').each(function() {
-                          var input = $('input[value="' + $(this).val() + '"]');
-                          input.prop('disabled', false);
-                          input.parent('li').addClass('disabled');
-                      });
-
-                    } 
-                    else {
-
-                      if ($("#price").val() == '') {
-                        
-                        alert("請輸入價錢!!");
-                        $("#selectlist").multiselect('deselect', element.val());
-
-                      } 
-                      else {
-
-                        total += parseInt(element.val()/Math.pow((element.index()+1),5));
-                        if (total > parseInt($("#price").val())) {
-                          indexOfElement = element.index();
-                          console.log(indexOfElement);
-                          topay = parseInt(element.val()/Math.pow((element.index()+1),5))- (total - parseInt($("#price").val()));
-                          total = parseInt($("#price").val());
-                          var nonSelectedOptions = $('#selectlist option').filter(function() {
-                              return !$(this).is(':selected');
-                          });
- 
-                          var dropdown = $('#selectlist').siblings('.multiselect-container');
-                          nonSelectedOptions.each(function() {
-                              var input = $('input[value="' + $(this).val() + '"]');
-                              input.prop('disabled', true);
-                              input.parent('li').addClass('disabled');
-                          });
-                          var input = $('input[value="clean"]');
-                          input.prop('disabled', false);
-                          input.parent('li').addClass('disabled');
-                        } 
-                      }
-                    }
-                    
-                }
-                else if (checked === false) {
-
-                    total = 0;
-                    topay = 0;
-                    var brands = $('#selectlist option:selected');
-                    var selected = [];
-                    $(brands).each(function(index, brand){
-                        selected.push($(this).val()/Math.pow(($(this).index()+1),5));
-                    });
-                    console.log(selected);
-                    for (var i=0;i<selected.length;i++) {
-                      total += parseInt(selected[i]);
-                    }
-                    var nonSelectedOptions = $('#selectlist option').filter(function() {
-                        return !$(this).is(':selected');
-                    });
-                    var dropdown = $('#selectlist').siblings('.multiselect-container');
-                    $('#selectlist option').each(function() {
-                        var input = $('input[value="' + $(this).val() + '"]');
-                        input.prop('disabled', false);
-                        input.parent('li').addClass('disabled');
-                    });
-
-                }
-            },
-            buttonText: function(options, select) {
-                console.log(options)
-                console.log(select);
-                if (options.length === 0) {
-                    return 'Select currency  ';
-                } else if (options.length >= 1) {
-                    return "$ " + total + " will pay";
-                }
-
-            }
-            
-          });
-
-      //});
+      $('#selectlist').multiselect('rebuild');
+      
   });
 }
 
+$(document).ready(function() {
+          
+    $('#selectlist').multiselect({
+      buttonWidth: '100%',
+      onChange: function(element, checked) {
+          if (checked === true) {
+
+              if (element.val() == 'clean') {
+
+                $('#selectlist').multiselect('deselectAll', true);
+                $('#selectlist').multiselect('updateButtonText');
+                total = 0;
+                var nonSelectedOptions = $('#selectlist option').filter(function() {
+                  return !$(this).is(':selected');
+                });
+                var dropdown = $('#selectlist').siblings('.multiselect-container');
+                $('#selectlist option').each(function() {
+                    var input = $('input[value="' + $(this).val() + '"]');
+                    input.prop('disabled', false);
+                    input.parent('li').addClass('disabled');
+                });
+
+              } 
+              else {
+
+                if ($("#price").val() == '') {
+                  
+                  alert("請輸入價錢!!");
+                  $("#selectlist").multiselect('deselect', element.val());
+
+                } 
+                else {
+
+                  total += parseInt(element.val()/Math.pow((element.index()+1),5));
+                  if (total > parseInt($("#price").val())) {
+                    indexOfElement = element.index();
+                    console.log(indexOfElement);
+                    topay = parseInt(element.val()/Math.pow((element.index()+1),5))- (total - parseInt($("#price").val()));
+                    total = parseInt($("#price").val());
+                    var nonSelectedOptions = $('#selectlist option').filter(function() {
+                        return !$(this).is(':selected');
+                    });
+
+                    var dropdown = $('#selectlist').siblings('.multiselect-container');
+                    nonSelectedOptions.each(function() {
+                        var input = $('input[value="' + $(this).val() + '"]');
+                        input.prop('disabled', true);
+                        input.parent('li').addClass('disabled');
+                    });
+                    var input = $('input[value="clean"]');
+                    input.prop('disabled', false);
+                    input.parent('li').addClass('disabled');
+                  } 
+                }
+              }
+              
+          }
+          else if (checked === false) {
+
+              total = 0;
+              topay = 0;
+              var brands = $('#selectlist option:selected');
+              var selected = [];
+              $(brands).each(function(index, brand){
+                  selected.push($(this).val()/Math.pow(($(this).index()+1),5));
+              });
+              console.log(selected);
+              for (var i=0;i<selected.length;i++) {
+                total += parseInt(selected[i]);
+              }
+              var nonSelectedOptions = $('#selectlist option').filter(function() {
+                  return !$(this).is(':selected');
+              });
+              var dropdown = $('#selectlist').siblings('.multiselect-container');
+              $('#selectlist option').each(function() {
+                  var input = $('input[value="' + $(this).val() + '"]');
+                  input.prop('disabled', false);
+                  input.parent('li').addClass('disabled');
+              });
+
+          }
+      },
+      buttonText: function(options, select) {
+          console.log(options)
+          console.log(select);
+          if (options.length === 0) {
+              return 'Select currency  ';
+          } else if (options.length >= 1) {
+              return "$ " + total + " will pay";
+          }
+
+      }
+      
+    });
+
+});
 
 function getSelection(price) {
   var brands = $('#selectlist option:selected');
