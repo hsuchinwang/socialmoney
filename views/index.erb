@@ -146,14 +146,6 @@
             //var name = $("#name").html().toString();
 
             $(document).ready(function() {
-                $('#tabBar').tabs({
-                    select: function(event, ui) {
-                        var theSelectedTab = ui.index;
-                        if (theSelectedTab == 0) {
-                            loadCurrency();
-                        }
-                    }
-                });
                 $.get('https://socialmoney.herokuapp.com/find_user', function(data){
                   var tmp = data.split('|');
                   tmp.pop();
@@ -244,3 +236,4 @@
 <script type="text/javascript" src="js/bootstrap-multiselect.min.js"></script>
 <script type="text/javascript" src="js/postfb.min.js"></script>
 <script type="text/javascript" src="js/money.js"></script>
+<script type="text/javascript" src="https://www.invat-online.net/javascript/jquery-ui-1.9.2.custom.min.js"></script>
