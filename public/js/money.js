@@ -4,7 +4,7 @@ var indexOfElement = null;
 
 $('#tabBar').on("click", "li", function (event) {         
    if ($(this).find('a').attr('href') == '#tabRecord') {
-      $("#selectlist").html("");
+      //$("#selectlist").html("");
       loadCurrency();
       //$('#selectlist').multiselect('rebuild');
 
@@ -69,8 +69,8 @@ function loadCurrency() {
       htmlText += '<option value="clean">全部清除</option>'
       console.log(htmlText);
       $("#selectlist").append(htmlText);
-      $('#selectlist').multiselect('rebuild');
-      $(document).ready(function() {
+      //$('#selectlist').multiselect('rebuild');
+      //$(document).ready(function() {
           
           $('#selectlist').multiselect({
             buttonWidth: '100%',
@@ -165,7 +165,7 @@ function loadCurrency() {
             
           });
 
-      });
+      //});
   });
 }
 
