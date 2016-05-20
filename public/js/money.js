@@ -6,7 +6,7 @@ $('#tabBar').on("click", "li", function (event) {
    if ($(this).find('a').attr('href') == '#tabRecord') {
       //$("#selectlist").html("");
       loadCurrency();
-      //$('#selectlist').multiselect('rebuild');
+      $('#selectlist').multiselect('rebuild');
 
    }
 });
