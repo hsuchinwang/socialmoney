@@ -38,6 +38,7 @@ function loadCurrency() {
         htmlText += '<option value="'+ mypri[i]*Math.pow((i+1),5)+'">'+ mycur[i]+' 幣, 餘 '+ mypri[i] +' 元</option>';
       }
       htmlText += '<option value="clean">全部清除</option>'
+      console.log(htmlText);
       $("#selectlist").html(htmlText);
       $(document).ready(function() {
           
