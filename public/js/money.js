@@ -6,14 +6,13 @@ $('#tabBar').on("click", "li", function (event) {
    if ($(this).find('a').attr('href') == '#tabRecord') {
       $("#selectlist").html("");
       loadCurrency();
-      //$('#selectlist').multiselect('rebuild');
-
    }
 });
 
 function loadUser() {
   $(document).ready(function() {
     $.get('https://socialmoney.herokuapp.com/find_user', function(data){
+      console.log(data);
       var tmp = data.split('|');
       tmp.pop();
       var htmlText = "";
@@ -61,13 +60,11 @@ function loadCurrency() {
       mycur.pop();
       mypri = result.split(/\D+/);
       mypri.shift();
-      console.log(mycur,mypri);
       var htmlText = '';
       for (var i=0;i<mycur.length;i++){
         htmlText += '<option value="'+ mypri[i]*Math.pow((i+1),5)+'">'+ mycur[i]+' 幣, 餘 '+ mypri[i] +' 元</option>';
       }
       htmlText += '<option value="clean">全部清除</option>'
-      console.log(htmlText);
       $("#selectlist").append(htmlText);
       $('#selectlist').multiselect('rebuild');
       
@@ -173,7 +170,6 @@ $(document).ready(function() {
 
 function getSelection(price) {
   var brands = $('#selectlist option:selected');
-  console.log(brands);
   var selected = [];
   var selectPri = [];
   var selectcur = [];
@@ -205,7 +201,6 @@ function create()
     var currency = getSelection(price);
     var modalText = "<h4>我用</h4>";
     var name = $('#selectuser option:selected');
-    console.log(name.html());
     if (price != null && currency.length > 0 && name.length > 0){
         var data = $("#name").html().toString() + ',' + currency.join('.') + ',' + price;
         console.log(data);
@@ -242,20 +237,10 @@ function create()
 function removeImg() {
 
     document.getElementById("price").value = "";
-    // $('option', $('#selectlist')).each(function(element) {
-    //     $(this).removeAttr('selected').prop('selected', false);
-    //     console.log(element);
-    // });
-    // $('option', $('#selectuser')).each(function(element) {
-    //     $(this).removeAttr('selected').prop('selected', false);
-    //     console.log(element);
-    // });
     $('#selectlist').multiselect('deselectAll', false);
     $('#selectlist').multiselect('updateButtonText');
     $('#selectuser').multiselect('deselectAll', false);
     $('#selectuser').multiselect('updateButtonText');
-    //$('#selectlist').multiselect('refresh');
-    //$('#selectuser').multiselect('refresh');
     $("#pincode").html('');
     total = 0;
     topay = 0;

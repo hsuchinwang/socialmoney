@@ -4,7 +4,6 @@ function statusChangeCallback(response) {
 
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      //window.location.replace("/success");
       getUserPic();
       document.getElementById("logindiv").style.display = "none";
       document.getElementById("picdiv").style.display = "block";
