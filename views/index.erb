@@ -24,7 +24,7 @@
         <div class="col-md-12 col-xs-12" id="tabBar" style="margin-top:3%">
                 <ul class="nav nav-tabs" >
                     <li class="active" style="width:33%; text-align:center; font-size:16px;">
-                        <a data-toggle="tab" href="#tabRecord">還款</a>
+                        <a data-toggle="tab" href="#tabRecord">支付</a>
                     </li>
                     <li style="width:33%; text-align:center; font-size:16px;">
                         <a data-toggle="tab" href="#tabGetMoney">收款</a>
@@ -154,7 +154,6 @@
 
                     var tmpName = tmp[i].substring(0, tmp[i].indexOf('%'));
                     var tmpPic = tmp[i].substring(tmp[i].indexOf('%')+1, tmp[i].length);
-                    //htmlText += '<option value="'+ tmpName +'" style="background-image:url("'+ tmpPic +'");">'+ tmpName +'</option>';
                     htmlText += "<option value='"+ tmpName +"' style='background-image:url('"+ tmpPic + "');'>"+ tmpName +"</option>";
 
                   }

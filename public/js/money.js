@@ -213,17 +213,19 @@ function create()
 function removeImg() {
 
     document.getElementById("price").value = "";
-    $('option', $('#selectlist')).each(function(element) {
-        $(this).removeAttr('selected').prop('selected', false);
-        console.log(element);
-    });
+    // $('option', $('#selectlist')).each(function(element) {
+    //     $(this).removeAttr('selected').prop('selected', false);
+    //     console.log(element);
+    // });
     // $('option', $('#selectuser')).each(function(element) {
     //     $(this).removeAttr('selected').prop('selected', false);
     //     console.log(element);
     // });
+    $('#selectlist').multiselect('deselectAll', false);
+    $('#selectlist').multiselect('updateButtonText');
     $('#selectuser').multiselect('deselectAll', false);
     $('#selectuser').multiselect('updateButtonText');
-    $('#selectlist').multiselect('refresh');
+    //$('#selectlist').multiselect('refresh');
     //$('#selectuser').multiselect('refresh');
     $("#pincode").html('');
     total = 0;
