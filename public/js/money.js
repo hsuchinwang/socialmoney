@@ -4,7 +4,7 @@ var indexOfElement = null;
 
 $('#tabBar').on("click", "li", function (event) {         
    if ($(this).find('a').attr('href') == '#tabRecord') {
-      //$("#selectlist").html("");
+      $("#selectlist").html("");
       loadCurrency();
       $('#selectlist').multiselect('rebuild');
 
