@@ -226,7 +226,6 @@ function checkPin(){
         resultText = result.toString();
         console.log(resultText);
         updateDB(resultText);
-        alert('The record is saved!');
       } else {
         alert('The Pin Code is wrong or it is not for you! Please input the correct one!');
       }
@@ -234,10 +233,10 @@ function checkPin(){
     });
   }
   
-  if (resultText != '') {
-    console.log(resultText);
-    updateDB(resultText);
-  }
+  // if (resultText != '') {
+  //   console.log(resultText);
+  //   updateDB(resultText);
+  // }
   document.getElementById('userpin').value = '';
 
 }
@@ -256,6 +255,7 @@ function updateDB(resultText) {
     var resultCur = tmp[1].split(/\d+/);
     resultNum.shift();
     resultCur.pop();
+    modalText += "<h4>您得到：</h4>"
     for (var i=0;i<resultCur.length;i++) {
         modalText += "<h5>"+resultCur[i]+" 幣, "+resultNum[i]+"元</h5>";
     }
