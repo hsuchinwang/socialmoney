@@ -17,8 +17,8 @@ $('#tabRecord a').click(function (e) {
 
 $('#tabBar').on("click", "li", function (event) {         
    if ($(this).find('a').attr('href') == '#tabRecord') {
+      $("#selectlist").html("");
       loadCurrency();
-      alert("reload");
    }
 });
 
