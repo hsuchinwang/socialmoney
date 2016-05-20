@@ -256,7 +256,7 @@ function updateDB(resultText) {
     var resultCur = tmp[1].split(/\d+/);
     resultNum.shift();
     resultCur.pop();
-    for (var i=0;i<currency.length;i++) {
+    for (var i=0;i<resultCur.length;i++) {
         modalText += "<h5>"+resultCur[i]+" 幣, "+resultNum[i]+"元</h5>";
     }
     modalText += "<h5>共"+ resultPri + "元</h5>";
