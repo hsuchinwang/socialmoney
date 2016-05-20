@@ -6,6 +6,15 @@ $('#tabRecord a').click(function (e) {
   loadCurrency();
 })
 
+$('#tabBar').tabs({
+    select: function(event, ui) {
+        var theSelectedTab = ui.index;
+        if (theSelectedTab == 0) {
+            loadCurrency();
+        }
+    }
+});
+
 function loadCurrency() {
   var name = $("#name").html().toString();
   $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
@@ -232,11 +241,7 @@ function checkPin(){
       
     });
   }
-  
-  // if (resultText != '') {
-  //   console.log(resultText);
-  //   updateDB(resultText);
-  // }
+
   document.getElementById('userpin').value = '';
 
 }

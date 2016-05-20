@@ -80,7 +80,7 @@
                                   </div>
                                   <div class="modal-body">
                                     <div id="comfirmList"></div><br>
-                                    <p>請在<strong>收款</strong>頁籤輸入以下Pin碼：</p>
+                                    <h4>請在<strong>收款</strong>頁籤輸入以下Pin碼：</h4>
                                     <h1 class="col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2" id="pincode" style="background-color:black;color:white"></h1>
  
                                   </div>
@@ -111,7 +111,7 @@
                         </div>
                         <div class="modal-body">
                           <div id="checkList"></div><br>
-                          <p>請在<strong>電子錢包</strong>頁籤查看</p>
+                          <h4>請在<strong>電子錢包</strong>頁籤查看</h4>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -152,8 +152,8 @@
                   var htmlText = "";
                   for (var i=0; i<tmp.length;i++) {
 
-                    var tmpName = tmp[i].substring(0, tmp[i].indexOf(' '));
-                    var tmpPic = tmp[i].substring(tmp[i].indexOf(' ')+1, tmp[i].length);
+                    var tmpName = tmp[i].substring(0, tmp[i].indexOf('%'));
+                    var tmpPic = tmp[i].substring(tmp[i].indexOf('%')+1, tmp[i].length);
                     //htmlText += '<option value="'+ tmpName +'" style="background-image:url("'+ tmpPic +'");">'+ tmpName +'</option>';
                     htmlText += "<option value='"+ tmpName +"' style='background-image:url('"+ tmpPic + "');'>"+ tmpName +"</option>";
 
