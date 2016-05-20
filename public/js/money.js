@@ -2,19 +2,6 @@ var topay = 0;
 var total = 0;
 var indexOfElement = null;
 
-$('#tabRecord a').click(function (e) {
-  loadCurrency();
-})
-
-// $('#tabBar').tabs({
-//     select: function(event, ui) {
-//         var theSelectedTab = ui.index;
-//         if (theSelectedTab == 0) {
-//             loadCurrency();
-//         }
-//     }
-// });
-
 $('#tabBar').on("click", "li", function (event) {         
    if ($(this).find('a').attr('href') == '#tabRecord') {
       //$("#selectlist").html("");
@@ -23,6 +10,46 @@ $('#tabBar').on("click", "li", function (event) {
 
    }
 });
+
+function loadUser() {
+  $(document).ready(function() {
+    $.get('https://socialmoney.herokuapp.com/find_user', function(data){
+      var tmp = data.split('|');
+      tmp.pop();
+      var htmlText = "";
+      for (var i=0; i<tmp.length;i++) {
+
+        var tmpName = tmp[i].substring(0, tmp[i].indexOf('%'));
+        var tmpPic = tmp[i].substring(tmp[i].indexOf('%')+1, tmp[i].length);
+        htmlText += "<option value='"+ tmpName +"' style='background-image:url('"+ tmpPic + "');'>"+ tmpName +"</option>";
+
+      }
+      $("#selectuser").html(htmlText);
+      var lastSelected = '';
+      $('#selectuser').multiselect({
+          enableCaseInsensitiveFiltering: true,
+          buttonWidth: '100%',
+          buttonText: function(options, select) {
+              if (options.length === 0) {
+                  return 'Select user ';
+              } else{
+                  return select.val();
+              }
+          },
+          onChange: function(element, checked) {
+            if (checked === true){
+              $("#selectuser").multiselect('deselect', lastSelected);
+              lastSelected = $('#selectuser option:selected').val();
+            } else if (checked === false) {
+              lastSelected = '';
+            }
+
+          }
+
+      });
+    });
+  });
+}
 
 function loadCurrency() {
   var name = $("#name").html().toString();
@@ -296,6 +323,5 @@ function updateDB(resultText) {
       console.log(result);
 
     });
-    loadCurrency();
 
 }

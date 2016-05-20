@@ -144,45 +144,6 @@
         <script>
 
             //var name = $("#name").html().toString();
-
-            $(document).ready(function() {
-                $.get('https://socialmoney.herokuapp.com/find_user', function(data){
-                  var tmp = data.split('|');
-                  tmp.pop();
-                  var htmlText = "";
-                  for (var i=0; i<tmp.length;i++) {
-
-                    var tmpName = tmp[i].substring(0, tmp[i].indexOf('%'));
-                    var tmpPic = tmp[i].substring(tmp[i].indexOf('%')+1, tmp[i].length);
-                    htmlText += "<option value='"+ tmpName +"' style='background-image:url('"+ tmpPic + "');'>"+ tmpName +"</option>";
-
-                  }
-                  $("#selectuser").html(htmlText);
-                  var lastSelected = '';
-                  $('#selectuser').multiselect({
-                      enableCaseInsensitiveFiltering: true,
-                      buttonWidth: '100%',
-                      buttonText: function(options, select) {
-                          if (options.length === 0) {
-                              return 'Select user ';
-                          } else{
-                              return select.val();
-                          }
-                      },
-                      onChange: function(element, checked) {
-                        if (checked === true){
-                          $("#selectuser").multiselect('deselect', lastSelected);
-                          lastSelected = $('#selectuser option:selected').val();
-                        } else if (checked === false) {
-                          lastSelected = '';
-                        }
-
-                      }
-
-                  });
-                });
-                
-            });
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })
@@ -232,9 +193,7 @@
 <link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css" />
 <link rel="stylesheet" href="css/moneystyle.min.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
-<!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css"> -->
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-multiselect.min.js"></script>
-<script type="text/javascript" src="js/postfb.min.js"></script>
+<script type="text/javascript" src="js/postfb.js"></script>
 <script type="text/javascript" src="js/money.js"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script> -->

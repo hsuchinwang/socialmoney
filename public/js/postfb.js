@@ -65,6 +65,7 @@ function statusChangeCallback(response) {
         });
 
         loadCurrency();
+        loadUser();
 
       }
     );
