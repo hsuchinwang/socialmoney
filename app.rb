@@ -231,7 +231,7 @@ class SocialMoneyClass < Sinatra::Base
 
     get '/find_user' do
         find_user
-        return @mycur, @mycur1
+        return [@mycur, @mycur1]
     end 
 
     post '/save_name' do
