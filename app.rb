@@ -59,12 +59,18 @@ class SocialMoneyClass < Sinatra::Base
 
                 # @mycur = Array.new
                 # @mycur1 = Array.new
+                @mycur = {
+                    'name' => [],
+                    'pic' => []
+                }
                 con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT * FROM Persons")
                 rs.each_hash do |row|
-                    @mycur += row['Name'].to_s + '%' + row['Pic'].to_s + '|'
-                    @mycur1 += row['Name'].to_s
+                    @mycur['name'] += row['Name'].to_s
+                    @mycur['pic'] += row['Pic'].to_s
+                    # @mycur += row['Name'].to_s + '%' + row['Pic'].to_s + '|'
+                    # @mycur1 += row['Name'].to_s
 
                 end
 
@@ -231,7 +237,7 @@ class SocialMoneyClass < Sinatra::Base
 
     get '/find_user' do
         find_user
-        return [@mycur, @mycur1]
+        return @mycur
     end 
 
     post '/save_name' do
