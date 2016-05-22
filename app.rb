@@ -57,8 +57,8 @@ class SocialMoneyClass < Sinatra::Base
         def find_user()
             begin
 
-                # @mycur1 = Array.new
-                # @mycur2 = Array.new
+                @mycur1 = Array.new
+                @mycur2 = Array.new
                 @mycur = {
                     'name' => [],
                     'pic' => []
