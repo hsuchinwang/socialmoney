@@ -38,9 +38,10 @@ class SocialMoneyClass < Sinatra::Base
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT * FROM User WHERE Name = '#{@name}'")
                 rs.each_hash do |row|
-                    @mycurrency = row['Currency'].to_s
-                    @mycurrency.force_encoding('UTF-8')
-                    @mycur << @mycurrency + row['Price'].to_s
+                    # @mycurrency = row['Currency'].to_s
+                    # @mycurrency.force_encoding('UTF-8')
+                    # @mycur << @mycurrency + row['Price'].to_s
+                    @mycur << row['Currency'].to_s + '.' + row['Price'] + '.' + row['Available'] + '.'
 
                 end
                 return @mycur
@@ -57,23 +58,12 @@ class SocialMoneyClass < Sinatra::Base
         def find_user()
             begin
 
-                # @mycur1 = Array.new
-                # @mycur2 = Array.new
-                @mycur = {
-                    'name' => '',
-                    'pic' => ''
-                }
                 con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT * FROM Persons")
                 rs.each_hash do |row|
-                    @mycur1 += row['Name'].to_s
-                    @mycur2 += row['Pic'].to_s
-                    # @mycur += row['Name'].to_s + '%' + row['Pic'].to_s + '|'
-                    # @mycur1 += row['Name'].to_s
+                    @mycur += row['Name'].to_s + '%' + row['Pic'].to_s + '|'
                 end
-                @mycur['name'] = @mycur1
-                @mycur['pic'] = @mycur2
 
             rescue Mysql::Error => e
                 puts e.errno

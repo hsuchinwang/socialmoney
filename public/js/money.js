@@ -54,17 +54,27 @@ function loadCurrency() {
   var name = $("#name").html().toString();
   $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
       console.log(result);
-      var mycur = [];
-      var mypri = []; 
-      mycur = result.split(/\d+/);
-      mycur.pop();
-      mypri = result.split(/\D+/);
-      mypri.shift();
-      var htmlText = '';
-      for (var i=0;i<mycur.length;i++){
-        htmlText += '<option value="'+ mypri[i]*Math.pow((i+1),5)+'">'+ mycur[i]+' 幣, 餘 '+ mypri[i] +' 元</option>';
+      var piece = result.split('.');
+      var mycur, mypri, myavail  = [],[],[];
+      for (var i = 0;i<piece.length;i=i+3){
+        mycur << piece[i];
+        mypri << piece[i+1];
+        myavail << piece[i+2];
       }
-      htmlText += '<option value="clean">全部清除</option>'
+      console.log(piece,mycur,mypri,myavail);
+      // mycur = result.split(/\d+/);
+      // mycur.pop();
+      // mypri = result.split(/\D+/);
+      // mypri.shift();
+      var htmlText = '';
+      // for (var i=0;i<mycur.length;i++){
+      //   htmlText += '<option value="'+ mypri[i]*Math.pow((i+1),5)+'">'+ mycur[i]+' 幣, 餘 '+ mypri[i] +' 元</option>';
+      // }
+      for (var i=0;i<mycur.length;i++){
+        htmlText += '<option value="'+ myavail[i]*Math.pow((i+1),5)+'">'+ mycur[i]+' 幣, 餘 '+ mypri[i]+ '('+myavail[i]+')' +' 元</option>';
+      }
+      htmlText += '<option value="clean">全部清除</option>';
+      console.log(htmlText);
       $("#selectlist").append(htmlText);
       $('#selectlist').multiselect('rebuild');
       
