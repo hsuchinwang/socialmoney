@@ -57,8 +57,8 @@ class SocialMoneyClass < Sinatra::Base
         def find_user()
             begin
 
-                # @mycur = Array.new
                 # @mycur1 = Array.new
+                # @mycur2 = Array.new
                 @mycur = {
                     'name' => [],
                     'pic' => []
@@ -67,12 +67,13 @@ class SocialMoneyClass < Sinatra::Base
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT * FROM Persons")
                 rs.each_hash do |row|
-                    @mycur['name'] += row['Name']
-                    @mycur['pic'] += row['Pic']
+                    @mycur1 += row['Name'].to_s
+                    @mycur2 += row['Pic'].to_s
                     # @mycur += row['Name'].to_s + '%' + row['Pic'].to_s + '|'
                     # @mycur1 += row['Name'].to_s
-
                 end
+                @mycur['name'] = @mycur1
+                @mycur['pic'] = @mycur2
 
             rescue Mysql::Error => e
                 puts e.errno
