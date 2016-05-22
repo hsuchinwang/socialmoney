@@ -55,7 +55,7 @@ function loadCurrency() {
   $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
       console.log(result);
       var piece = result.split('.');
-      var mycur, mypri, myavail  = [],[],[];
+      var mycur = [], mypri = [], myavail = [];
       for (var i = 0;i<piece.length;i=i+3){
         mycur << piece[i];
         mypri << piece[i+1];
