@@ -246,7 +246,7 @@ class SocialMoneyClass < Sinatra::Base
     end
 
     get '/' do
-        erb :index.min
+        erb :indexmin
     end
 
     get '/find_user' do
