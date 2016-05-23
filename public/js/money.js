@@ -12,7 +12,6 @@ $('#tabBar').on("click", "li", function (event) {
 function loadUser() {
   $(document).ready(function() {
     $.get('https://socialmoney.herokuapp.com/find_user', function(data){
-      console.log(data);
       var tmp = data.split('|');
       tmp.pop();
       var htmlText = "";
@@ -184,6 +183,7 @@ function getSelection(price) {
   var selected = [];
   var selectPri = [];
   var selectcur = [];
+  var name = $("#name").html().toString();
   $(brands).each(function(index, brand){
       if ( indexOfElement != null && $(this).index() == indexOfElement) {
         selected.push($(this).html().substring(0, $(this).html().indexOf('幣')-1));
@@ -202,6 +202,11 @@ function getSelection(price) {
   for (var i=0;i<selected.length;i++) {
     selectcur.push(selected[i]+"幣"+selectPri[i]+"元");
   }
+  $.post('https://socialmoney.herokuapp.com/minusAvailable', {name: name, currency: selected, price: selectPri }, function(result) {
+
+    console.log(result);
+
+  });
   return selectcur;
 }
 
@@ -239,7 +244,7 @@ function create()
         $('#myModal').modal('show'); 
 
     } else {
-        alert("Please input the price and currency correctly!")
+        alert("Please input the price, currency and user correctly!")
     }
 
 }

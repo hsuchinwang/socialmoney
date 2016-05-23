@@ -13,7 +13,7 @@ class SocialMoneyClass < Sinatra::Base
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT * FROM User WHERE Name = '#{@name}'")
                 if rs.num_rows == 0
-                    con.query("INSERT INTO User(Name, Currency, Price) VALUES('#{@name}','#{@name}',10000)")
+                    con.query("INSERT INTO User(Name, Currency, Price, Available) VALUES('#{@name}','#{@name}',10000,10000)")
                 end
                 rs = con.query("SELECT * FROM Persons WHERE Name = '#{@name}'")
                 if rs.num_rows == 0
@@ -190,6 +190,28 @@ class SocialMoneyClass < Sinatra::Base
             end
         end
 
+        def minusAvailable(name,currency,price)
+            begin
+                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                @name = name
+                @currency = currency
+                @price = price
+                con.query("SET NAMES UTF8")
+                @currency.each_with_index do |c, index|
+                    rs = con.query("SELECT Available FROM User WHERE Name = '#{@name}' AND Currency = '#{c}'")
+                    @pricereminder = rs.fetch_row[0].to_i - @price[index].to_i
+                    rs = con.query("UPDATE User SET Available = #{@pricereminder} WHERE Name = '#{@name}' AND Currency = '#{c}'")
+                end
+
+            rescue Mysql::Error => e
+                puts e.errno
+                puts e.error
+                
+            ensure
+                con.close if con
+            end
+        end
+
         def add(name,currency,price)
             begin
                 con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
@@ -197,19 +219,19 @@ class SocialMoneyClass < Sinatra::Base
                 @currency = currency
                 @price = price
                 con.query("SET NAMES UTF8")
-                puts @name,@currency,@price
                 @currency.each_with_index do |c, index|
                     rs = con.query("SELECT Price FROM User WHERE Name = '#{@name}' AND Currency = '#{c}'")
                     # puts rs.fetch_row.nil?, @price[index].to_i, c
                     # puts rs.fetch_row[0].to_i
                     if rs.fetch_row.nil? == true
-                        rs = con.query("INSERT INTO User(Name,Currency,Price) VALUES('#{@name}','#{c}',#{@price[index].to_i})")
+                        rs = con.query("INSERT INTO User(Name,Currency,Price,Available) VALUES('#{@name}','#{c}',#{@price[index].to_i},#{@price[index].to_i})")
                         puts "ok #{index}"
                     else
                         # puts rs.fetch_row[0].to_i
-                        rs = con.query("SELECT Price FROM User WHERE Name = '#{@name}' AND Currency = '#{c}'")
+                        rs = con.query("SELECT (Price,Available) FROM User WHERE Name = '#{@name}' AND Currency = '#{c}'")
                         @priceadd = rs.fetch_row[0].to_i + @price[index].to_i
-                        rs = con.query("UPDATE User SET Price = #{@priceadd} WHERE Name = '#{@name}' AND Currency = '#{c}'")
+                        @avaliableadd = rs.fetch_row[1].to_i + @price[index].to_i
+                        rs = con.query("UPDATE User SET Price = #{@priceadd} AND Avaliable = #{@avaliableadd} WHERE Name = '#{@name}' AND Currency = '#{c}'")
                     end
                 end
 
@@ -243,6 +265,10 @@ class SocialMoneyClass < Sinatra::Base
 
     post '/minus' do 
         minus params[:name], params[:currency], params[:price]
+    end
+
+    post '/minusAvailable' do
+        minusAvailable params[:name], params[:currency], params[:price]
     end
 
     post '/add' do 
