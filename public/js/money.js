@@ -258,6 +258,7 @@ function removeImg() {
     $('#selectuser').multiselect('deselectAll', false);
     $('#selectuser').multiselect('updateButtonText');
     $("#pincode").html('');
+    $("#selectlist").html("");
     loadCurrency();
     total = 0;
     topay = 0;

@@ -227,10 +227,10 @@ class SocialMoneyClass < Sinatra::Base
                         rs = con.query("INSERT INTO User(Name,Currency,Price,Available) VALUES('#{@name}','#{c}',#{@price[index].to_i},#{@price[index].to_i})")
                         puts "ok #{index}"
                     else
-                        # puts rs.fetch_row[0].to_i
-                        rs = con.query("SELECT Price, Available FROM User WHERE Name = '#{@name}' AND Currency = '#{c}'")
+                        rs = con.query("SELECT Price FROM User WHERE Name = '#{@name}' AND Currency = '#{c}'")
                         @priceadd = rs.fetch_row[0].to_i + @price[index].to_i
-                        @availableadd = rs.fetch_row[1].to_i + @price[index].to_i
+                        rs = con.query("SELECT Available FROM User WHERE Name = '#{@name}' AND Currency = '#{c}'")
+                        @availableadd = rs.fetch_row[0].to_i + @price[index].to_i
                         rs = con.query("UPDATE User SET Price = #{@priceadd}, Available = #{@availableadd} WHERE Name = '#{@name}' AND Currency = '#{c}'")
                     end
                 end
