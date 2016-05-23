@@ -77,6 +77,9 @@ function loadCurrency() {
       console.log(htmlText);
       $("#selectlist").append(htmlText);
       $('#selectlist').multiselect('rebuild');
+      var input = $('input[value="0"]');
+      input.prop('disabled', true);
+      input.parent('li').addClass('disabled');
       
   });
 }
