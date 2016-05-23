@@ -150,16 +150,17 @@
             $( "#walletinput" ).click(function() {
                 var name = $("#name").html().toString();
                 $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
-                    var mycur = [];
-                    var mypri = []; 
-                    mycur = result.split(/\d+/);
-                    mycur.pop();
-                    mypri = result.split(/\D+/);
-                    mypri.shift();
-                    console.log(mycur,mypri);
+                    var piece = result.split('.');
+                    piece.pop();
+                    var mycur = [], mypri = [], myavail = [];
+                    for (var i = 0;i<piece.length;i=i+3){
+                      mycur.push(piece[i]);
+                      mypri.push(piece[i+1]);
+                      myavail.push(piece[i+2]);
+                    }
                     var htmlText = "";
                     for (var x=0;x<mycur.length;x++){
-                      htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+ mycur[x]+' 幣, 餘 '+mypri[x]+' 元</li>';
+                      htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+ mycur[x]+' 幣, 餘 '+mypri[x]+ ' (' + myavail[x] +') 元</li>';
                     }
                     $("#moneylist").html(htmlText);
 
@@ -196,4 +197,4 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-multiselect.min.js"></script>
 <script type="text/javascript" src="js/postfb.min.js"></script>
-<script type="text/javascript" src="js/money.js"></script>
+<script type="text/javascript" src="js/money.min.js"></script>
