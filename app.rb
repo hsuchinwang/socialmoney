@@ -2,6 +2,11 @@ require 'sinatra/base'
 require 'mysql'
 
 class SocialMoneyClass < Sinatra::Base
+    DB_HOST = ENV['DATABASE_HOST']
+    DB_USER = ENV['DATABASE_USER']
+    DB_PASS = ENV['DATABASE_PASS']
+    DB_NAME = ENV['DATABASE_NAME']
+
     helpers do
         def save_name(name, pic)
             begin
@@ -34,7 +39,8 @@ class SocialMoneyClass < Sinatra::Base
 
                 @mycur = Array.new
                 @name = name
-                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                # con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT * FROM User WHERE Name = '#{@name}'")
                 rs.each_hash do |row|
