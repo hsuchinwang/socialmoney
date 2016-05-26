@@ -10,7 +10,6 @@ $('#tabBar').on("click", "li", function (event) {
 });
 
 function loadUser() {
-  $(document).ready(function() {
     $.get('https://socialmoney.herokuapp.com/find_user', function(data){
       var tmp = data.split('|');
       tmp.pop();
@@ -23,30 +22,10 @@ function loadUser() {
 
       }
       $("#selectuser").html(htmlText);
-      var lastSelected = '';
-      $('#selectuser').multiselect({
-          enableCaseInsensitiveFiltering: true,
-          buttonWidth: '100%',
-          buttonText: function(options, select) {
-              if (options.length === 0) {
-                  return 'Select user ';
-              } else{
-                  return select.val();
-              }
-          },
-          onChange: function(element, checked) {
-            if (checked === true){
-              $("#selectuser").multiselect('deselect', lastSelected);
-              lastSelected = $('#selectuser option:selected').val();
-            } else if (checked === false) {
-              lastSelected = '';
-            }
+      $('#selectlist').multiselect('rebuild');
 
-          }
-
-      });
+      
     });
-  });
 }
 
 function loadCurrency() {
@@ -76,6 +55,27 @@ function loadCurrency() {
 
 $(document).ready(function() {
           
+    var lastSelected = '';
+      $('#selectuser').multiselect({
+          enableCaseInsensitiveFiltering: true,
+          buttonWidth: '100%',
+          buttonText: function(options, select) {
+              if (options.length === 0) {
+                  return 'Select user ';
+              } else{
+                  return select.val();
+              }
+          },
+          onChange: function(element, checked) {
+            if (checked === true){
+              $("#selectuser").multiselect('deselect', lastSelected);
+              lastSelected = $('#selectuser option:selected').val();
+            } else if (checked === false) {
+              lastSelected = '';
+            }
+          }
+    });
+
     $('#selectlist').multiselect({
       buttonWidth: '100%',
       onChange: function(element, checked) {

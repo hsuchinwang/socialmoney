@@ -12,7 +12,7 @@ class SocialMoneyClass < Sinatra::Base
             begin
                 @name = name
                 @pic = pic
-                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 # con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'SamWang'
 
                 con.query("SET NAMES UTF8")
@@ -65,7 +65,7 @@ class SocialMoneyClass < Sinatra::Base
             begin
 
                 @mycur = Array.new
-                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT * FROM Persons")
                 rs.each_hash do |row|
@@ -83,7 +83,7 @@ class SocialMoneyClass < Sinatra::Base
 
         def keeprecord(namec,named,price,currency)
             begin
-                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
 
                 @namec = namec
                 @named = named
@@ -105,7 +105,7 @@ class SocialMoneyClass < Sinatra::Base
 
         def pincode(currency,pin,create)
             begin
-                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
 
                 @currency = currency
                 @pin = pin
@@ -125,7 +125,7 @@ class SocialMoneyClass < Sinatra::Base
 
         def checkpin(pin,name)
             begin
-                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 @pin = pin
                 @name = name
                 con.query("SET NAMES UTF8")
@@ -151,7 +151,7 @@ class SocialMoneyClass < Sinatra::Base
 
         def getrecord(name)
             begin
-                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 @name = name
                 @mycur = Array.new
                 con.query("SET NAMES UTF8")
@@ -171,7 +171,7 @@ class SocialMoneyClass < Sinatra::Base
 
         def minus(name,currency,price)
             begin
-                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 @name = name
                 @currency = currency
                 @price = price
@@ -198,7 +198,7 @@ class SocialMoneyClass < Sinatra::Base
 
         def minusAvailable(name,currency,price)
             begin
-                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 @name = name
                 @currency = currency
                 @price = price
@@ -220,7 +220,7 @@ class SocialMoneyClass < Sinatra::Base
 
         def add(name,currency,price)
             begin
-                con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 @name = name
                 @currency = currency
                 @price = price
