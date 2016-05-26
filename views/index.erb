@@ -175,7 +175,7 @@
                   var resultRecord = result.split('.');
                   resultRecord.pop();
                   var htmlText = "";
-                  for (var x=0;x<resultRecord.length;x++){
+                  for (var x=resultRecord.length-1;x>=0;x--){
                     htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+resultRecord[x]+'</li>';
                   }
                   $("#moneylist").html(htmlText);
