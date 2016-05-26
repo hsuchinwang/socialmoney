@@ -22,7 +22,7 @@ function loadUser() {
 
       }
       $("#selectuser").html(htmlText);
-      $('#selectlist').multiselect('rebuild');
+      $('#selectuser').multiselect('rebuild');
 
       
     });
