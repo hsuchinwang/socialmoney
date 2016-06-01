@@ -174,7 +174,11 @@ class SocialMoneyClass < Sinatra::Base
                 @name = name
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT Friend FROM Persons WHERE Name = '#{@name}'")
-                @friend = rs.fetch_row[0].to_s
+                if fetch_row.nil? == false
+                    @friend = rs.fetch_row[0].to_s
+                else 
+                    @friend = ''
+                end
 
             rescue Mysql::Error => e
                 puts e.errno
