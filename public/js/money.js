@@ -12,7 +12,9 @@ $('#tabBar').on("click", "li", function (event) {
 function loadUser() {
     $.post('https://socialmoney.herokuapp.com/find_friend', {name: name}, function(result) {
 
+      console.log(result);
       var tmpFri = result.split('.');
+      console.log(tmpFri);
       tmpFri.pop();
       htmlText = "<optgroup label='Friends:' class='group-1'>";
       for (var i=0; i<tmpFri.length;i++){
