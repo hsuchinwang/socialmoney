@@ -135,7 +135,7 @@
                     
                 </div>
                 <div id="tabFriend" class="tab-pane fade">
-                    <div class="col-md-4 col-xs-8 col-md-offset-4 col-xs-offset-2" style="margin-top:5%">
+                    <div class="col-md-4 col-xs-12 col-md-offset-4" style="margin-top:10%">
                         <img class="col-md-12 col-xs-12" src="image/socialmoney.png">
                         <br>
                         <h5 style="text-align: center">掃描QRCode進入APP!</h5>
@@ -152,47 +152,47 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
         <script>
 
-            //var name = $("#name").html().toString();
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-            $( "#walletinput" ).click(function() {
-                var name = $("#name").html().toString();
-                $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
-                    var piece = result.split('.');
-                    piece.pop();
-                    var mycur = [], mypri = [], myavail = [];
-                    for (var i = 0;i<piece.length;i=i+3){
-                      mycur.push(piece[i]);
-                      mypri.push(piece[i+1]);
-                      myavail.push(piece[i+2]);
-                    }
-                    var htmlText = "";
-                    for (var x=0;x<mycur.length;x++){
-                      htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+ mycur[x]+' 幣, 餘 '+mypri[x]+ ' (' + myavail[x] +') 元</li>';
-                    }
-                    $("#moneylist").html(htmlText);
+        //     //var name = $("#name").html().toString();
+        //     $(function () {
+        //         $('[data-toggle="tooltip"]').tooltip()
+        //     })
+        //     $( "#walletinput" ).click(function() {
+        //         var name = $("#name").html().toString();
+        //         $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
+        //             var piece = result.split('.');
+        //             piece.pop();
+        //             var mycur = [], mypri = [], myavail = [];
+        //             for (var i = 0;i<piece.length;i=i+3){
+        //               mycur.push(piece[i]);
+        //               mypri.push(piece[i+1]);
+        //               myavail.push(piece[i+2]);
+        //             }
+        //             var htmlText = "";
+        //             for (var x=0;x<mycur.length;x++){
+        //               htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+ mycur[x]+' 幣, 餘 '+mypri[x]+ ' (' + myavail[x] +') 元</li>';
+        //             }
+        //             $("#moneylist").html(htmlText);
 
-                });
-                $( this ).attr("data-toggle", "collapse");
-            });
+        //         });
+        //         $( this ).attr("data-toggle", "collapse");
+        //     });
 
-            $( "#recordinput" ).click(function() {
-                var name = $("#name").html().toString();
-                $.post('https://socialmoney.herokuapp.com/getrecord', {name: name}, function(result) {
+        //     $( "#recordinput" ).click(function() {
+        //         var name = $("#name").html().toString();
+        //         $.post('https://socialmoney.herokuapp.com/getrecord', {name: name}, function(result) {
 
-                  console.log(result);
-                  var resultRecord = result.split('.');
-                  resultRecord.pop();
-                  var htmlText = "";
-                  for (var x=resultRecord.length-1;x>=0;x--){
-                    htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+resultRecord[x]+'</li>';
-                  }
-                  $("#moneylist").html(htmlText);
+        //           console.log(result);
+        //           var resultRecord = result.split('.');
+        //           resultRecord.pop();
+        //           var htmlText = "";
+        //           for (var x=resultRecord.length-1;x>=0;x--){
+        //             htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+resultRecord[x]+'</li>';
+        //           }
+        //           $("#moneylist").html(htmlText);
 
-                });
-                $( this ).attr("data-toggle", "collapse");
-            });
+        //         });
+        //         $( this ).attr("data-toggle", "collapse");
+        //     });
 
         </script>
 

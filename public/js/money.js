@@ -185,25 +185,58 @@ $(document).ready(function() {
       }
       
     });
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+  })
+  $( "#walletinput" ).click(function() {
+      var name = $("#name").html().toString();
+      $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
+          var piece = result.split('.');
+          piece.pop();
+          var mycur = [], mypri = [], myavail = [];
+          for (var i = 0;i<piece.length;i=i+3){
+            mycur.push(piece[i]);
+            mypri.push(piece[i+1]);
+            myavail.push(piece[i+2]);
+          }
+          var htmlText = "";
+          for (var x=0;x<mycur.length;x++){
+            htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+ mycur[x]+' 幣, 餘 '+mypri[x]+ ' (' + myavail[x] +') 元</li>';
+          }
+          $("#moneylist").html(htmlText);
+
+      });
+      $( this ).attr("data-toggle", "collapse");
+  });
+
+  $( "#recordinput" ).click(function() {
+      var name = $("#name").html().toString();
+      $.post('https://socialmoney.herokuapp.com/getrecord', {name: name}, function(result) {
+
+        console.log(result);
+        var resultRecord = result.split('.');
+        resultRecord.pop();
+        var htmlText = "";
+        for (var x=resultRecord.length-1;x>=0;x--){
+          htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+resultRecord[x]+'</li>';
+        }
+        $("#moneylist").html(htmlText);
+
+      });
+      $( this ).attr("data-toggle", "collapse");
+  });
 
 });
 
-function getSelection(price) {
+function getSelection(price,addfriend) {
   var brands = $('#selectlist option:selected');
   var selected = [];
   var selectPri = [];
   var selectcur = [];
   var available = 0;
-  var addfriend = '';
   var name = $("#name").html().toString();
   $(brands).each(function(index, brand){
       available += $(this).val()/Math.pow(($(this).index()+1),5);
-      var group = $(this).parent('optgroup');
-      console.log(group);
-      if (group.hasClass('group-2')){
-        addfriend += $(this).html().substring(0, $(this).html().indexOf('幣')-1) + ".";
-        console.log(addfriend);
-      }
       if ( indexOfElement != null && $(this).index() == indexOfElement) {
         selected.push($(this).html().substring(0, $(this).html().indexOf('幣')-1));
         selectPri.push(topay);
@@ -242,9 +275,14 @@ function getSelection(price) {
 function create()
 {
     var price = document.getElementById("price").value;
-    var currency = getSelection(price);
-    var modalText = "<h4>我用</h4>";
     var name = $('#selectuser option:selected');
+    var addfriend = '';
+    if (name.parent('optgroup').hasClass('group-2')){
+        addfriend += $(this).html().substring(0, $(this).html().indexOf('幣')-1) + ".";
+        console.log(addfriend);
+    }
+    var currency = getSelection(price,addfriend);
+    var modalText = "<h4>我用</h4>";
     if (price != null && currency.length > 0 && name.length > 0 && price ){
         var data = $("#name").html().toString() + ',' + currency.join('.') + ',' + price;
         console.log(data);
