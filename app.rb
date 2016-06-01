@@ -110,7 +110,6 @@ class SocialMoneyClass < Sinatra::Base
                 @currency = currency
                 @pin = pin
                 @create = create
-                puts @create
                 con.query("SET NAMES UTF8")
                 con.query("INSERT INTO pincode(Currency,Pin,CreateName) VALUES('#{@currency}',#{@pin},'#{@create}')")
 
@@ -175,7 +174,7 @@ class SocialMoneyClass < Sinatra::Base
                 con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 @name = name
                 con.query("SET NAMES UTF8")
-                rs = con.query("SELECT Friend FROM Persons WHERE Name = '#{@name}'")
+                rs = con.query("SELECT Friend FROM Persons WHERE Name = '#{@name}' AND Friend IS NOT NULL")
                 if rs.fetch_row.nil? == false
                     @friend = rs.fetch_row[0].to_s
                 else 
