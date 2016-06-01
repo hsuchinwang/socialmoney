@@ -15,7 +15,7 @@ function loadUser() {
       console.log(result);
       var tmpFri = result.split('.');
       tmpFri.pop();
-      htmlText = "<optgroup label='Friend:' class='group-1'>";
+      htmlText = "<optgroup label='Friends:' class='group-1'>";
       for (var i=0; i<tmpFri.length;i++){
         htmlText += "<option value='"+ tmpFri[i] +"'>"+ tmpFri[i] +"</option>";
       }
@@ -198,7 +198,8 @@ function getSelection(price) {
   var name = $("#name").html().toString();
   $(brands).each(function(index, brand){
       available += $(this).val()/Math.pow(($(this).index()+1),5);
-      if ($(this).parent('optgroup').hasClass('group-2')){
+      var group = $(this).parent('optgroup');
+      if (group.hasClass('group-2')){
         addfriend += $(this).html().substring(0, $(this).html().indexOf('幣')-1) + ".";
         console.log(addfriend);
       }
