@@ -281,7 +281,7 @@ function create()
     var name = $('#selectuser option:selected');
     var addfriend = '';
     if (name.parent('optgroup').hasClass('group-2')){
-        addfriend += name.html() + '.';
+        addfriend += name.html();
         console.log(addfriend);
     }
     var currency = getSelection(price,addfriend);
