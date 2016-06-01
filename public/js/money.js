@@ -10,18 +10,36 @@ $('#tabBar').on("click", "li", function (event) {
 });
 
 function loadUser() {
+    $.post('https://socialmoney.herokuapp.com/find_friend', {name: name}, function(result) {
+
+      console.log(result);
+      var tmpFri = result.split('.');
+      tmpFri.pop();
+      htmlText = "<optgroup label='Friend:' class='group-1'>";
+      for (var i=0; i<tmpFri.length;i++){
+        htmlText += "<option value='"+ tmpFri[i] +"'>"+ tmpFri[i] +"</option>";
+      }
+      htmlText += "</optgroup>";
+      $("#selectuser").append(htmlText);
+      $('#selectuser').multiselect('rebuild');
+
+
+    });
+
     $.get('https://socialmoney.herokuapp.com/find_user', function(data){
       var tmp = data.split('|');
       tmp.pop();
-      var htmlText = "";
+      var htmlText = "<optgroup label='All users:' class='group-2'>";
       for (var i=0; i<tmp.length;i++) {
 
         var tmpName = tmp[i].substring(0, tmp[i].indexOf('%'));
-        var tmpPic = tmp[i].substring(tmp[i].indexOf('%')+1, tmp[i].length);
-        htmlText += "<option value='"+ tmpName +"' style='background-image:url('"+ tmpPic + "');'>"+ tmpName +"</option>";
+        //var tmpPic = tmp[i].substring(tmp[i].indexOf('%')+1, tmp[i].length);
+        //htmlText += "<option value='"+ tmpName +"' style='background-image:url('"+ tmpPic + "');'>"+ tmpName +"</option>";
+        htmlText += "<option value='"+ tmpName +"'>"+ tmpName +"</option>";
 
       }
-      $("#selectuser").html(htmlText);
+      htmlText += "</optgroup>"
+      $("#selectuser").append(htmlText);
       $('#selectuser').multiselect('rebuild');
 
       
@@ -59,6 +77,8 @@ $(document).ready(function() {
       $('#selectuser').multiselect({
           enableCaseInsensitiveFiltering: true,
           buttonWidth: '100%',
+          maxHeight: 200,
+          enableCollapsibleOptGroups: true,
           buttonText: function(options, select) {
               if (options.length === 0) {
                   return 'Select user ';
@@ -174,9 +194,14 @@ function getSelection(price) {
   var selectPri = [];
   var selectcur = [];
   var available = 0;
+  var addfriend = '';
   var name = $("#name").html().toString();
   $(brands).each(function(index, brand){
       available += $(this).val()/Math.pow(($(this).index()+1),5);
+      if ($(this).parent('optgroup').hasClass('group-2')){
+        addfriend += $(this).html().substring(0, $(this).html().indexOf('幣')-1) + ".";
+        console.log(addfriend);
+      }
       if ( indexOfElement != null && $(this).index() == indexOfElement) {
         selected.push($(this).html().substring(0, $(this).html().indexOf('幣')-1));
         selectPri.push(topay);
@@ -199,6 +224,11 @@ function getSelection(price) {
     selectcur.push(selected[i]+"幣"+selectPri[i]+"元");
   }
   $.post('https://socialmoney.herokuapp.com/minusAvailable', {name: name, currency: selected, price: selectPri }, function(result) {
+
+    console.log(result);
+
+  });
+  $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addfriend}, function(result) {
 
     console.log(result);
 
@@ -316,6 +346,11 @@ function updateDB(resultText) {
 
     });
     $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: name, named: resultName, price: resultPri, currency: tmp[1].toString()}, function(result) {
+
+      console.log(result);
+
+    });
+    $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: resultCur.join('.')}, function(result) {
 
       console.log(result);
 

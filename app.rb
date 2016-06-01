@@ -149,6 +149,43 @@ class SocialMoneyClass < Sinatra::Base
             end
         end
 
+        def addfriend(name,friend)
+            begin
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
+                @name = name
+                @friend = friend
+                con.query("SET NAMES UTF8")
+                rs = con.query("SELECT Friend FROM Persons WHERE Name = '#{@name}'")
+                @friend = rs.fetch_row[0].to_s + @friend
+                rs = con.query("UPDATE Persons SET Friend = '#{@friend}' WHERE Name = '#{@name}'")
+
+            rescue Mysql::Error => e
+                puts e.errno
+                puts e.error
+                
+            ensure
+                con.close if con
+            end
+        end
+
+        def find_friend(name)
+            begin
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
+                @name = name
+                con.query("SET NAMES UTF8")
+                rs = con.query("SELECT Friend FROM Persons WHERE Name = '#{@name}'")
+                @friend = rs.fetch_row[0].to_s
+
+            rescue Mysql::Error => e
+                puts e.errno
+                puts e.error
+                
+            ensure
+                con.close if con
+            end
+        end
+
+
         def getrecord(name)
             begin
                 con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
@@ -260,6 +297,11 @@ class SocialMoneyClass < Sinatra::Base
         return @mycur
     end 
 
+    post '/find_friend' do 
+        find_friend params[:name]
+        return @friend
+    end
+
     post '/save_name' do
         save_name params[:name], params[:pic]
     end
@@ -297,6 +339,10 @@ class SocialMoneyClass < Sinatra::Base
 
     post '/pincode' do 
         pincode params[:currency], params[:pin], params[:create]
+    end
+
+    post '/addfriend' do 
+        addfriend params[:name], params[:friend]
     end
 
 end
