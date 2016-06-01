@@ -173,8 +173,10 @@ function getSelection(price) {
   var selected = [];
   var selectPri = [];
   var selectcur = [];
+  var available = 0;
   var name = $("#name").html().toString();
   $(brands).each(function(index, brand){
+      available += $(this).val()/Math.pow(($(this).index()+1),5);
       if ( indexOfElement != null && $(this).index() == indexOfElement) {
         selected.push($(this).html().substring(0, $(this).html().indexOf('幣')-1));
         selectPri.push(topay);
@@ -184,6 +186,11 @@ function getSelection(price) {
       }
       
   });
+  if ( price > available ) {
+    alert("You don't have enough money!");
+    removeImg();
+    return;
+  }
   if ( total < price ) {
     selected.push($("#name").html().toString());
     selectPri.push(price - total);
@@ -206,7 +213,7 @@ function create()
     var currency = getSelection(price);
     var modalText = "<h4>我用</h4>";
     var name = $('#selectuser option:selected');
-    if (price != null && currency.length > 0 && name.length > 0){
+    if (price != null && currency.length > 0 && name.length > 0 && price ){
         var data = $("#name").html().toString() + ',' + currency.join('.') + ',' + price;
         console.log(data);
         var a, b, c, d, e, f;
