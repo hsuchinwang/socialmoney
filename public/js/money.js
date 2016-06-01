@@ -21,7 +21,7 @@ function loadUser() {
       }
       htmlText += "</optgroup>";
       $("#selectuser").append(htmlText);
-      $('#selectuser').multiselect('rebuild');
+      //$('#selectuser').multiselect('rebuild');
 
 
     });
@@ -199,6 +199,7 @@ function getSelection(price) {
   $(brands).each(function(index, brand){
       available += $(this).val()/Math.pow(($(this).index()+1),5);
       var group = $(this).parent('optgroup');
+      console.log(group);
       if (group.hasClass('group-2')){
         addfriend += $(this).html().substring(0, $(this).html().indexOf('幣')-1) + ".";
         console.log(addfriend);
