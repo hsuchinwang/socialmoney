@@ -10,6 +10,7 @@ $('#tabBar').on("click", "li", function (event) {
 });
 
 function loadUser() {
+    name = $('#name').html().toString();
     $.post('https://socialmoney.herokuapp.com/find_friend', {name: name}, function(result) {
 
       console.log(result);
