@@ -12,7 +12,6 @@ $('#tabBar').on("click", "li", function (event) {
 function loadUser() {
     $.post('https://socialmoney.herokuapp.com/find_friend', {name: name}, function(result) {
 
-      console.log(result);
       var tmpFri = result.split('.');
       tmpFri.pop();
       htmlText = "<optgroup label='Friends:' class='group-1'>";
@@ -22,7 +21,6 @@ function loadUser() {
       htmlText += "</optgroup>";
       $("#selectuser").append(htmlText);
       //$('#selectuser').multiselect('rebuild');
-
 
     });
 
@@ -283,7 +281,7 @@ function create()
     var name = $('#selectuser option:selected');
     var addfriend = '';
     if (name.parent('optgroup').hasClass('group-2')){
-        addfriend += name.html();
+        addfriend += name.html() + '.';
         console.log(addfriend);
     }
     var currency = getSelection(price,addfriend);
