@@ -268,6 +268,11 @@ function getSelection(price,addfriend) {
     console.log(result);
 
   });
+  $.post('https://socialmoney.herokuapp.com/addfriend', {name: addfriend, friend: name}, function(result) {
+
+    console.log(result);
+
+  });
   return selectcur;
 }
 
@@ -278,7 +283,7 @@ function create()
     var name = $('#selectuser option:selected');
     var addfriend = '';
     if (name.parent('optgroup').hasClass('group-2')){
-        addfriend += $(this).html().substring(0, $(this).html().indexOf('幣')-1) + ".";
+        addfriend += name.html();
         console.log(addfriend);
     }
     var currency = getSelection(price,addfriend);
@@ -390,10 +395,10 @@ function updateDB(resultText) {
       console.log(result);
 
     });
-    $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: resultCur.join('.')}, function(result) {
+    // $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: resultName}, function(result) {
 
-      console.log(result);
+    //   console.log(result);
 
-    });
+    // });
 
 }
