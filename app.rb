@@ -156,7 +156,9 @@ class SocialMoneyClass < Sinatra::Base
                 @friend = friend
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT Friend FROM Persons WHERE Name = '#{@name}'")
-                @friend = rs.fetch_row[0].to_s + @friend
+                if rs.fetch_row.nil? == false
+                    @friend = rs.fetch_row[0].to_s + @friend
+                end
                 rs = con.query("UPDATE Persons SET Friend = '#{@friend}' WHERE Name = '#{@name}'")
 
             rescue Mysql::Error => e
