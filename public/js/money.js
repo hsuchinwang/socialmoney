@@ -250,7 +250,7 @@ function getFriend() {
     if ($(this).parent('optgroup').hasClass('group-2')){
         addfriend += $(this).val();
     }
-  }
+  });
   if (addfriend != '') {
     $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addfriend}, function(result) {
 
