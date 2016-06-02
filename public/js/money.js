@@ -15,13 +15,13 @@ function loadUser() {
 
       var tmpFri = result.split('.');
       tmpFri.pop();
-      var htmlText = "<optgroup label='Friends:' class='group-1'>";
+      var htmlTextG1 = "<optgroup label='Friends:' class='group-1'>";
       for (var i=0; i<tmpFri.length;i++){
-        htmlText += "<option value='"+ tmpFri[i] +"'>"+ tmpFri[i] +"</option>";
+        htmlTextG1 += "<option value='"+ tmpFri[i] +"'>"+ tmpFri[i] +"</option>";
       }
-      htmlText += "</optgroup>";
-      $("#selectuser").append(htmlText);
-      $("#friendlist").append(htmlText);
+      htmlTextG1 += "</optgroup>";
+      $("#selectuser").append(htmlTextG1);
+      $("#friendlist").append(htmlTextG1);
       //$('#selectuser').multiselect('rebuild');
 
     });
