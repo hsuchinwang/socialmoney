@@ -243,7 +243,7 @@ $(document).ready(function() {
 });
 
 function getFriend() {
-  var brands = $('#selectlist option:selected');
+  var brands = $('#selectuser option:selected');
   var addfriend = '';
   var name = $("#name").html().toString();
   $(brands).each(function(index, brand){
