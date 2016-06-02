@@ -4,7 +4,6 @@ var indexOfElement = null;
 
 $('#tabBar').on("click", "li", function (event) {         
    if ($(this).find('a').attr('href') == '#tabRecord') {
-      $("#selectuser").html("");
       $("#selectlist").html("");
       loadUser();
       loadCurrency();
@@ -12,6 +11,7 @@ $('#tabBar').on("click", "li", function (event) {
 });
 
 function loadUser() {
+    $("#selectuser").html("");
     name = $('#name').html().toString();
     $.post('https://socialmoney.herokuapp.com/find_friend', {name: name}, function(result) {
 
@@ -24,7 +24,7 @@ function loadUser() {
       htmlTextG1 += "</optgroup>";
       $("#selectuser").append(htmlTextG1);
       $("#friendlist").append(htmlTextG1);
-      //$('#selectuser').multiselect('rebuild');
+      $('#selectuser').multiselect('rebuild');
 
     });
 
