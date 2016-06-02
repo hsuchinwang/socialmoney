@@ -13,9 +13,7 @@ function loadUser() {
     name = $('#name').html().toString();
     $.post('https://socialmoney.herokuapp.com/find_friend', {name: name}, function(result) {
 
-      console.log(result);
       var tmpFri = result.split('.');
-      console.log(tmpFri);
       tmpFri.pop();
       htmlText = "<optgroup label='Friends:' class='group-1'>";
       for (var i=0; i<tmpFri.length;i++){
@@ -23,6 +21,7 @@ function loadUser() {
       }
       htmlText += "</optgroup>";
       $("#selectuser").append(htmlText);
+      $("#friendlist").append(htmlText);
       //$('#selectuser').multiselect('rebuild');
 
     });
@@ -41,7 +40,12 @@ function loadUser() {
       }
       htmlText += "</optgroup>"
       $("#selectuser").append(htmlText);
+      $("#friendlist").append(htmlText);
       $('#selectuser').multiselect('rebuild');
+      $("#friendlist").multiselect('rebuild');
+      var input = $('input[value="'+name+'"]');
+      input.prop('disabled', true);
+      input.parent('li').addClass('disabled');
 
       
     });
@@ -75,26 +79,33 @@ function loadCurrency() {
 $(document).ready(function() {
           
     var lastSelected = '';
-      $('#selectuser').multiselect({
-          enableCaseInsensitiveFiltering: true,
-          buttonWidth: '100%',
-          maxHeight: 200,
-          enableCollapsibleOptGroups: true,
-          buttonText: function(options, select) {
-              if (options.length === 0) {
-                  return 'Select user ';
-              } else{
-                  return select.val();
-              }
-          },
-          onChange: function(element, checked) {
-            if (checked === true){
-              $("#selectuser").multiselect('deselect', lastSelected);
-              lastSelected = $('#selectuser option:selected').val();
-            } else if (checked === false) {
-              lastSelected = '';
+    $('#selectuser').multiselect({
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth: '100%',
+        maxHeight: 200,
+        enableCollapsibleOptGroups: true,
+        buttonText: function(options, select) {
+            if (options.length === 0) {
+                return 'Select user ';
+            } else{
+                return select.val();
             }
+        },
+        onChange: function(element, checked) {
+          if (checked === true){
+            $("#selectuser").multiselect('deselect', lastSelected);
+            lastSelected = $('#selectuser option:selected').val();
+          } else if (checked === false) {
+            lastSelected = '';
           }
+        }
+    });
+
+    $('#friendlist').multiselect({
+        enableCaseInsensitiveFiltering: true,
+        buttonWidth: '100%',
+        maxHeight: 200,
+        enableCollapsibleOptGroups: true
     });
 
     $('#selectlist').multiselect({
@@ -214,7 +225,6 @@ $(document).ready(function() {
       var name = $("#name").html().toString();
       $.post('https://socialmoney.herokuapp.com/getrecord', {name: name}, function(result) {
 
-        console.log(result);
         var resultRecord = result.split('.');
         resultRecord.pop();
         var htmlText = "";
@@ -396,10 +406,5 @@ function updateDB(resultText) {
       console.log(result);
 
     });
-    // $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: resultName}, function(result) {
-
-    //   console.log(result);
-
-    // });
 
 }
