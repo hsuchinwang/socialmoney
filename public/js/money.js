@@ -25,32 +25,33 @@ function loadUser() {
       $("#selectuser").append(htmlTextG1);
       $("#friendlist").append(htmlTextG1);
       $('#selectuser').multiselect('rebuild');
+      $.get('https://socialmoney.herokuapp.com/find_user', function(data){
+        var tmp = data.split('|');
+        tmp.pop();
+        var htmlText = "<optgroup label='All users:' class='group-2'>";
+        for (var i=0; i<tmp.length;i++) {
+
+          var tmpName = tmp[i].substring(0, tmp[i].indexOf('%'));
+          //var tmpPic = tmp[i].substring(tmp[i].indexOf('%')+1, tmp[i].length);
+          //htmlText += "<option value='"+ tmpName +"' style='background-image:url('"+ tmpPic + "');'>"+ tmpName +"</option>";
+          htmlText += "<option value='"+ tmpName +"'>"+ tmpName +"</option>";
+
+        }
+        htmlText += "</optgroup>"
+        $("#selectuser").append(htmlText);
+        $('#selectuser').multiselect('rebuild');
+        $("#friendlist").append(htmlText);
+        $("#friendlist").multiselect('rebuild');
+        var input = $('input[value="'+name+'"]');
+        input.prop('disabled', true);
+        input.parent('li').addClass('disabled');
+
+        
+      });
 
     });
 
-    $.get('https://socialmoney.herokuapp.com/find_user', function(data){
-      var tmp = data.split('|');
-      tmp.pop();
-      var htmlText = "<optgroup label='All users:' class='group-2'>";
-      for (var i=0; i<tmp.length;i++) {
-
-        var tmpName = tmp[i].substring(0, tmp[i].indexOf('%'));
-        //var tmpPic = tmp[i].substring(tmp[i].indexOf('%')+1, tmp[i].length);
-        //htmlText += "<option value='"+ tmpName +"' style='background-image:url('"+ tmpPic + "');'>"+ tmpName +"</option>";
-        htmlText += "<option value='"+ tmpName +"'>"+ tmpName +"</option>";
-
-      }
-      htmlText += "</optgroup>"
-      $("#selectuser").append(htmlText);
-      $('#selectuser').multiselect('rebuild');
-      $("#friendlist").append(htmlText);
-      $("#friendlist").multiselect('rebuild');
-      var input = $('input[value="'+name+'"]');
-      input.prop('disabled', true);
-      input.parent('li').addClass('disabled');
-
-      
-    });
+    
 }
 
 function loadCurrency() {
