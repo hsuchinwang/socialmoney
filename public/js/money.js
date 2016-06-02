@@ -15,7 +15,7 @@ function loadUser() {
 
       var tmpFri = result.split('.');
       tmpFri.pop();
-      htmlText = "<optgroup label='Friends:' class='group-1'>";
+      var htmlText = "<optgroup label='Friends:' class='group-1'>";
       for (var i=0; i<tmpFri.length;i++){
         htmlText += "<option value='"+ tmpFri[i] +"'>"+ tmpFri[i] +"</option>";
       }
