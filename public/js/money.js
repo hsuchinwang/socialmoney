@@ -4,7 +4,9 @@ var indexOfElement = null;
 
 $('#tabBar').on("click", "li", function (event) {         
    if ($(this).find('a').attr('href') == '#tabRecord') {
+      $("#selectuser").html("");
       $("#selectlist").html("");
+      loadUser();
       loadCurrency();
    }
 });
@@ -294,7 +296,7 @@ function create()
     var name = $('#selectuser option:selected');
     var addfriend = '';
     if (name.parent('optgroup').hasClass('group-2')){
-        addfriend += name.html();
+        addfriend = name.html().toString();
         console.log(addfriend);
     }
     var currency = getSelection(price,addfriend);
@@ -339,7 +341,9 @@ function removeImg() {
     $('#selectuser').multiselect('deselectAll', false);
     $('#selectuser').multiselect('updateButtonText');
     $("#pincode").html('');
+    $("#selectuser").html("");
     $("#selectlist").html("");
+    loadUser();
     loadCurrency();
     total = 0;
     topay = 0;
