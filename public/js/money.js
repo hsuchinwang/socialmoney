@@ -243,7 +243,7 @@ $(document).ready(function() {
 });
 
 function getFriend() {
-  var brands = $('#selectuser option:selected');
+  var brands = $('#friendlist option:selected');
   var addfriend = '';
   var name = $("#name").html().toString();
   $(brands).each(function(index, brand){
@@ -258,6 +258,8 @@ function getFriend() {
 
     });
   }
+  $('#friendlist').multiselect('deselectAll', false);
+  $('#friendlist').multiselect('updateButtonText');
   loadUser();
 }
 
