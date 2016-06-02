@@ -40,8 +40,8 @@ function loadUser() {
       }
       htmlText += "</optgroup>"
       $("#selectuser").append(htmlText);
-      $("#friendlist").append(htmlText);
       $('#selectuser').multiselect('rebuild');
+      $("#friendlist").append(htmlText);
       $("#friendlist").multiselect('rebuild');
       var input = $('input[value="'+name+'"]');
       input.prop('disabled', true);
