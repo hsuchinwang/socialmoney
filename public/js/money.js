@@ -12,6 +12,7 @@ $('#tabBar').on("click", "li", function (event) {
 
 function loadUser() {
     $("#selectuser").html("");
+    $("#friendlist").html("");
     name = $('#name').html().toString();
     $.post('https://socialmoney.herokuapp.com/find_friend', {name: name}, function(result) {
 
@@ -25,6 +26,7 @@ function loadUser() {
       $("#selectuser").append(htmlTextG1);
       $("#friendlist").append(htmlTextG1);
       $('#selectuser').multiselect('rebuild');
+      $("#friendlist").multiselect('rebuild');
       $.get('https://socialmoney.herokuapp.com/find_user', function(data){
         var tmp = data.split('|');
         tmp.pop();
@@ -248,9 +250,10 @@ function getFriend() {
   var name = $("#name").html().toString();
   $(brands).each(function(index, brand){
     if ($(this).parent('optgroup').hasClass('group-2')){
-        addfriend += $(this).val();
+        addfriend += $(this).val()+'.';
     }
   });
+  addfriend.substring(0, addfriend.length);
   if (addfriend != '') {
     $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addfriend}, function(result) {
 
