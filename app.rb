@@ -156,6 +156,7 @@ class SocialMoneyClass < Sinatra::Base
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT Friend FROM Persons WHERE Name = '#{@name}' AND Friend IS NOT NULL")
                 if rs.num_rows != 0
+                    @friend.force_encoding('UTF-8')
                     @friend = rs.fetch_row[0].to_s + @friend.to_s
                 end
                 # @friend.force_encoding(Encoding::UTF_8)
