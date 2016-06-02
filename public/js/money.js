@@ -242,6 +242,25 @@ $(document).ready(function() {
 
 });
 
+function getFriend() {
+  var brands = $('#selectlist option:selected');
+  var addfriend = '';
+  var name = $("#name").html().toString();
+  $(brands).each(function(index, brand){
+    if ($(this).parent('optgroup').hasClass('group-2')){
+        addfriend += $(this).val();
+    }
+  }
+  if (addfriend != '') {
+    $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addfriend}, function(result) {
+
+      console.log(result);
+
+    });
+  }
+  loadUser();
+}
+
 function getSelection(price,addfriend) {
   var brands = $('#selectlist option:selected');
   var selected = [];
@@ -277,16 +296,19 @@ function getSelection(price,addfriend) {
     console.log(result);
 
   });
-  $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addfriend}, function(result) {
+  if (addfriend != '') {
+    $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addfriend}, function(result) {
 
     console.log(result);
 
-  });
-  $.post('https://socialmoney.herokuapp.com/addfriend', {name: addfriend, friend: name}, function(result) {
+    });
+    $.post('https://socialmoney.herokuapp.com/addfriend', {name: addfriend, friend: name}, function(result) {
 
-    console.log(result);
+      console.log(result);
 
-  });
+    });
+  }
+  
   return selectcur;
 }
 
