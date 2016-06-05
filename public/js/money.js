@@ -253,7 +253,7 @@ function getFriend() {
         addfriend += $(this).val()+'.';
     }
   });
-  addfriend.substring(0, addfriend.length);
+  addfriend.substring(0, addfriend.length-1);
   if (addfriend != '') {
     $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addfriend}, function(result) {
 
@@ -321,15 +321,15 @@ function getSelection(price,addfriend) {
 function create()
 {
     var price = document.getElementById("price").value;
-    var name = $('#selectuser option:selected');
+    var username = $('#selectuser option:selected');
     var addfriend = '';
-    if (name.parent('optgroup').hasClass('group-2')){
-        addfriend = name.html().toString();
+    if (username.parent('optgroup').hasClass('group-2')){
+        addfriend = username.html().toString();
         console.log(addfriend);
     }
     var currency = getSelection(price,addfriend);
     var modalText = "<h4>我用</h4>";
-    if (price != null && currency.length > 0 && name.length > 0 && price ){
+    if (price != null && currency.length > 0 && username.length > 0 ){
         var data = $("#name").html().toString() + ',' + currency.join('.') + ',' + price;
         console.log(data);
         var a, b, c, d, e, f;
