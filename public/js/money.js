@@ -346,7 +346,7 @@ function create()
         modalText += "<h5>共"+ price + "元</h5>";
         modalText += "<h4>做抵押. 請查收</h4>";
         document.getElementById("comfirmList").innerHTML = modalText;
-        $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f, create: name.html() }, function(result) {
+        $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f, create: username.html() }, function(result) {
 
           console.log(result);
 
