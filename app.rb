@@ -133,7 +133,7 @@ class SocialMoneyClass < Sinatra::Base
                 if rs.fetch_row.nil? == true
                     @result = 'fail'
                 else
-                    rs = con.query("SELECT Currency FROM pincode WHERE Pin = #{@pin}")
+                    rs = con.query("SELECT Currency FROM pincode WHERE Pin = #{@pin} AND CreateName = '#{@name}'")
                     @result = rs.fetch_row[0].to_s
                     rs = con.query("DELETE FROM pincode WHERE Pin = #{@pin}")
                 end
