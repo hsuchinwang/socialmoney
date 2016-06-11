@@ -334,12 +334,12 @@ function create()
 {
     var price = document.getElementById("price").value;
     var username = $('#selectuser option:selected');
-    var addfriend = '';
-    if (username.parent('optgroup').hasClass('group-2')){
-        addfriend = username.html().toString();
-        console.log(addfriend);
-    }
-    var currency = getSelection(price,addfriend);
+    // var addfriend = '';
+    // if (username.parent('optgroup').hasClass('group-2')){
+    //     addfriend = username.html().toString();
+    //     console.log(addfriend);
+    // }
+    var currency = getSelection(price,username.html().toString());
     var modalText = "<h4>我用</h4>";
     if (price != null && currency.length > 0 && username.length > 0 ){
         var data = $("#name").html().toString() + ',' + currency.join('.') + ',' + price;
