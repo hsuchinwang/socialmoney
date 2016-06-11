@@ -151,6 +151,7 @@ class SocialMoneyClass < Sinatra::Base
         def addfriend(name,friend)
             begin
                 con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
+                @myfriend = Array.new
                 @name = name
                 @friend = friend.to_s + "."
                 con.query("SET NAMES UTF8")
@@ -158,6 +159,9 @@ class SocialMoneyClass < Sinatra::Base
                 if rs.num_rows != 0
                     @friend.force_encoding('UTF-8')
                     @friend += rs.fetch_row[0].to_s.force_encoding('UTF-8')
+                    @myfriend = @friend.split('.')
+                    @myfriend.uniq!
+                    @friend = @myfriend.map { |k| "#{k}." }.join("").to_s.force_encoding('UTF-8')
                 end
                 # @friend.force_encoding(Encoding::UTF_8)
                 con.query("SET NAMES UTF8")

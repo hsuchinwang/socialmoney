@@ -245,6 +245,14 @@ $(document).ready(function() {
 
 });
 
+function addFriend(name, addname) {
+  $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addname}, function(result) {
+
+      console.log(result);
+
+  });
+}
+
 function getFriend() {
   var brands = $('#friendlist option:selected');
   var addfriend = '';
@@ -256,11 +264,12 @@ function getFriend() {
   });
   addfriend = addfriend.substring(0, addfriend.length-1);
   if (addfriend != '') {
-    $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addfriend}, function(result) {
+    addFriend(name,addfriend);
+    // $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addfriend}, function(result) {
 
-      console.log(result);
+    //   console.log(result);
 
-    });
+    // });
   }
   $('#friendlist').multiselect('deselectAll', false);
   $('#friendlist').multiselect('updateButtonText');
@@ -269,10 +278,10 @@ function getFriend() {
 
 function getSelection(price,addfriend) {
   var brands = $('#selectlist option:selected');
-  var selected = [];
-  var selectPri = [];
-  var selectcur = [];
-  var available = 0;
+  var selected = [], selectPri = [], selectcur = [], available = 0;
+  // var selectPri = [];
+  // var selectcur = [];
+  // var available = 0;
   var name = $("#name").html().toString();
   $(brands).each(function(index, brand){
       available += $(this).val()/Math.pow(($(this).index()+1),5);
@@ -303,16 +312,18 @@ function getSelection(price,addfriend) {
 
   });
   if (addfriend != '') {
-    $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addfriend}, function(result) {
+    addFriend(name,addfriend);
+    addFriend(addfriend,name);
+    // $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addfriend}, function(result) {
 
-    console.log(result);
+    // console.log(result);
 
-    });
-    $.post('https://socialmoney.herokuapp.com/addfriend', {name: addfriend, friend: name}, function(result) {
+    // });
+    // $.post('https://socialmoney.herokuapp.com/addfriend', {name: addfriend, friend: name}, function(result) {
 
-      console.log(result);
+    //   console.log(result);
 
-    });
+    // });
   }
   
   return selectcur;
@@ -344,8 +355,8 @@ function create()
         for (var i=0;i<currency.length;i++) {
           modalText += "<h5>"+currency[i]+"</h5>";
         }
-        modalText += "<h5>共"+ price + "元</h5>";
-        modalText += "<h4>做抵押. 請查收</h4>";
+        modalText += "<h5>共"+ price + "元</h5><h4>做抵押. 請查收</h4>";
+        //modalText += "<h4>做抵押. 請查收</h4>";
         document.getElementById("comfirmList").innerHTML = modalText;
         $.post('https://socialmoney.herokuapp.com/pincode', { currency: data, pin: f, create: username.html() }, function(result) {
 
@@ -371,7 +382,7 @@ function removeImg() {
     $('#selectuser').multiselect('updateButtonText');
     $("#pincode").html('');
     $("#selectuser").html("");
-    $("#selectlist").html("");
+    //$("#selectlist").html("");
     loadUser();
     loadCurrency();
     total = 0;
@@ -407,12 +418,12 @@ function checkPin(){
 function updateDB(resultText) {
     var name = $("#name").html().toString();
     var modalText = '';
-    resultText = resultText.replace(/幣/g,"");
-    resultText = resultText.replace(/元/g,"");
-    resultText = resultText.replace(/\./g,"");
+    resultText = resultText.replace(/幣/g,"").replace(/元/g,"").replace(/\./g,"");
+    // resultText = resultText.replace(/元/g,"");
+    // resultText = resultText.replace(/\./g,"");
     var tmp = resultText.split(',');
-    var resultPri = tmp[2];
-    var resultName = tmp[0];
+    //var resultPri = tmp[2];
+    //var resultName = tmp[0];
     var resultNum = tmp[1].split(/\D+/);
     var resultCur = tmp[1].split(/\d+/);
     resultNum.shift();
@@ -421,10 +432,10 @@ function updateDB(resultText) {
     for (var i=0;i<resultCur.length;i++) {
         modalText += "<h5>"+resultCur[i]+" 幣, "+resultNum[i]+"元</h5>";
     }
-    modalText += "<h5>共"+ resultPri + "元</h5>";
+    modalText += "<h5>共"+ tmp[2] + "元</h5>";
     document.getElementById("checkList").innerHTML = modalText;
     $('#mycomfirmModal').modal('show');
-    $.post('https://socialmoney.herokuapp.com/minus', {name: resultName, currency: resultCur, price: resultNum }, function(result) {
+    $.post('https://socialmoney.herokuapp.com/minus', {name: tmp[0], currency: resultCur, price: resultNum }, function(result) {
 
       console.log(result);
 
@@ -434,7 +445,7 @@ function updateDB(resultText) {
       console.log(result);
 
     });
-    $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: name, named: resultName, price: resultPri, currency: tmp[1].toString()}, function(result) {
+    $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: name, named: tmp[0], price: tmp[2], currency: tmp[1].toString()}, function(result) {
 
       console.log(result);
 
