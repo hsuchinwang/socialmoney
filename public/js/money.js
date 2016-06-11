@@ -210,16 +210,17 @@ $(document).ready(function() {
       $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
           var piece = result.split('.');
           piece.pop();
-          var mycur = [], mypri = [], myavail = [];
-          for (var i = 0;i<piece.length;i=i+3){
-            mycur.push(piece[i]);
-            mypri.push(piece[i+1]);
-            myavail.push(piece[i+2]);
-          }
           var htmlText = "";
-          for (var x=0;x<mycur.length;x++){
-            htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+ mycur[x]+' 幣, 餘 '+mypri[x]+ ' (' + myavail[x] +') 元</li>';
+          //var mycur = [], mypri = [], myavail = [];
+          for (var i = 0;i<piece.length;i=i+3){
+            // mycur.push(piece[i]);
+            // mypri.push(piece[i+1]);
+            // myavail.push(piece[i+2]);
+            htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+ piece[i]+' 幣, 餘 '+piece[i+1]+ ' (' + piece[i+2] +') 元</li>';
           }
+          // for (var x=0;x<mycur.length;x++){
+          //   htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+ mycur[x]+' 幣, 餘 '+mypri[x]+ ' (' + myavail[x] +') 元</li>';
+          // }
           $("#moneylist").html(htmlText);
 
       });
