@@ -324,6 +324,7 @@ function getFriend() {
   addfriend = addfriend.substring(0, addfriend.length-1);
   if (addfriend != '') {
     addFriend(name,addfriend);
+    alert('Saved!')
   }
   $('#friendlist').multiselect('deselectAll', false);
   $('#friendlist').multiselect('updateButtonText');
