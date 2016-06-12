@@ -1,6 +1,6 @@
 var topay = 0;
 var total = 0;
-var available = 0;
+var availableAmount = 0;
 var indexOfElement = null;
 
 $('#tabBar').on("click", "li", function (event) {         
@@ -62,7 +62,7 @@ function loadCurrency() {
       //var mycur = [], mypri = [], myavail = [];
       for (var i = 0;i<piece.length;i=i+3){
         if (i = 0) {
-          available = parseInt(piece[i+2]);
+          availableAmount = parseInt(piece[i+2]);
         }
         htmlText += '<option value="'+ piece[i+2]*Math.pow((j+1),5)+'">'+ piece[i]+' 幣, 餘 '+ piece[i+1]+ '('+piece[i+2]+')' +' 元</option>';
         j++;
@@ -307,7 +307,7 @@ function getSelection(price,addfriend) {
 function create()
 {
     var price = document.getElementById("price").value;
-    if ( price > available ) {
+    if ( price > availableAmount ) {
       alert("You don't have enough money!");
       removeImg();
       return;
