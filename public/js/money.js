@@ -209,10 +209,12 @@ $(document).ready(function() {
       $.post('https://socialmoney.herokuapp.com/find_my_money', {name: name}, function(result) {
           var piece = result.split('.');
           piece.pop();
-          var htmlText = "";
+          var htmlText = "", totalmoney = 0;
           for (var i = 0;i<piece.length;i=i+3){
+            totalmoney += parseInt(piece[i+1]);
             htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+ piece[i]+' 幣, 餘 '+piece[i+1]+ ' (' + piece[i+2] +') 元</li>';
           }
+          htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> 合計：'+ totalmoney +' 元 (' + totalmoney-5000 +')</li>';
           $("#moneylist").html(htmlText);
 
       });
