@@ -254,6 +254,31 @@ function countTotal(price) {
   $('#showtotal').html("Total: "+totalprice);
 }
 
+function checkTotal() {
+  var htmlText = '';
+  if ($('#bagle').html().toString() != '數量' ) {
+    htmlText += "<h4>貝果" + $('#bagle').html().toString() + "</h4>";
+  }
+  if ($('#ice').html().toString() != '數量' ) {
+    htmlText += "<h4>冰淇淋" + $('#ice').html().toString() + "</h4>";
+  }
+  $("#itemDiv").html(htmlText);
+  $("#itemtotal").html("Total: "+totalprice+"元");
+  $('#myCheckModal').modal('show');
+}
+
+function removeItem() {
+  $('#bagle').html('數量');
+  $('#ice').html('數量');
+  $('#showtotal').html("Total: 0元");
+  totalprice = 0;
+}
+
+function toStore() {
+  var name = $("#name").html().toString();
+  removeItem();
+}
+
 function addFriend(name, addname) {
   $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addname}, function(result) {
 

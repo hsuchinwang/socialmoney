@@ -117,10 +117,10 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                   <li><a onclick="checkAmount(0,'bagle',25)">0</a></li>
-                                  <li><a onclick="checkAmount(0,'bagle',25)">1</a></li>
-                                  <li><a onclick="checkAmount(0,'bagle',25)">2</a></li>
-                                  <li><a onclick="checkAmount(0,'bagle',25)">3</a></li>
-                                  <li><a onclick="checkAmount(0,'bagle',25)">4</a></li>
+                                  <li><a onclick="checkAmount(1,'bagle',25)">1</a></li>
+                                  <li><a onclick="checkAmount(2,'bagle',25)">2</a></li>
+                                  <li><a onclick="checkAmount(3,'bagle',25)">3</a></li>
+                                  <li><a onclick="checkAmount(4,'bagle',25)">4</a></li>
                                 </ul>
                               </div>
                             </div>
@@ -142,7 +142,27 @@
                               </div>
                             </div>
                             <h5 id="showtotal">Total: 0元</h5>
-                            <a class="btn btn-primary" href="#" onclick="checkPin()"><span class="glyphicon glyphicon-shopping-cart" style="margin-bottom:0px;" aria-hidden="true"></span> Keep Record </a>
+                            <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" onclick="checkTotal()"><span class="glyphicon glyphicon-shopping-cart" style="margin-bottom:0px;" aria-hidden="true"></span> Keep Record </a>
+                          </div>
+                          <!-- Modal -->
+                          <div class="modal fade" id="myCheckModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-left:0px;">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="removeImg()"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" id="myModalLabel">價錢確認</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div id="itemDiv"></div><br>
+                                  <h3 id="itemtotal"></h3>
+                                  <h4>確認後金額將付給<strong>誠實商店</strong></h4>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeItem()">Close</button>
+                                  <button type="button" class="btn btn-primary" onclick="toStore()">Save changes</button>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
