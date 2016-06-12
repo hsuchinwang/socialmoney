@@ -255,12 +255,12 @@ function countTotal() {
 }
 
 function checkTotal() {
-  var htmlText = '';
+  var htmlText = '<h4>您購買：</h4>';
   if ($('#bagle').html().toString() != '數量' ) {
-    htmlText += "<h4>貝果" + $('#bagle').html().toString() + "</h4>";
+    htmlText += "<h4>貝果 " + $('#bagle').html().toString() + "</h4>";
   }
   if ($('#ice').html().toString() != '數量' ) {
-    htmlText += "<h4>冰淇淋" + $('#ice').html().toString() + "</h4>";
+    htmlText += "<h4>冰淇淋 " + $('#ice').html().toString() + "</h4>";
   }
   if ($('#bagle').html().toString() == '數量' && $('#ice').html().toString() == '數量'){
     removeItem();

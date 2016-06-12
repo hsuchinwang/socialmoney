@@ -376,7 +376,7 @@ class SocialMoneyClass < Sinatra::Base
         addfriend params[:name], params[:friend]
     end
 
-    post 'toStore' do
+    post '/toStore' do
         toStore params[:name], params[:price]
     end
 
