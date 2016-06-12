@@ -335,7 +335,7 @@ function getSelection(price,addfriend) {
 function create()
 {
     var price = document.getElementById("price").value;
-    if ( price > availableAmount ) {
+    if ( parseInt(price) > availableAmount ) {
       alert("You don't have enough money!");
       removeImg();
       return;
