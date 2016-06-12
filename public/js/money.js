@@ -1,4 +1,4 @@
-var topay = 0, total = 0, availableAmount = 0;
+var topay = 0, total = 0, availableAmount = 0, totalprice = 0;
 var indexOfElement = null;
 
 $('#tabBar').on("click", "li", function (event) {         
@@ -237,8 +237,21 @@ $(document).ready(function() {
 
 });
 
-function checkAmount(amount, name) {
-  $("#"+name).html(amount+"個");
+function checkAmount(amount, name, price) {
+  //$("#"+name).html(amount+"個");
+  document.getElementById(name).innerHTML = amount + "個";
+  countTotal(price);
+}
+
+function countTotal(price) {
+  totalprice = 0;
+  if ($('#bagel').html().toString() != '數量' ) {
+    totalprice += parseInt(price) * parseInt($('#bagel').html().toString().replace(/個/g,""));
+  }
+  if ($('#ice').html().toString() != '數量' ) {
+    totalprice += parseInt(price) * parseInt($('#ice').html().toString().replace(/個/g,""));
+  }
+  $('#showtotal').html("Total: "+totalprice);
 }
 
 function addFriend(name, addname) {
