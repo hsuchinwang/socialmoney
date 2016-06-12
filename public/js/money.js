@@ -281,6 +281,7 @@ function removeItem() {
 function toStore() {
   var name = $("#name").html().toString();
   if (totalprice < availableAmount) {
+    console.log(totalprice);
     $.post('https://socialmoney.herokuapp.com/toStore', {name: name, price: totalprice}, function(result) {
 
       console.log(result);
@@ -290,6 +291,7 @@ function toStore() {
     alert("You don't have enough money.");
   }
   removeItem();
+  $('#myCheckModal').modal('hide');
 }
 
 function addFriend(name, addname) {

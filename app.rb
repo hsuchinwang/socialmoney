@@ -222,13 +222,14 @@ class SocialMoneyClass < Sinatra::Base
             begin
                 con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 @mycur = Array.new
+                @mypri = Array.new
                 @name = name
-                @price = price
                 @mycur.push(@name)
+                @mypri.push(price)
                 con.query("SET NAMES UTF8")
-                minusAvailable(@name,@mycur,@price)
-                minus(@name,@mycur,@price)
-                add('誠實商店',@mycur,@price)
+                minusAvailable(@name,@mycur,@mypri)
+                minus(@name,@mycur,@mypri)
+                add('誠實商店',@mycur,@mypri)
 
             rescue Mysql::Error => e
                 puts e.errno
