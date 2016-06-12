@@ -13,12 +13,11 @@ class SocialMoneyClass < Sinatra::Base
                 @name = name
                 @pic = pic
                 con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
-                # con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'SamWang'
 
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT * FROM User WHERE Name = '#{@name}'")
                 if rs.num_rows == 0
-                    con.query("INSERT INTO User(Name, Currency, Price, Available) VALUES('#{@name}','#{@name}',10000,10000)")
+                    con.query("INSERT INTO User(Name, Currency, Price, Available) VALUES('#{@name}','#{@name}',5100,5100)")
                 end
                 rs = con.query("SELECT * FROM Persons WHERE Name = '#{@name}'")
                 if rs.num_rows == 0
@@ -39,7 +38,6 @@ class SocialMoneyClass < Sinatra::Base
 
                 @mycur = Array.new
                 @name = name
-                # con = Mysql.new 'us-cdbr-iron-east-03.cleardb.net', 'b2e373432ecddb', '1b03db28', 'heroku_31a4afc40e277ed'
                 con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 con.query("SET NAMES UTF8")
                 rs = con.query("SELECT * FROM User WHERE Name = '#{@name}'")
