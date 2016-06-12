@@ -221,12 +221,14 @@ class SocialMoneyClass < Sinatra::Base
         def toStore(name,price)
             begin
                 con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
+                @mycur = Array.new
                 @name = name
                 @price = price
+                @mycur >> @name
                 con.query("SET NAMES UTF8")
-                minusAvailable(@name,@name,@price)
-                minus(@name,@name,@price)
-                add('誠實商店',@name,@price)
+                minusAvailable(@name,@mycur,@price)
+                minus(@name,@mycur,@price)
+                add('誠實商店',@mycur,@price)
 
             rescue Mysql::Error => e
                 puts e.errno
