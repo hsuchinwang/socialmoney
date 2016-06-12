@@ -237,19 +237,19 @@ $(document).ready(function() {
 
 });
 
-function checkAmount(amount, name, price) {
+function checkAmount(amount, name) {
   //$("#"+name).html(amount+"個");
   document.getElementById(name).innerHTML = amount + "個";
-  countTotal(price);
+  countTotal();
 }
 
-function countTotal(price) {
+function countTotal() {
   totalprice = 0;
   if ($('#bagle').html().toString() != '數量' ) {
-    totalprice += parseInt(price) * parseInt($('#bagle').html().toString().replace(/個/g,""));
+    totalprice += 25 * parseInt($('#bagle').html().toString().replace(/個/g,""));
   }
   if ($('#ice').html().toString() != '數量' ) {
-    totalprice += parseInt(price) * parseInt($('#ice').html().toString().replace(/個/g,""));
+    totalprice += 30 * parseInt($('#ice').html().toString().replace(/個/g,""));
   }
   $('#showtotal').html("Total: "+totalprice);
 }
@@ -261,6 +261,10 @@ function checkTotal() {
   }
   if ($('#ice').html().toString() != '數量' ) {
     htmlText += "<h4>冰淇淋" + $('#ice').html().toString() + "</h4>";
+  }
+  if ($('#bagle').html().toString() == '數量' && $('#ice').html().toString() == '數量'){
+    removeItem();
+    alert('請選擇商品數量！');
   }
   $("#itemDiv").html(htmlText);
   $("#itemtotal").html("Total: "+totalprice+"元");
@@ -276,6 +280,15 @@ function removeItem() {
 
 function toStore() {
   var name = $("#name").html().toString();
+  if (totalprice < availableAmount) {
+    $.post('https://socialmoney.herokuapp.com/toStore', {name: name, price: totalprice}, function(result) {
+
+      console.log(result);
+
+    });
+  } else {
+    alert("You don't have enough money.");
+  }
   removeItem();
 }
 

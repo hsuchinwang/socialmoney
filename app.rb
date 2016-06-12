@@ -218,6 +218,25 @@ class SocialMoneyClass < Sinatra::Base
             end
         end
 
+        def toStore(name,price)
+            begin
+                con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
+                @name = name
+                @price = price
+                con.query("SET NAMES UTF8")
+                minusAvailable(@name,@name,@price)
+                minus(@name,@name,@price)
+                add('誠實商店',@name,@price)
+
+            rescue Mysql::Error => e
+                puts e.errno
+                puts e.error
+                
+            ensure
+                con.close if con
+            end
+        end
+
         def minus(name,currency,price)
             begin
                 con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
@@ -355,6 +374,10 @@ class SocialMoneyClass < Sinatra::Base
 
     post '/addfriend' do 
         addfriend params[:name], params[:friend]
+    end
+
+    post 'toStore' do
+        toStore params[:name], params[:price]
     end
 
 end
