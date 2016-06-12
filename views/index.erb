@@ -110,34 +110,34 @@
                             <div class="itemlist" style="text-align:center">
                               <span class="items">貝果  25元</span>
                               <div class="btn-group">
-                                <button type="button" class="btn btn-default">數量</button>
+                                <button type="button" class="btn btn-default" id='bagle'>數量</button>
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   <span class="caret"></span>
                                   <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                  <li><a href="#">0</a></li>
-                                  <li><a href="#">1</a></li>
-                                  <li><a href="#">2</a></li>
-                                  <li><a href="#">3</a></li>
-                                  <li><a href="#">4</a></li>
+                                  <li><a onclick="checkAmount(0,bagle)">0</a></li>
+                                  <li><a onclick="checkAmount(0,bagle)">1</a></li>
+                                  <li><a onclick="checkAmount(0,bagle)">2</a></li>
+                                  <li><a onclick="checkAmount(0,bagle)">3</a></li>
+                                  <li><a onclick="checkAmount(0,bagle)">4</a></li>
                                 </ul>
                               </div>
                             </div>
                             <div class="itemlist" style="text-align:center">
                               <span class="items">冰淇淋 30元</span>
                               <div class="btn-group">
-                                <button type="button" class="btn btn-default">數量</button>
+                                <button type="button" class="btn btn-default" id="ice">數量</button>
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   <span class="caret"></span>
                                   <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                  <li><a href="#">0</a></li>
-                                  <li><a href="#">1</a></li>
-                                  <li><a href="#">2</a></li>
-                                  <li><a href="#">3</a></li>
-                                  <li><a href="#">4</a></li>
+                                  <li><a onclick="checkAmount(0,ice)">0</a></li>
+                                  <li><a onclick="checkAmount(1,ice)">1</a></li>
+                                  <li><a onclick="checkAmount(2,ice)">2</a></li>
+                                  <li><a onclick="checkAmount(3,ice)">3</a></li>
+                                  <li><a onclick="checkAmount(4,ice)">4</a></li>
                                 </ul>
                               </div>
                             </div>
@@ -187,15 +187,16 @@
                 </div>
                 <div id="tabFriend" class="tab-pane fade">
                     <div class="col-md-4 col-xs-12 col-md-offset-4" style="margin-top:10%">
-                        <img class="col-md-12 col-xs-12" src="image/socialmoney.png">
-                        <br>
-                        <h5 style="text-align: center">掃描QRCode進入APP!</h5>
-                        <br>
                         <div class="input-group margin-bottom-sm">
                           <span class="input-group-addon">Add Friend</span>
                           <select class="form-control" id="friendlist" multiple="multiple"></select>
                         </div>
-                        <a class="btn btn-primary" style="margin-left:auto;margin-right:auto;display:block" onclick="getFriend()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 加入 </a>
+                        <a class="btn btn-primary" id="addFriend" onclick="getFriend()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 加入 </a>
+                        <br>
+                        <img class="col-md-12 col-xs-12" src="image/socialmoney.png">
+                        <br>
+                        <h5>掃描QRCode進入APP!</h5>
+                        <br>
                     </div>
                 </div>
                 <!-- <div id="tabBroadcast" class="tab-pane fade">

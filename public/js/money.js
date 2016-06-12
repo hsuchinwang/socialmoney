@@ -237,6 +237,10 @@ $(document).ready(function() {
 
 });
 
+function checkAmount(amount, name) {
+  $("#"+name).html(amount+"個");
+}
+
 function addFriend(name, addname) {
   $.post('https://socialmoney.herokuapp.com/addfriend', {name: name, friend: addname}, function(result) {
 
