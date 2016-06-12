@@ -224,7 +224,7 @@ class SocialMoneyClass < Sinatra::Base
                 @mycur = Array.new
                 @name = name
                 @price = price
-                @mycur >> @name
+                @mycur.push(@name)
                 con.query("SET NAMES UTF8")
                 minusAvailable(@name,@mycur,@price)
                 minus(@name,@mycur,@price)
