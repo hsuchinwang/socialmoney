@@ -1,4 +1,7 @@
-var topay = 0, total = 0, available = 0, indexOfElement = null;
+var topay = 0;
+var total = 0;
+var available = 0;
+var indexOfElement = null;
 
 $('#tabBar').on("click", "li", function (event) {         
    if ($(this).find('a').attr('href') == '#tabRecord') {
@@ -45,13 +48,9 @@ function loadUser() {
         var input = $('input[value="'+name+'"]');
         input.prop('disabled', true);
         input.parent('li').addClass('disabled');
-
-        
       });
-
     });
 
-    
 }
 
 function loadCurrency() {
