@@ -215,7 +215,7 @@ $(document).ready(function() {
             htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> '+ piece[i]+' 幣, 餘 '+piece[i+1]+ ' (' + piece[i+2] +') 元</li>';
           }
           totalDebt = totalmoney - 5000;
-          htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> 合計：'+ totalmoney +' 元 (' + totalDebt +')</li>';
+          htmlText += '<li class="list-group-item"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> 合計：'+ totalmoney +' 元 (' + totalDebt +')</li>';
           $("#moneylist").html(htmlText);
 
       });
