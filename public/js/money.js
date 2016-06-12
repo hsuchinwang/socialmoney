@@ -245,8 +245,8 @@ function checkAmount(amount, name, price) {
 
 function countTotal(price) {
   totalprice = 0;
-  if ($('#bagel').html().toString() != '數量' ) {
-    totalprice += parseInt(price) * parseInt($('#bagel').html().toString().replace(/個/g,""));
+  if ($('#bagle').html().toString() != '數量' ) {
+    totalprice += parseInt(price) * parseInt($('#bagle').html().toString().replace(/個/g,""));
   }
   if ($('#ice').html().toString() != '數量' ) {
     totalprice += parseInt(price) * parseInt($('#ice').html().toString().replace(/個/g,""));
