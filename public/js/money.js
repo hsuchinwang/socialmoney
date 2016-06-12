@@ -283,6 +283,7 @@ function removeItem() {
 
 function toStore() {
   var name = $("#name").html().toString();
+  var currency = name + totalprice.toString();
   if (totalprice < availableAmount) {
     console.log(totalprice);
     $.post('https://socialmoney.herokuapp.com/toStore', {name: name, price: totalprice}, function(result) {
@@ -290,6 +291,12 @@ function toStore() {
       console.log(result);
 
     });
+    $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: '誠實商店', named: name, price: totalprice, currency: currency}, function(result) {
+
+      console.log(result);
+
+    });
+    alert("已結帳，謝謝惠顧！");
   } else {
     alert("You don't have enough money.");
   }
