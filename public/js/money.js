@@ -303,12 +303,12 @@ function toStore() {
       console.log(result);
 
     });
-    alert("已結帳，謝謝惠顧！");
   } else {
     alert("You don't have enough money.");
   }
   removeItem();
   $('#myCheckModal').modal('hide');
+  alert("已結帳，謝謝惠顧！");
 }
 
 function addFriend(name, addname) {
