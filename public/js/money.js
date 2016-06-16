@@ -289,7 +289,9 @@ function removeItem() {
 }
 
 function removeCafeItem() {
-  $('#cafePrice').html('');
+  //$('#cafePrice').html('');
+  document.getElementById("cafePrice").value = "";
+
 }
 
 function checkCafeTotal() {
