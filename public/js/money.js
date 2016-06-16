@@ -309,7 +309,7 @@ function toPay() {
   var currency = name + price;
 
   if ( parseInt(price) < availableAmount){
-    $.post('https://socialmoney.herokuapp.com/toStore', {name: name, price: totalprice, store: '誠實商店'}, function(result) {
+    $.post('https://socialmoney.herokuapp.com/toStore', {name: name, price: totalprice, store: 'Bonjour咖啡'}, function(result) {
 
       console.log(result);
 
