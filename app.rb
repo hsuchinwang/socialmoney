@@ -216,18 +216,19 @@ class SocialMoneyClass < Sinatra::Base
             end
         end
 
-        def toStore(name,price)
+        def toStore(name,price,store)
             begin
                 con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
                 @mycur = Array.new
                 @mypri = Array.new
                 @name = name
+                @store = store
                 @mycur.push(@name)
                 @mypri.push(price)
                 con.query("SET NAMES UTF8")
                 minusAvailable(@name,@mycur,@mypri)
                 minus(@name,@mycur,@mypri)
-                add('誠實商店',@mycur,@mypri)
+                add(@store,@mycur,@mypri)
 
             rescue Mysql::Error => e
                 puts e.errno
@@ -321,7 +322,7 @@ class SocialMoneyClass < Sinatra::Base
     end
 
     get '/' do
-        erb :indexminify
+        erb :index
     end
 
     get '/find_user' do
@@ -378,7 +379,7 @@ class SocialMoneyClass < Sinatra::Base
     end
 
     post '/toStore' do
-        toStore params[:name], params[:price]
+        toStore params[:name], params[:price], params[:store]
     end
 
 end

@@ -288,12 +288,52 @@ function removeItem() {
   totalprice = 0;
 }
 
+function removeCafeItem() {
+  $('#cafePrice').html('');
+}
+
+function checkCafeTotal() {
+  var price = document.getElementById("cafePrice").value;
+  if (price == '') {
+    alert('請輸入價錢');
+  } else {
+    $("#cafetotal").html("Total: "+parseInt(price)+"元");
+    $('#cafeCheckModal').modal('show');
+  }
+  
+}
+
+function toPay() {
+  var price = document.getElementById("cafePrice").value;
+  var name = $("#name").html().toString();
+  var currency = name + price;
+
+  if ( parseInt(price) < availableAmount){
+    $.post('https://socialmoney.herokuapp.com/toStore', {name: name, price: totalprice, store: '誠實商店'}, function(result) {
+
+      console.log(result);
+
+    });
+    $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: 'Bonjour咖啡', named: name, price: parseInt(price), currency: currency}, function(result) {
+
+      console.log(result);
+
+    });
+  } else {
+    alert("You don't have enough money.");
+  }
+  removeCafeItem();
+  $('#cafeCheckModal').modal('hide');
+  alert("已結帳，謝謝惠顧！");
+}
+
+
 function toStore() {
   var name = $("#name").html().toString();
   var currency = name + totalprice.toString();
   if (totalprice < availableAmount) {
     console.log(totalprice);
-    $.post('https://socialmoney.herokuapp.com/toStore', {name: name, price: totalprice}, function(result) {
+    $.post('https://socialmoney.herokuapp.com/toStore', {name: name, price: totalprice, store: '誠實商店'}, function(result) {
 
       console.log(result);
 

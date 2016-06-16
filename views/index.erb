@@ -166,7 +166,7 @@
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="removeImg()"><span aria-hidden="true">&times;</span></button>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="removeItem()"><span aria-hidden="true">&times;</span></button>
                                   <h4 class="modal-title" id="myModalLabel">價錢確認</h4>
                                 </div>
                                 <div class="modal-body">
@@ -177,6 +177,49 @@
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeItem()">Close</button>
                                   <button type="button" class="btn btn-primary" onclick="toStore()">Confirm</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                          <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              Bonjour咖啡付款
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                          <div class="panel-body">
+                            
+                          </div>
+                          <div class="panelContent">
+                            <div>
+                              <h5>請在下面輸入付款金額：</h5>
+                            </div>
+                            <div class="input-group margin-bottom-sm">
+                              <span class="input-group-addon"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></span>
+                              <input class="form-control" type="number" placeholder="Please input the Price." id="cafePrice">
+                            </div>
+                            <a class="btn btn-primary" href="#dialogPage" data-rel="dialog" onclick="checkCafeTotal()"><span class="glyphicon glyphicon-shopping-cart" style="margin-bottom:0px;" aria-hidden="true"></span> Pay Bill </a>
+                          </div>
+                          <!-- Modal -->
+                          <div class="modal fade" id="cafeCheckModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-left:0px;">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="removeCafeItem()"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title">價錢確認</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <h3 id="cafetotal"></h3>
+                                  <h4>確認後金額將付給<strong>Bonjour咖啡店</strong></h4>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeCafeItem()">Close</button>
+                                  <button type="button" class="btn btn-primary" onclick="toPay()">Confirm</button>
                                 </div>
                               </div>
                             </div>
@@ -257,4 +300,4 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-multiselect.min.js"></script>
 <script type="text/javascript" src="js/postfb.min.js"></script>
-<script type="text/javascript" src="js/money.min.js"></script>
+<script type="text/javascript" src="js/money.js"></script>
