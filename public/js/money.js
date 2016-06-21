@@ -262,7 +262,7 @@ function countTotal() {
 }
 
 function checkTotal() {
-  var htmlText += '<h4>您購買：</h4>';
+  var htmlText = '<h4>您購買：</h4>';
   if ($('#bagle').html().toString() != '數量' ) {
     htmlText += "<h4>貝果 " + $('#bagle').html().toString() + "</h4>";
     itemsHtml += $('#bagle').html().toString() + '.'
