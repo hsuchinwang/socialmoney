@@ -265,15 +265,15 @@ function checkTotal() {
   var htmlText = '<h4>您購買：</h4>';
   if ($('#bagle').html().toString() != '數量' ) {
     htmlText += "<h4>貝果 " + $('#bagle').html().toString() + "</h4>";
-    itemsHtml += $('#bagle').html().toString() + '.'
+    itemsHtml += '貝果' + $('#bagle').html().toString() + '.'
   }
   if ($('#ice').html().toString() != '數量' ) {
     htmlText += "<h4>冰淇淋 " + $('#ice').html().toString() + "</h4>";
-    itemsHtml += $('#ice').html().toString() + '.'
+    itemsHtml += '冰淇淋' + $('#ice').html().toString() + '.'
   }
   if ($('#can').html().toString() != '數量' ) {
     htmlText += "<h4>鮪魚罐 " + $('#can').html().toString() + "</h4>";
-    itemsHtml += $('#can').html().toString() + '.'
+    itemsHtml += '罐頭' + $('#can').html().toString() + '.'
   }
   if ($('#bagle').html().toString() == '數量' && $('#ice').html().toString() == '數量' && $('#can').html().toString() == '數量'){
     removeItem();
