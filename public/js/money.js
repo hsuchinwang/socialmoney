@@ -1,4 +1,5 @@
 var topay = 0, total = 0, availableAmount = 0, totalprice = 0;
+var itemsHtml = '';
 var indexOfElement = null;
 
 $('#tabBar').on("click", "li", function (event) {         
@@ -261,21 +262,21 @@ function countTotal() {
 }
 
 function checkTotal() {
-  var htmlText = '<h4>您購買：</h4>';
+  itemsHtml += '<h4>您購買：</h4>';
   if ($('#bagle').html().toString() != '數量' ) {
-    htmlText += "<h4>貝果 " + $('#bagle').html().toString() + "</h4>";
+    itemsHtml += "<h4>貝果 " + $('#bagle').html().toString() + "</h4>";
   }
   if ($('#ice').html().toString() != '數量' ) {
-    htmlText += "<h4>冰淇淋 " + $('#ice').html().toString() + "</h4>";
+    itemsHtml += "<h4>冰淇淋 " + $('#ice').html().toString() + "</h4>";
   }
   if ($('#can').html().toString() != '數量' ) {
-    htmlText += "<h4>鮪魚罐 " + $('#can').html().toString() + "</h4>";
+    itemsHtml += "<h4>鮪魚罐 " + $('#can').html().toString() + "</h4>";
   }
   if ($('#bagle').html().toString() == '數量' && $('#ice').html().toString() == '數量' && $('#can').html().toString() == '數量'){
     removeItem();
     alert('請選擇商品數量！');
   }
-  $("#itemDiv").html(htmlText);
+  $("#itemDiv").html(itemsHtml);
   $("#itemtotal").html("Total: "+totalprice+"元");
   $('#myCheckModal').modal('show');
 }
@@ -286,6 +287,7 @@ function removeItem() {
   $('#can').html('數量');
   $('#showtotal').html("Total: 0元");
   totalprice = 0;
+  itemsHtml = '';
 }
 
 function removeCafeItem() {
@@ -340,7 +342,7 @@ function toStore() {
       console.log(result);
 
     });
-    $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: '誠實商店', named: name, price: totalprice, currency: currency}, function(result) {
+    $.post('https://socialmoney.herokuapp.com/keeprecord', {namec: '誠實商店', named: name, price: totalprice, currency: currency, description: itemsHtml}, function(result) {
 
       console.log(result);
 

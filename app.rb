@@ -79,7 +79,7 @@ class SocialMoneyClass < Sinatra::Base
             end
         end
 
-        def keeprecord(namec,named,price,currency)
+        def keeprecord(namec,named,price,currency,description)
             begin
                 con = Mysql.new DB_HOST, DB_USER, DB_PASS, DB_NAME
 
@@ -89,8 +89,13 @@ class SocialMoneyClass < Sinatra::Base
                 @time = Time.new
                 @date = @time.year.to_s + '/' + @time.month.to_s + '/' + @time.day.to_s
                 @currency = currency
+                @description = description
                 con.query("SET NAMES UTF8")
-                con.query("INSERT INTO Record(Credit, Debt, Booking, Currency, CreateTime) VALUES('#{@namec}','#{@named}','#{@named} -> #{@namec} #{@price}.','#{@currency}','#{@date}')")
+                if @description.to_s != ''
+                    con.query("INSERT INTO Record(Credit, Debt, Booking, Currency, CreateTime, Description) VALUES('#{@namec}','#{@named}','#{@named} -> #{@namec} #{@price}.','#{@currency}','#{@date}','#{@description}')")
+                else
+                    con.query("INSERT INTO Record(Credit, Debt, Booking, Currency, CreateTime) VALUES('#{@namec}','#{@named}','#{@named} -> #{@namec} #{@price}.','#{@currency}','#{@date}')")
+                end
 
             rescue Mysql::Error => e
                 puts e.errno
@@ -362,7 +367,7 @@ class SocialMoneyClass < Sinatra::Base
     end
 
     post '/keeprecord' do 
-        keeprecord params[:namec], params[:named], params[:price], params[:currency]
+        keeprecord params[:namec], params[:named], params[:price], params[:currency], params[:description]
     end
 
     post '/getrecord' do 
