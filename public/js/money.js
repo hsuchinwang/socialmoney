@@ -258,6 +258,9 @@ function countTotal() {
   if ($('#can').html().toString() != '數量' ) {
     totalprice += 25 * parseInt($('#can').html().toString().replace(/個/g,""));
   }
+  if ($('#icebar').html().toString() != '數量' ) {
+    totalprice += 20 * parseInt($('#icebar').html().toString().replace(/個/g,""));
+  }
   $('#showtotal').html("Total: "+totalprice);
 }
 
@@ -275,7 +278,11 @@ function checkTotal() {
     htmlText += "<h4>鮪魚罐 " + $('#can').html().toString() + "</h4>";
     itemsHtml += '罐頭' + $('#can').html().toString() + '.'
   }
-  if ($('#bagle').html().toString() == '數量' && $('#ice').html().toString() == '數量' && $('#can').html().toString() == '數量'){
+  if ($('#icebar').html().toString() != '數量' ) {
+    htmlText += "<h4>冰棒 " + $('#icebar').html().toString() + "</h4>";
+    itemsHtml += '冰棒' + $('#icebar').html().toString() + '.'
+  }
+  if ($('#bagle').html().toString() == '數量' && $('#ice').html().toString() == '數量' && $('#can').html().toString() == '數量' && $('#icebar').html().toString() == '數量'){
     removeItem();
     alert('請選擇商品數量！');
   }
@@ -288,6 +295,7 @@ function removeItem() {
   $('#bagle').html('數量');
   $('#ice').html('數量');
   $('#can').html('數量');
+  $('#icebar').html('數量');
   $('#showtotal').html("Total: 0元");
   totalprice = 0;
   itemsHtml = '';
