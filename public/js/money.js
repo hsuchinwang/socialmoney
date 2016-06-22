@@ -303,7 +303,7 @@ function removeItem() {
   $('#ice').html('數量');
   $('#can').html('數量');
   $('#icebar').html('數量');
-  $('#Mar').html('數量');
+  $('#ma').html('數量');
   $('#showtotal').html("Total: 0元");
   totalprice = 0;
   itemsHtml = '';
