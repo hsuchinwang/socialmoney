@@ -1,11 +1,18 @@
 require 'sinatra/base'
 require 'mysql'
+require 'rack/ssl'
 
 class SocialMoneyClass < Sinatra::Base
     DB_HOST = ENV['DATABASE_HOST']
     DB_USER = ENV['DATABASE_USER']
     DB_PASS = ENV['DATABASE_PASS']
     DB_NAME = ENV['DATABASE_NAME']
+
+
+
+    if ENV['RACK_ENV'] == 'production'
+       use Rack::SSL
+    end
 
     helpers do
         def save_name(name, pic)
