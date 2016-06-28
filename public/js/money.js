@@ -255,6 +255,9 @@ function countTotal() {
   if ($('#ice').html().toString() != '數量' ) {
     totalprice += 15 * parseInt($('#ice').html().toString().replace(/個/g,""));
   }
+  if ($('#toast').html().toString() != '數量' ) {
+    totalprice += 20 * parseInt($('#toast').html().toString().replace(/個/g,""));
+  }
   if ($('#can').html().toString() != '數量' ) {
     totalprice += 25 * parseInt($('#can').html().toString().replace(/個/g,""));
   }
