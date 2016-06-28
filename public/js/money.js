@@ -277,6 +277,10 @@ function checkTotal() {
     htmlText += "<h4>馬芬 " + $('#Mar').html().toString() + "</h4>";
     itemsHtml += '馬芬' + $('#Mar').html().toString() + '.'
   }
+  if ($('#toast').html().toString() != '數量' ) {
+    htmlText += "<h4>烤土司 " + $('#toast').html().toString() + "</h4>";
+    itemsHtml += '烤土司' + $('#toast').html().toString() + '.'
+  }
   if ($('#ice').html().toString() != '數量' ) {
     htmlText += "<h4>冰淇淋 " + $('#ice').html().toString() + "</h4>";
     itemsHtml += '冰淇淋' + $('#ice').html().toString() + '.'
@@ -289,7 +293,7 @@ function checkTotal() {
     htmlText += "<h4>冰棒 " + $('#icebar').html().toString() + "</h4>";
     itemsHtml += '冰棒' + $('#icebar').html().toString() + '.'
   }
-  if ($('#bagle').html().toString() == '數量' && $('#ice').html().toString() == '數量' && $('#can').html().toString() == '數量' && $('#icebar').html().toString() == '數量' && $('#Mar').html().toString() == '數量'){
+  if ($('#bagle').html().toString() == '數量' && $('#ice').html().toString() == '數量' && $('#can').html().toString() == '數量' && $('#icebar').html().toString() == '數量' && $('#Mar').html().toString() == '數量' && $('#toast').html().toString() == '數量'){
     removeItem();
     alert('請選擇商品數量！');
   }
@@ -303,7 +307,8 @@ function removeItem() {
   $('#ice').html('數量');
   $('#can').html('數量');
   $('#icebar').html('數量');
-  $('#ma').html('數量');
+  $('#Mar').html('數量');
+  $('#toast').html('數量');
   $('#showtotal').html("Total: 0元");
   totalprice = 0;
   itemsHtml = '';
